@@ -1,0 +1,108 @@
+.btn{
+    box-shadow: 0px 10px 10px rgba(100, 100, 100, 0.5);
+}
+
+.btn:hover{
+    background-color: #5c55e2;
+    box-shadow: 0px 10px 10px rgba(100, 100, 100, 1);
+}
+
+.btn-primary{
+    color: white;
+    background-color: #6c63ff;
+    border-color: #6c63ff;
+    /* #ff6347 orange */
+}
+.btn-outline-primary{
+    color: #ff6347;
+    background-color: white;
+    border-color: #ff6347;
+    margin: 5px;
+}
+
+nav>div>.bg-badge {
+    background-color: #ffffff;
+}
+
+nav.navbar{
+    background: radial-gradient(ellipse at bottom, white 0%, #6c63ff 400%);
+}
+
+nav>div>span:last-child{
+
+    margin-right: 1%;
+
+}
+.container-fluid{
+    margin-left: 25%;
+}
+a.navbar-brand{ /*add photo logo*/
+    
+    
+}
+img.logo{ /*add photo logo*/
+    margin-left: 10px;
+    border-radius: 50%;
+    width: 10%;
+    height: 10%;
+}
+
+div.card{
+    width: 75%;
+    border: 1px solid #ff6347;
+    margin-left: 25%;
+    margin-top: 5px;
+    
+}
+
+div.card:hover{
+    border: 2px solid #6c63ff;
+    
+}
+div.card-list{
+    border: 2px solid #6c63ff;
+    height: 1200px;
+    
+}
+.card-list-nav{
+    
+    
+    
+}
+div.card-body>img:first-child{
+    width: 70px;
+    height: 70px;
+    float: left;
+    margin-top: 4%;
+    box-shadow: 0px 0px 20px rgba(138, 43, 226, 0.5);
+    border-radius: 5px;
+    border: 2px solid ;
+}
+a.sendmessage{
+    float: right;
+}
+body{
+    background-color: #f1f1f1;
+}
+
+
+/*The side bar style*/
+aside.sidebar-filter{
+    border:1px solid black;
+    width: 25%;
+    height: 1200px;
+    float: left;
+}
+aside>form>div.reset{
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+}
+aside>form>div>input.btn:hover{
+    background-color: #ff6347;
+}
+aside>form>select>option:checked{
+    color: white;
+    background-color: #ff6347;
+
+}
