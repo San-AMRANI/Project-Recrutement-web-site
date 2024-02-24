@@ -24,9 +24,7 @@ nav>div>.bg-badge {
     background-color: #ffffff;
 }
 
-nav.navbar{
-    background: radial-gradient(ellipse at bottom, white 0%, #6c63ff 400%);
-}
+
 
 nav>div>span:last-child{
 
@@ -105,4 +103,12 @@ aside>form>select>option:checked{
     color: white;
     background-color: #ff6347;
 
+}
+
+body>aside:first-of-type{
+    border: 2px solid black;
+    float: left;
+    width: 300px;
+    height: 1200px;
+    display: flex;
 }
