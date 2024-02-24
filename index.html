@@ -1,171 +1,421 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="btsp/css/bootstrap.css">
+    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-
+    <title>Document</title>
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-
-        <div>
-            <img src="#" alt="logo" class="logo">
-            <a class="navbar-brand" href="index.html">Jobido</a>
-        </div>
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+              <!-- Logo -->
+              <a class="navbar-brand" href="#" style="color: black; font-size: larger; font-weight:bolder;">Jobpply</a>
+          
+              <!-- Toggler button for mobile view -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Condidats</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-
+              </button>
+          
+              <!-- Navbar links and buttons -->
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 listt">
+                  <!-- Navigation Links -->
+                  <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="#" style="color: #6c63ff;">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Candidates</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="margin-right: 10px;">Contact</a>
+                  </li>
                 </ul>
-
+                <!-- Login and Sign Up buttons for mobile view -->
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a href="/login" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/signup" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <span
-                class="badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border border-primary-subtle rounded-pill">
-                <img class="rounded-circle me-1" width="24" height="24"
-                    src="userimg" alt="">Username
-            </span>
-        </div>
-    </nav>
-
-
-    <h1 class="text-center">+13000 OFFRES DE STAGE AU MAROC <br>
-        POUR LANCER TA CARRIÈRE</h1>
-    <p class="text-center">Trouvez des offres de stage au Maroc pour démarrer votre carrière</p>
-    <!-- <button type="button" class="btn btn-primary">Primary</button> -->
-
-
-
-    <div class="card-list container">
-
-        <aside class="sidebar-filter container">
-            <form action="">
-                <p>
-                <h5 class="text-center">Filter</h5>
-                </p>
-                <div class="reset container">
-                    <input type="reset" value="Reset" class="btn btn-outline-primary reset">
-                    <input type="submit" value="Submit" class="btn btn-outline-primary submit">
-                </div>
-                <label for="cities">City:</label>
-                <select id="cities" class="form-select" name="cities">
-                    <option selected>Choisir..</option>
-                    <option value="Casablanca">Casablanca</option>
-                    <option value="Rabat">Rabat</option>
-                    <option value="Marrakech">Marrakech</option>
-                    <option value="Fez">Fez</option>
-                    <option value="Tangier">Tangier</option>
-                    <option value="Agadir">Agadir</option>
-                    <option value="Meknes">Meknes</option>
-                    <option value="Oujda">Oujda</option>
-                    <option value="Kenitra">Kenitra</option>
-                    <option value="Tetouan">Tetouan</option>
-                    <option value="Laayoune">Laayoune</option>
-                    <option value="Khouribga">Khouribga</option>
-                    <option value="El Jadida">El Jadida</option>
-                    <option value="Nador">Nador</option>
-                    <option value="Settat">Settat</option>
-                    <option value="Mohammedia">Mohammedia</option>
-                    <option value="Taza">Taza</option>
-                    <option value="Khenifra">Khenifra</option>
-                    <option value="Berrechid">Berrechid</option>
-                    
-                </select>
-            </form>
-        </aside>
-        <div class="card-list-nav">
-            <div class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid"> <!-- Move the container-fluid outside of the pagination -->
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <span class="page-link">&#11178;</span>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active" aria-current="page">
-                            <span class="page-link">2</span>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">&#10149;</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="card">
-            <div class="card-body">
-                <img src="/learning/learning bootstrap/media/logo.jpeg" alt="">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below </p>
-                <a href="#" class="btn btn-primary sendmessage">Send Message</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <img src="/learning/learning bootstrap/media/logo.jpeg" alt="">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below </p>
-                <a href="#" class="btn btn-primary sendmessage">Send Message</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <img src="/learning/learning bootstrap/media/logo.jpeg" alt="">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below </p>
-                <a href="#" class="btn btn-primary sendmessage">Send Message</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <img src="/learning/learning bootstrap/media/logo.jpeg" alt="">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below </p>
-                <a href="#" class="btn btn-primary sendmessage">Send Message</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <img src="/learning/learning bootstrap/media/logo.jpeg" alt="">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below </p>
-                <a href="#" class="btn btn-primary sendmessage">Send Message</a>
-            </div>
-        </div>
+          </nav>
+          
     </div>
 
-    <script src="btsp/js/popper.min.js"></script>
-    <script src="btsp/js/jquery-3.7.1.min.js"></script>
-    <script src="btsp/js/bootstrap.js"></script>
-</body>
 
+    <div class="one-8pn d-wb4 item-zgy ftco-vkj fa-1kp ftco-vsz style-q3RvQ" id="style-q3RvQ">
+        <div class="row">
+        <div class="col-dm-6">
+        <div class="text-4to mt-qte">
+          <p class="mb-bz3 mt-qte pt-bg6">
+            We have 
+            <span class="num-9oo">
+              200,000
+            </span>
+            great job offers you deserve!
+          </p>
+          <h1 class="mb-lad">
+            Largets Job Site In The World
+          </h1>
+          <div class="search-xti">
+            <div class="row-7gg">
+              <div class="col-oek">
+                <div class="nav-212 nav-vmr text-ea5">
+                  <a class="nav-link-hx9 act-pww mr-md-2ml" href="#v-pills-1">
+                    Find a Job
+                  </a>
+                  <a class="nav-link-hx9" href="#v-pills-2">
+                    Find a Candidate
+                  </a>
+                </div>
+              </div>
+              <div class="col-oek">
+                <div class="content-12q p-2in">
+                  <div class="tab-ggw fa-nys sho-7df act-pww">
+                    <form class="search-ikh">
+                      <div class="row-7gg no-j87">
+                        <div class="col-ifw mr-md-ajo">
+                          <div class="form-group-lv4">
+                            <div class="field-tsm">
+                              <div class="icon-e59">
+                                <img src="photos/briefcase.png" style="width: 15px;" alt="">
+                              </div>
+                              <input type="text" class="form-control-mpb" placeholder="eg. Garphic. Web Developer">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-ifw mr-md-ajo">
+                          <div class="form-group-lv4">
+                            <div class="field-tsm">
+                              <div class="select-j91">
+                                <div class="icon-e59">
+                                  <img src="photos/arrow-down-sign-to-navigate.png" style="width: 15px;" alt="">
+                                </div>
+                                <select name="" id="mroyy" class="form-control-mpb">
+                                  <option value="">
+                                    Category
+                                  </option>
+                                  <option value="">
+                                    Full Time
+                                  </option>
+                                  <option value="">
+                                    Part Time
+                                  </option>
+                                  <option value="">
+                                    Freelance
+                                  </option>
+                                  <option value="">
+                                    Internship
+                                  </option>
+                                  <option value="">
+                                    Temporary
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-ifw mr-md-ajo">
+                          <div class="form-group-lv4">
+                            <div class="field-tsm">
+                              <div class="icon-e59">
+                                <img src="photos/pin.png" style="width: 15px;" alt="">
+                              </div>
+                              <input type="text" class="form-control-mpb" placeholder="Location">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-ifw">
+                          <div class="form-group-lv4">
+                            <div class="field-tsm">
+                              <button type="submit" class="form-control-mpb btn-i1x btn-secondary-yzs">
+                                Search
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="tab-ggw fa-nys">
+                    <form class="search-ikh">
+                      <div class="row-7gg">
+                        <div class="col-ifw">
+                          <div class="form-group-lv4">
+                            <div class="field-tsm">
+                              <div class="icon-e59">
+                                <span class="icon-bo5">
+                                </span>
+                              </div>
+                              <input type="text" class="form-control-mpb" placeholder="eg. Adam Scott">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-ifw">
+                          <div class="form-group-lv4">
+                            <div class="field-tsm">
+                              <div class="select-j91">
+                                <div class="icon-e59">
+                                  <span class="row-zko">
+                                  </span>
+                                </div>
+                                <select name="" id="mroyy" class="form-control-mpb">
+                                  <option value="">
+                                    Category
+                                  </option>
+                                  <option value="">
+                                    Full Time
+                                  </option>
+                                  <option value="">
+                                    Part Time
+                                  </option>
+                                  <option value="">
+                                    Freelance
+                                  </option>
+                                  <option value="">
+                                    Internship
+                                  </option>
+                                  <option value="">
+                                    Temporary
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-ifw">
+                          <div class="form-group-lv4">
+                            <div class="field-tsm">
+                              <div class="icon-e59">
+                                <span class="icon-tpd">
+                                </span>
+                              </div>
+                              <input type="text" class="form-control-mpb" placeholder="Location">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-ifw">
+                          <div class="form-group-lv4">
+                            <div class="field-tsm">
+                              <button type="submit" class="form-control-mpb btn-i1x btn-secondary-yzs">
+                                Search
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="col-md-6">
+            <div class="image-container" id="imageBackground">
+                <img src="photos/undraw_work_time_lhoj.png" alt="Background Image" class="background-image">
+              </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="fluid bg-dark wassim" style="margin-top: 710px; background-color: #6c63ff !important;">
+        <div class="container" style="padding: 112px 0px;">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="icon" style="margin: 10px;">
+                  <img src="photos/resume.png" alt="" style="width: 60px;">
+                </div>
+                <div class="media-main">
+                  <h3 class="heading mb-3 text text-white" style="font-size: 18px; font-weight: bold;">
+                    Search Million of jobs
+                  </h3>
+                  <p style="color: rgb(230, 230, 230);opacity: 0.8;">
+                    A small river named Duden flows by their place and supplies.
+                  </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+              <div class="icon" style="margin: 10px;">
+                <img src="photos/collaboration.png" alt="" style="width: 60px;">
+              </div>
+              <div class="media-main">
+                <h3 class="heading mb-3 text text-white" style="font-size: 18px;font-weight: bold;">
+                  Easy To Manage Jobs
+                </h3>
+                <p style="color: rgb(230, 230, 230);opacity: 0.8;">
+                  A small river named Duden flows by their place and supplies.
+                </p>
+              </div>
+          </div>
+          <div class="col-md-3">
+            <div class="icon" style="margin: 10px;">
+              <img src="photos/team-support.png" alt="" style="width: 60px;">
+            </div>
+            <div class="media-main">
+              <h3 class="heading mb-3 text text-white" style="font-size: 18px;font-weight: bold;">
+                Top Carrers
+              </h3>
+              <p style="color:rgb(230, 230, 230);opacity: 0.8;">
+                A small river named Duden flows by their place and supplies.
+              </p>
+            </div>
+        </div>
+        <div class="col-md-3">
+          <div class="icon" style="margin: 10px;">
+            <img src="photos/employee.png" alt="" style="width: 60px;">
+          </div>
+          <div class="media-main">
+            <h3 class="heading mb-3 text text-white " style="font-size: 18px;font-weight: bold;">
+              Search Expert Candidates
+            </h3>
+            <p style="color: rgb(230, 230, 230);opacity: 0.8;">
+              A small river named Duden flows by their place and supplies.
+            </p>
+          </div>
+      </div>
+        </div>
+        </div>
+      </div>
+
+      
+
+        <section class="ftco-section" style="padding-top: 200px; padding-bottom: 150px;">
+        <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+        <div class="col-md-7 heading-section text-center ftco-animate">
+        <span class="subheading" style="opacity: 0.5; font-size: 18px;">Job Categories</span>
+        <h2 class="mb-4" style="font-weight: 900; color:black ;
+        margin-bottom: 20px;">Top Categories</h2>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-3 ftco-animate">
+        <ul class="category wawa">
+        <li><a href="#">Web Development <br><span class="number">354</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">Graphic Designer <br><span class="number">143</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">Multimedia <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">Advertising <br><span class="number">90</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        </ul>
+        </div>
+        <div class="col-md-3 ftco-animate">
+        <ul class="category wawa">
+        <li><a href="#">Education &amp; Training <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">English <br><span class="number">200</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">Social Media <br><span class="number">300</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">Writing <br><span class="number">150</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        </ul>
+        </div>
+        <div class="col-md-3 ftco-animate">
+        <ul class="category wawa">
+        <li><a href="#">PHP Programming <br><span class="number">400</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">Project Management <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">Finance Management <br><span class="number">222</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">Office &amp; Admin <br><span class="number">123</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        </ul>
+        </div>
+        <div class="col-md-3 ftco-animate">
+        <ul class="category wawa">
+        <li><a href="#">Web Designer <br><span class="number">324</span> <span>Open position</span></span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">Customer Service <br><span class="number">564</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">Marketing &amp; Sales <br><span class="number">234</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="#">Software Development <br><span class="number">425</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        </section>
+
+
+
+
+        <section class="ftco-section img" style="background-image: url(photos/bg_1.jpg.webp); background-position: top center; height: 500px;">
+          <div class="container" style="padding-top: 100px;">
+          <div class="row">
+          <div class="col-md-6">
+          <div class="browse-job p-5">
+          <span class="icon-search2 icon"><img src="photos/loupe.png"  alt=""></span>
+          <span class="subheading">Search Job</span>
+          <h2 style="font-weight: 900; color: black;">Browse Job by Specialism</h2>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          </div>
+          </div>
+          </div>
+          </div>
+          </section>
+
+          <footer class="ftco-footer ftco-bg-dark ftco-section">
+            <div class="container">
+            <div class="row mb-5">
+            <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">About</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+            <li class="ftco-animate"><a style="padding-right: 30px;" href="#"><img style="width: 25px;" src="photos/twitter.png" alt=""></a></li>
+            <li class="ftco-animate"><a style="padding-right: 30px;" href="#"><img style="width: 25px;" src="photos/facebook-app-symbol.png" alt=""></a></li>
+            <li class="ftco-animate"><a href="#"><img style="width: 25px;" src="photos/instagram.png" alt=""></a></li>
+            </ul>
+            </div>
+            </div>
+            <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">Employers</h2>
+            <ul class="list-unstyled" style="">
+            <li><a href="#" class="py-2 d-block">How it works</a></li>
+            <li><a href="#" class="py-2 d-block">Register</a></li>
+            <li><a href="#" class="py-2 d-block">Post a Job</a></li>
+            <li><a href="#" class="py-2 d-block">Advance Skill Search</a></li>
+            <li><a href="#" class="py-2 d-block">Recruiting Service</a></li>
+            <li><a href="#" class="py-2 d-block">Blog</a></li>
+            <li><a href="#" class="py-2 d-block">Faq</a></li>
+            </ul>
+            </div>
+            </div>
+            <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+            <h2 class="ftco-heading-2">Workers</h2>
+            <ul class="list-unstyled">
+            <li><a href="#" class="py-2 d-block">How it works</a></li>
+            <li><a href="#" class="py-2 d-block">Register</a></li>
+            <li><a href="#" class="py-2 d-block">Post Your Skills</a></li>
+            <li><a href="#" class="py-2 d-block">Job Search</a></li>
+            <li><a href="#" class="py-2 d-block">Emploer Search</a></li>
+            </ul>
+            </div>
+            </div>
+            <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">Have a Questions?</h2>
+            <div class="block-23 mb-3">
+            <ul>
+            <li><span class="icon icon-map-marker"></span><span class="text">103 Faculté des Sciences et Techniques, Casablanca Settat ,Morocco  </span></li>
+            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+212 664025605</span></a></li>
+            <li><a href="#"><span class="icon icon-envelope"></span><span class="text"><span class="__cf_email__" data-cfemail="b6dfd8d0d9f6cfd9c3c4d2d9dbd7dfd898d5d9db">BoutrasseytWassim @gmail.com</span></span></a></li>
+            </ul>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </footer>
+        
+
+
+    <script src="Bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
