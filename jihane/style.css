@@ -41,9 +41,11 @@ nav li:hover{
 #info{
     list-style-type: none;
     text-align: left;
+    border:1px solid none;
+    padding-right: 15px;
     
 }
-#main{border:1px solid none;
+#main{
       border-radius: 20px;
       box-shadow: 0 0 5px #6c63ff;
       margin-left: 30px;
@@ -62,7 +64,7 @@ nav li:hover{
     margin-right: 0;
 }
 
-.button{
+.button1{
     width: 100px;
     border-radius: 10px;
     box-shadow:0 0 ;
@@ -75,8 +77,25 @@ nav li:hover{
 
 }
 
-.button:hover{
+.button1:hover{
     background-color: #b5b2f1;
+}
+
+.button2{
+    width: 100px;
+    border-radius: 10px;
+    box-shadow:0 0 ;
+    color: white;
+    border: none;
+    box-shadow: 0 0 5px #ff6347 ;
+    background-color: #ff6347;
+    padding: 10px;
+    
+
+}
+
+.button2:hover{
+    background-color: #ef9c8d;
 }
 
 #left{
@@ -96,4 +115,7 @@ nav li:hover{
 
     caption{
         font-size: large;
+        
     }
+
+   
