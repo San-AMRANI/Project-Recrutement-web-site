@@ -1,0 +1,168 @@
+nav li:hover{
+    text-align: center;
+    color:white;
+    background-color:#ffd3cb;
+    
+}
+
+
+#color{
+ border-radius: 10px;
+ list-style-type: none;
+ padding: 0;
+ background-color: #ff6347;
+ width: 20%;
+ margin-top:10px ;
+ 
+
+} 
+#color>li>a{
+
+ width: 100%;
+ display: block;
+ padding-top: 40px;
+ padding-bottom: 40px;
+ text-decoration: none;
+ border-radius: 10px;
+ text-align: center;
+ color:white; 
+
+ 
+
+}
+#color>li>a:hover{
+ 
+ background-color: #f59786;
+ text-align: center;
+ border-radius: 10px;
+ }
+
+
+#info{
+ list-style-type: none;
+ text-align: 50px;
+ border:1px solid none;
+ padding-right: 15px;
+
+ 
+}
+
+#main{
+   border-radius: 20px;
+   box-shadow: 0 0 5px #6c63ff;
+   margin-left: 30px;
+   width: 70%;
+   margin-top: 10px;
+   }
+
+table{margin-left: 50px;}
+
+   table tr td{padding: 10px;
+text-align: center;}
+
+.nav2{
+ display: flex;
+ margin-right: 0;
+}
+
+.button1{
+ width: 100px;
+ border-radius: 10px;
+ box-shadow:0 0 ;
+ color: white;
+ border: none;
+ box-shadow: 0 0 5px #6c63ff;
+ background-color: #6c63ff;
+ padding: 10px;
+ 
+
+}
+
+.button1:hover{
+ background-color: #b5b2f1;
+}
+.button2{
+ width: 100px;
+ border-radius: 10px;
+ box-shadow:0 0 ;
+ border: none;
+ box-shadow: 0 0 5px #ff6347 ;
+ background-color: #ff6347;
+ padding: 10px;
+ color:white;
+ 
+}
+ 
+.button2>a{
+    color:white;
+    text-decoration: none;
+}
+
+
+    
+
+
+.button2:hover{
+ background-color: #ef9c8d;
+}
+
+#left{
+ float: right;
+ margin-right: 10px;
+}
+.global{
+
+ font-family: Arial, sans-serif;
+ margin:50px;
+ padding: 50px;
+
+ 
+ margin: 5px auto;
+ padding: 50px;
+}
+
+ caption{
+     font-size: large;
+     
+ }
+
+ .ftco-footer {
+     font-size: 16px;
+     background: #000000;
+     padding: 7em 0;
+ }
+ 
+ @media (min-width: 992px){
+ .container { 
+     max-width: 960px;
+ }
+ }
+ @media (min-width: 768px){
+ .col-md {
+     -ms-flex-preferred-size: 0;
+     flex-basis: 0;
+     -webkit-box-flex: 1;
+     -ms-flex-positive: 1;
+     flex-grow: 1;
+     max-width: 100%;
+ }
+ }
+ .ftco-footer .ftco-footer-widget h2 {
+     font-weight: normal;
+     color: #fff;
+     margin-bottom: 40px;
+     font-size: 20px;
+     font-weight: 700;
+ }
+ 
+ .ftco-footer-social li {
+     list-style: none;
+     margin: 0 10px 0 0;
+     display: inline-block;
+ }
+ .ftco-footer-widget li a{
+     color: white;
+     opacity: 0.7;
+ }
+ 
+ 
