@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,6 +8,7 @@
         <link href="../btsp/css/bootstrap.css" rel="stylesheet" >
         <script src="../btsp/js/bootstrap.js" ></script>
         <link rel="stylesheet" href="modifierProfil.css">
+        
         
     </head>
     <body>
@@ -19,7 +20,7 @@
          <nav class="navbar navbar-expand-lg bg-body-tertiary">
             
             <div class="container-fluid">
-                <img src="../media/logo.jpeg" alt="logo" class="logo" width="50px" >
+                <img src="../media/logo.jpeg" alt="logo" class="logo"  >
                 
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -52,29 +53,34 @@
                 <li><a href="#about">About</a></li>
               </ul>
             <div class="about" id="main">
-                <h1>&nbsp;&nbsp;My Profil</h1>
+                
                 
                 <br>
                 <form>
-                    <div id="info">
-                        <table>
-                        <tr>
-                          <td><strong>First Name:</strong> </td>
-                          <td><input type="text" name="firstname" id="firstname" placeholder="First Name"  required></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Last Name:</strong></td>
-                            <td><input type="text" name="lastname" id="lastname" placeholder="Last Name" required></td>
-                          </tr>
+    
+                <ul id="info">
 
-                        <tr>
-                          <td><label for="cities"><strong>City:</strong></label></td>
-                            <td><select id="cities" class="form-select" name="cities" required>
+                    
+                    
+                                            
+                    <li>
+                        <label for="firstname"><strong>First Name:</strong></label>
+                        <input type="text" name="firstname" id="firstname" placeholder="First Name">
+                    </li>
+                
+                    <li>
+                        <label for="lastname"><strong>Last Name:</strong></label>
+                        <input type="text" name="lastname" id="lastname" placeholder="Last Name">
+                    </li>
+                
+                    <li>
+                        <label for="cities"><strong>City:</strong></label>
+                        <select id="cities" class="form-select" name="cities">
                                 <option selected>Choisir..</option>
                                 <option value="Casablanca">Casablanca</option>
                                 <option value="Rabat">Rabat</option>
                                 <option value="Marrakech">Marrakech</option>
-                                <option value="Fez">Fez</option>
+                                <option value="Fes">Fes</option>
                                 <option value="Tangier">Tangier</option>
                                 <option value="Agadir">Agadir</option>
                                 <option value="Meknes">Meknes</option>
@@ -90,82 +96,75 @@
                                 <option value="Taza">Taza</option>
                                 <option value="Khenifra">Khenifra</option>
                                 <option value="Berrechid">Berrechid</option>
-                                </td>
-                            </select>
-                        </tr>
-                        <tr>
-                            <td><label for="sexe"><strong>Sexe:</strong ></label></td>
-                              <td><select id="sexe" class="form-select" name="sexe" required>
-                                  <option selected>Choisir..</option>
-                                  <option value="male">Male</option>
-                                  <option value="female">Female</option>
-                                  
-                                  </td>
-                              </select>
-                          </tr>
-                        <tr>
-                        <td><label for="phone"><strong>Phone:</strong></label></td>
-                        <td><input type="tel" name="phone" id="phone" placeholder="+212 600000000"  required></td>
-                        </tr>
-                        <tr>
-                            <td><label for="email"><strong>Email:</strong></label></td>
-                            <td><input type="email" name="email" id="email" placeholder="xyz@example.com" required></td>
-                        </tr>
-                        <tr>
-                            <td><label for="level"><strong>Level:</strong></label></td>
-                            <td><select id="level" class="form-select" name="level" required>
-                                <option selected>Choisir..</option>
-                                <option value="bac+1">BAC</option>
-                                <option value="bac+1">BAC+1</option>
-                                <option value="bac+2">BAC+2</option>
-                                <option value="bac+3">BAC+3</option>
-                                <option value="bac+4">BAC+4</option>
-                                <option value="bac+5">BAC+5</option>
-                                <option value=">bac+5">> BAC+5</option>
-                                
-                                </td>
-                            </select>
-                        </tr>
+                      </select>
+                    </li>
+                    <li >
+                        <label for="sexe"><strong>Sexe:</strong></label>
+                        <select id="sexe" class="form-select" name="sexe">
+                            <option selected>Choisir..</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="phone"><strong>Phone:</strong></label>
+                        <input type="tel" name="phone" id="phone" placeholder="+212 600000000" required>
+                    </li>
+                
+                    <li>
+                        <label for="email"><strong>Email:</strong></label>
+                        <input type="email" name="email" id="email" placeholder="xyz@example.com" required>
+                    </li>
+                    <li >
+                        <label for="level"><strong>Level:</strong></label>
+                        <select id="level" class="form-select" name="level">
+                        <option selected  class="form-select">Choisir..</option>
+                        <option value="bac+1" class="form-select item1">BAC</option>
+                        <option value="bac+1" class="form-select item2">BAC+1</option>
+                        <option value="bac+2" class="form-select item3">BAC+2</option>
+                        <option value="bac+3" class="form-select item4">BAC+3</option>
+                        <option value="bac+4" class="form-select item5">BAC+4</option>
+                        <option value="bac+5" class="form-select item6">BAC+5</option>
+                        <option value=">bac+5" class="form-select item7">> BAC+5</option>
+                       </select>
+                    </li>
+                    <li>
+                        <label for="speciality"><strong>Specialty:</strong></label>
+                        <input type="text" name="speciality" id="speciality" placeholder="Web Developer" required>
+                    </li>
+                    
+                    <li>
                         
-                        <tr>
-                            <td><label for="status"><strong>Status:</strong></label></td>
+                            <label><strong>Status:</strong></label>
+                            <input type="radio" name="status" id="student">
+                            <label for="student">Student</label>
+                            <input type="radio" name="status" id="alumni">
+                            <label for="alumni">Alumni</label>
+                        
+                    </li>
+                    <li>
+                        <label for="school"><strong>School:</strong></label>
+                        <input type="text" name="school" id="school" placeholder="University Hassan II" required>
+                    </li>
 
-                            <td><input type="radio" name="status" id="student" >
-                            <label for="status">Student</label>
-                            &nbsp;&nbsp;
-                            &nbsp;&nbsp;
-                            <input type="radio" name="status" id="alumnee" >
-                            <label for="status">Alumnee</label></td>
-                        </tr>
-                        
-                        <tr>
-                            <td><label for="school"><strong>School:</strong></label></td>
-                            <td><input type="text" name="school" id="school" placeholder="University Hassan II" required></td>
-                            
-                        </tr>
-                            
-                        <tr>
-                            <td><label for="speciality"><strong>Speciality:</strong></label></td>
-                            <td><input type="text" name="speciality" id="speciality" placeholder="Web Deloveper" required></td>
-                            </tr>
-                        
-                        
-                </table>
-            </div>
+                
+                </ul> 
+            </form>
+    
+    
     
             </div>
           
         </div>
        <br>
-
-       <div id="left">
-        <button class="button1" type="submit">Submit</button>
-        &nbsp;
-        <button class="button2"><a href="profilCandidat.html"> Cancel</a></button></div>
-        <br><br><br>
-      </div> 
+       <form>
+        <div id="left">
+          <button class="button1"><a href="profilCandidat.html">Cancel</a></button>
+          &nbsp;
+          <button class="button2"type="Submit">Submit</button></div>
+          <br><br><br>
+        </div>  
     </form>
-
 
       <footer class="ftco-footer ftco-bg-dark ftco-section" id="Contact">
         <div class="container">

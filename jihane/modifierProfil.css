@@ -4,6 +4,9 @@ nav li:hover{
     background-color:#ffd3cb;
     
 }
+.logo{
+ width:50px;
+}
 #color{
  border-radius: 10px;
  list-style-type: none;
@@ -11,8 +14,9 @@ nav li:hover{
  background-color: #ff6347;
  width: 20%;
  margin-top:10px ;
-} 
 
+ 
+} 
 #color>li>a{
 
  width: 100%;
@@ -23,6 +27,7 @@ nav li:hover{
  border-radius: 10px;
  text-align: center;
  color:white; 
+ 
 }
 #color>li>a:hover{
  
@@ -34,13 +39,17 @@ nav li:hover{
 
 #info{
  list-style-type: none;
- text-align: 50px;
+ text-align: left;
  border:1px solid none;
  padding-right: 15px;
-
+ 
  
 }
+form{
 
+    padding-left:15px;
+    padding-right:15px;
+}
 #main{
    border-radius: 20px;
    box-shadow: 0 0 5px #6c63ff;
@@ -48,11 +57,6 @@ nav li:hover{
    width: 70%;
    margin-top: 10px;
    }
-
-table{margin-left: 50px;}
-
-   table tr td{padding: 10px;
-text-align: center;}
 
 .nav2{
  display: flex;
@@ -68,27 +72,30 @@ text-align: center;}
  box-shadow: 0 0 5px #6c63ff;
  background-color: #6c63ff;
  padding: 10px;
- 
-
 }
+
+.button1>a{text-decoration: none;
+color:white;}
 
 .button1:hover{
  background-color: #b5b2f1;
 }
+
 .button2{
  width: 100px;
  border-radius: 10px;
  box-shadow:0 0 ;
+ color: white;
  border: none;
  box-shadow: 0 0 5px #ff6347 ;
  background-color: #ff6347;
  padding: 10px;
- color:white;
-}
  
+
+}
 .button2>a{
-    color:white;
     text-decoration: none;
+    color: white;
 }
 
 .button2:hover{
@@ -104,7 +111,10 @@ text-align: center;}
  font-family: Arial, sans-serif;
  margin:50px;
  padding: 50px;
-margin: 5px auto;
+ 
+
+ 
+ margin: 5px auto;
  padding: 50px;
 }
 
@@ -152,4 +162,41 @@ margin: 5px auto;
      opacity: 0.7;
  }
  
- 
+ /* Style pour les étiquettes */
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Style pour les champs de saisie */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/* Style pour les champs radio */
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* Style pour le conteneur de la liste */
+#info {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Style pour chaque élément de la liste */
+#info li {
+    margin-bottom: 20px;
+}
+
+input[type="radio"]{accent-color: #6c63ff;}
+

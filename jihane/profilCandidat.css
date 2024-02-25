@@ -4,7 +4,15 @@ nav li:hover{
        background-color:#ffd3cb;
        
 }
+.logo{
+    width:50px;
+}
 
+#info li{
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    margin-right: 10px;
+}
 #color{
     border-radius: 10px;
     list-style-type: none;
@@ -12,6 +20,7 @@ nav li:hover{
     background-color: #ff6347;
     width: 20%;
     margin-top:10px ;
+
 } 
  #color>li>a{
   
@@ -23,6 +32,9 @@ nav li:hover{
     border-radius: 10px;
     text-align: center;
     color:white; 
+    
+    
+    
 }
  #color>li>a:hover{
     
@@ -145,4 +157,16 @@ color:white;}
         color: white;
         opacity: 0.7;
     }
+
+
+
+
+
+
+
+
+
+
+
+
     
