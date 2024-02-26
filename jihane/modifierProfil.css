@@ -160,6 +160,7 @@ caption{
 .ftco-footer-widget li a{
    color: white;
    opacity: 0.7;
+   text-decoration: none;
 }
 
 /* Style pour les étiquettes */
