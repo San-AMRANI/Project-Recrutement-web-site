@@ -1,7 +1,7 @@
 nav li:hover{
   text-align: center;
   color:white;
-  background-color:#ffd3cb;
+  background-color:#a4a0ed;
   
 }
 .logo{
@@ -11,7 +11,7 @@ width:50px;
 border-radius: 10px;
 list-style-type: none;
 padding: 0;
-background-color: #ff6347;
+background-color: #6c63ff;
 width: 20%;
 margin-top:10px ;
 
@@ -31,19 +31,19 @@ color:white;
 }
 #color>li>a:hover{
 
-background-color: #f59786;
+background-color: #a4a0ed;
 text-align: center;
 border-radius: 10px;
 }
-
+ul input[type="image"]{
+  width: 100px;
+}
 
 #info{
 list-style-type: none;
 text-align: left;
 border:1px solid none;
 padding-right: 15px;
-
-
 }
 form{
 
@@ -69,16 +69,16 @@ border-radius: 10px;
 box-shadow:0 0 ;
 color: white;
 border: none;
-box-shadow: 0 0 5px #6c63ff;
-background-color: #6c63ff;
-padding: 10px;
+box-shadow: 0 0 5px #ff6347;
+background-color: #ff6347;
+padding: 15px;
 }
 
-.button1>a{text-decoration: none;
+.button1{text-decoration: none;
 color:white;}
 
 .button1:hover{
-background-color: #b5b2f1;
+background-color: #f39d8e;
 }
 
 .button2{
@@ -87,8 +87,8 @@ border-radius: 10px;
 box-shadow:0 0 ;
 color: white;
 border: none;
-box-shadow: 0 0 5px #ff6347 ;
-background-color: #ff6347;
+box-shadow: 0 0 5px #6c63ff ;
+background-color: #6c63ff;
 padding: 10px;
 
 
@@ -99,7 +99,7 @@ padding: 10px;
 }
 
 .button2:hover{
-background-color: #ef9c8d;
+background-color: #a4a0ed;
 }
 
 #left{
