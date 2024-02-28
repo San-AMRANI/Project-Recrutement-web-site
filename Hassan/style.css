@@ -26,6 +26,12 @@ nav>div>.bg-badge {
     background-color: #ffffff;
 }
 
+nav>div>span.badge {
+    border: 1px solid #ff6347 !important;
+
+}
+
+
 
 
 nav>div>span:last-child {
