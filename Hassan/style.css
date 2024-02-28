@@ -1,20 +1,20 @@
-
-.btn{
+.btn {
     box-shadow: 0px 10px 10px rgba(100, 100, 100, 0.5);
 }
 
-.btn:hover{
+.btn:hover {
     background-color: #5c55e2;
     box-shadow: 0px 10px 10px rgba(100, 100, 100, 1);
 }
 
-.btn-primary{
+.btn-primary {
     color: white;
     background-color: #6c63ff;
     border-color: #6c63ff;
     /* #ff6347 orange */
 }
-.btn-outline-primary{
+
+.btn-outline-primary {
     color: #ff6347;
     background-color: white;
     border-color: #ff6347;
@@ -28,44 +28,49 @@ nav>div>.bg-badge {
 
 
 
-nav>div>span:last-child{
+nav>div>span:last-child {
 
     margin-right: 1%;
 
 }
-.container-fluid{
+
+.container-fluid {
     margin-left: 25%;
 }
 
-img.logo{ /*add photo logo*/
+img.logo {
+    /*add photo logo*/
     margin-left: 10px;
     border-radius: 50%;
     width: 10%;
     height: 10%;
 }
 
-div.card{
+div.card {
     width: 75%;
     border: 1px solid #ff6347;
     margin-left: 25%;
     margin-top: 5px;
-    
+
 }
 
-div.card:hover{
+div.card:hover {
     border: 2px solid #6c63ff;
-    
+
 }
-div.card-list{
+
+div.card-list {
     /* border: 2px solid #6c63ff; */
     height: 1200px;
-    
+
 }
-ul.pagination{
+
+ul.pagination {
     float: right;
     margin: 10px;
 }
-div.card-body img.img_recruteur{
+
+div.card-body img.img_recruteur {
     width: 12%;
     height: 12%;
     float: left;
@@ -75,7 +80,8 @@ div.card-body img.img_recruteur{
     border-radius: 5px;
     border: 2px solid rgb(108, 99, 255);
 }
-div.card-body> div.titre_offre{
+
+div.card-body>div.titre_offre {
     /* width: 40%;
     float:inline-start;
     margin-top:3%; */
@@ -84,37 +90,43 @@ div.card-body> div.titre_offre{
     top: 20%;
     margin-left: 5px;
 }
-div.card-body> p.duree_offre{
+
+div.card-body>p.duree_offre {
     position: absolute;
     color: #ff6347;
     left: 45%;
     top: 50%;
-    
+
 }
-div.card-body> p.duree_offre>img{
+
+div.card-body>p.duree_offre>img {
     position: absolute;
     right: 100%;
     top: 10%;
-    
+
 }
-div.card-body> p.location_offre{
+
+div.card-body>p.location_offre {
     position: absolute;
     color: #ff6347;
     left: 20%;
-    top: 50%; 
+    top: 50%;
 }
-div.card-body> p.location_offre>img{
+
+div.card-body>p.location_offre>img {
     position: absolute;
     right: 100%;
     top: 10%;
-    
+
 }
-div.card-body> span.specialiste_offre{
+
+div.card-body>span.specialiste_offre {
     position: absolute;
     top: 50%;
     left: 65%;
 }
-a.postuler{
+
+a.postuler {
     position: absolute;
     bottom: 10%;
     right: 2%;
@@ -123,36 +135,43 @@ a.postuler{
 
 
 /*The side bar style*/
-aside.sidebar-filter{
+aside.sidebar-filter {
     /* border:1px solid black; */
     width: 25%;
-    
+
     float: left;
 }
-aside>form>div.reset-submit{
+
+aside>form>div.reset-submit {
     display: flex;
-    align-items: center ;
+    align-items: center;
     justify-content: center;
 }
-aside>form>div>input.btn:hover{
+
+aside>form>div>input.btn:hover {
     background-color: #ff6347;
 }
-aside>form>select>option:checked{
+
+aside>form>select>option:checked {
     color: white;
     background-color: #ff6347;
 }
 
-body>aside:first-of-type{
+body>aside:first-of-type {
     border: 2px solid black;
     float: left;
     display: flex;
 }
 
-input.form-check-input{
-    background-color:#6c63ff;
+input.form-check-input {
+    background-color: #ff6347;
+}
+
+input.form-check-input:checked {
+    background-color: #ff6347;
+    border-color: #6c63ff;
+    box-shadow: 0px 0px 10px rgba(255, 99, 71, 1);
 }
 
 
 /* The form of filtring */
-
-
