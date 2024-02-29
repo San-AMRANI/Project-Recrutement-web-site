@@ -10,12 +10,12 @@
 
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+<body class="bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg container nav-underline">
 
         <div>
             <img src="../media/logo.jpeg" alt="logo" class="logo">
-            <a class="navbar-brand" href="index.html">Jobi</a>
+            <a class="navbar-brand" href="index.html">Jobido</a>
         </div>
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="../Wassim/index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Condidats</a>
+                        <a class="nav-link active" href="index.html">Offres</a>
                     </li>
 
                     <li class="nav-item">
@@ -44,8 +44,9 @@
 
             </div>
             <span
-                class="badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border border-primary-subtle rounded-pill">
-                <img class="rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg" alt="">Username
+                class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border  rounded-pill">
+                <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg"
+                    alt="profile"> <a class="nav-link" href="../jihane/profilCandidat.html">Username</a>
             </span>
         </div>
     </nav>
@@ -63,16 +64,44 @@
 
     <div class="card-list container">
 
-        <aside class="sidebar-filter container">
+        <aside class="sidebar-filter container ">
             <form action="">
                 <p>
                 <h5 class="text-center">Filter</h5>
                 </p>
-                <div class="reset container">
+
+                <div class="reset-submit container btn-group">
                     <input type="reset" value="Reset" class="btn btn-outline-primary reset">
                     <input type="submit" value="Submit" class="btn btn-outline-primary submit">
                 </div>
-                <label for="cities">City:</label>
+                <hr>
+                <label for="spécialité">Spécialité :</label>
+                <select id="spécialité" class="form-select">
+                    <option selected>Choisir..</option>
+                    <option value="developpement_web">Développement Web</option>
+                    <option value="developpement_logiciel">Développement Logiciel</option>
+                    <option value="réseaux_informatique">Réseaux Informatique</option>
+                    <option value="administration_système">Administration Système</option>
+                    <option value="design_graphique">Design Graphique</option>
+                    <option value="marketing">Marketing Digital</option>
+                    <option value="finance">Finance</option>
+                    <!-- Ajoutez d'autres options selon vos besoins -->
+                </select>
+                <hr>
+                <label for="duree">Durée :</label>
+                <select id="duree" class="form-select">
+                    <option selected>Choisir..</option>
+                    <option value="1">1 mois</option>
+                    <option value="2">2 mois</option>
+                    <option value="3">3 mois</option>
+                    <option value="4">4 mois</option>
+                    <option value="5">5 mois</option>
+                    <option value="6">6 mois</option>
+                    <option value="7"> >6 mois</option>
+
+                </select>
+                <hr>
+                <label for="cities">Ville :</label>
                 <select id="cities" class="form-select" name="cities">
                     <option selected>Choisir..</option>
                     <option value="Casablanca">Casablanca</option>
@@ -96,24 +125,24 @@
                     <option value="Berrechid">Berrechid</option>
 
                 </select>
+                <hr>
+                <div>
+                    <input class="form-check-input" type="radio" name="timing" value="temp_plein" id="temp_plein"
+                        checked>
+                    <label for="temp_plein">Temp plein </label>
+                    <br>
+                    <input class="form-check-input" type="radio" name="timing" value="temp_partiel" id="temp_partiel">
+                    <label for="temp_partiel">Temp partiel </label>
+                </div>
             </form>
+
         </aside>
+
+
         <div class="card-list-nav">
             <div class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid"> <!-- Move the container-fluid outside of the pagination -->
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <span class="page-link">&#11178;</span>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active" aria-current="page">
-                            <span class="page-link">2</span>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">&#10149;</a>
-                        </li>
-                    </ul>
+
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-primary" type="submit">Search</button>
@@ -125,44 +154,101 @@
 
         <div class="card">
             <div class="card-body">
-                <img src="../media/logo.jpeg" alt="">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below </p>
-                <a href="#" class="btn btn-primary sendmessage">Send Message</a>
+                <div>
+                    <img class="img_recruteur" src="../media/logo.jpeg" alt="">
+                </div>
+                <div class="titre_offre">
+                    <h5 class="card-title"> <b>Special title treatment</b></h5>
+                </div>
+                <p class="duree_offre"> <img src="../media/horloge.png" width="20px" alt=""> <b>2 mois</b> </p>
+                <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
+                    <b>Casablanca</b>
+                </p>
+                <span class="badge rounded-pill text-bg-danger specialiste_offre">Specialité</span>
+                <a href="#" class="btn btn-primary postuler">Postuler</a>
             </div>
         </div>
+
         <div class="card">
             <div class="card-body">
-                <img src="../media/logo.jpeg" alt="">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below </p>
-                <a href="#" class="btn btn-primary sendmessage">Send Message</a>
+                <div>
+                    <img class="img_recruteur" src="../media/logo.jpeg" alt="">
+                </div>
+                <div class="titre_offre">
+                    <h5 class="card-title"> <b>Special title treatment</b></h5>
+                </div>
+                <p class="duree_offre"> <img src="../media/horloge.png" width="20px" alt=""> <b>2 mois</b> </p>
+                <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
+                    <b>Casablanca</b>
+                </p>
+                <span class="badge rounded-pill text-bg-danger specialiste_offre">Specialité</span>
+                <a href="#" class="btn btn-primary postuler">Postuler</a>
             </div>
         </div>
+
         <div class="card">
             <div class="card-body">
-                <img src="../media/logo.jpeg" alt="">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below </p>
-                <a href="#" class="btn btn-primary sendmessage">Send Message</a>
+                <div>
+                    <img class="img_recruteur" src="../media/logo.jpeg" alt="">
+                </div>
+                <div class="titre_offre">
+                    <h5 class="card-title"> <b>Special title treatment</b></h5>
+                </div>
+                <p class="duree_offre"> <img src="../media/horloge.png" width="20px" alt=""> <b>2 mois</b> </p>
+                <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
+                    <b>Casablanca</b>
+                </p>
+                <span class="badge rounded-pill text-bg-danger specialiste_offre">Specialité</span>
+                <a href="#" class="btn btn-primary postuler">Postuler</a>
             </div>
         </div>
+
         <div class="card">
             <div class="card-body">
-                <img src="../media/logo.jpeg" alt="">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below </p>
-                <a href="#" class="btn btn-primary sendmessage">Send Message</a>
+                <div>
+                    <img class="img_recruteur" src="../media/logo.jpeg" alt="">
+                </div>
+                <div class="titre_offre">
+                    <h5 class="card-title"> <b>Special title treatment</b></h5>
+                </div>
+                <p class="duree_offre"> <img src="../media/horloge.png" width="20px" alt=""> <b>2 mois</b> </p>
+                <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
+                    <b>Casablanca</b>
+                </p>
+                <span class="badge rounded-pill text-bg-danger specialiste_offre">Specialité</span>
+                <a href="#" class="btn btn-primary postuler">Postuler</a>
             </div>
         </div>
+
         <div class="card">
             <div class="card-body">
-                <img src="../media/logo.jpeg" alt="">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below </p>
-                <a href="#" class="btn btn-primary sendmessage">Send Message</a>
+                <div>
+                    <img class="img_recruteur" src="../media/logo.jpeg" alt="">
+                </div>
+                <div class="titre_offre">
+                    <h5 class="card-title"> <b>Special title treatment</b></h5>
+                </div>
+                <p class="duree_offre"> <img src="../media/horloge.png" width="20px" alt=""> <b>2 mois</b> </p>
+                <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
+                    <b>Casablanca</b>
+                </p>
+                <a href="#" class="btn btn-primary postuler">Postuler</a>
             </div>
         </div>
+
+        <ul class="pagination">
+            <li class="page-item disabled">
+                <span class="page-link">&#11178;</span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active" aria-current="page">
+                <span class="page-link">2</span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">&#10149;</a>
+            </li>
+        </ul>
     </div>
 
     <script src="btsp/js/popper.min.js"></script>
