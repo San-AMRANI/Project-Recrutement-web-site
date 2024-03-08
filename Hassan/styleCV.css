@@ -243,3 +243,57 @@ img#uploaded-ing {
   margin: 10px;
   display: none;
 }
+
+#info-language{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+div.language{
+  
+  width:60%;
+}
+
+
+/* Style for slider container */
+.slider {
+  width: 100%; /* Adjust width as needed */
+  position: relative;
+  display: inline-block;
+  display: flex;
+}
+
+/* Style for select element */
+.slider select {
+  display: inline-block;
+  width: 30%;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  appearance: none;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style for select options */
+.slider select option {
+  padding: 10px;
+}
+
+/* Style for select arrow */
+.slider select::after {
+  content: "\25BC"; 
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+/* Style for selected option */
+.slider select option:checked {
+  background-color: #6c63ff;
+  color: #fff;
+}
