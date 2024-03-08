@@ -83,8 +83,8 @@
                                 <label class="form-label" for="last-name">Last name</label>
                             </div>
                             <div class="form-floating">
-                                <input type="date" class="form-control x1" placeholder="date naissance" id="date-naissance"
-                                    aria-label="Last name">
+                                <input type="date" class="form-control x1" placeholder="date naissance"
+                                    id="date-naissance" aria-label="Last name">
                                 <label class="form-label" for="birth-date">Date de naissance</label>
                             </div>
                         </div>
@@ -129,44 +129,225 @@
                         Formations <span>&#x2B9F;</span>
                     </button>
                 </div>
-                <div class=" form-floating " id="info-formation"> <!--add collapse-->
+                <div class=" form-floating collapse" id="info-formation"> <!--add collapse-->
                     <div class="container ">
-                        <div class="card">
+                        <div class="card formation0">
                             <div class="card-body">
                                 <form action="#" method="post">
                                     <div class=" form-floating">
-                                        <input type="text" id="formation" name="formation" class="form-control" placeholder="titre de formation" required>
+                                        <input type="text" id="formation" name="formation" class="form-control"
+                                            placeholder="titre de formation" required>
                                         <label for="formation" class="form-label">Titre de Formation:</label>
                                     </div>
-                    
-                                    <div class=" form-floating">
-                                        <input type="text" id="etablissement" name="etablissement" class="form-control x1" placeholder="etablissement" required>
+
+                                    <div class="form-floating">
+                                        <input type="text" id="etablissement" name="etablissement"
+                                            class="form-control x1" placeholder="etablissement" required>
                                         <label for="etablissement" class="form-label">Établissement:</label>
                                     </div>
-                    
+
                                     <div class=" form-floating">
-                                        <input type="text" id="ville" name="ville" class="form-control x1" placeholder="ville" required>
+                                        <input type="text" id="ville" name="ville" class="form-control x1"
+                                            placeholder="ville" required>
                                         <label for="ville" class="form-label">Ville:</label>
                                     </div>
-                    
+
                                     <div class="input-group ">
                                         <div class=" form-floating">
-                                            <input type="date" id="dateDebut" name="dateDebut" class="form-control x1" placeholder="date début">
+                                            <input type="date" id="dateDebut" name="dateDebut" class="form-control x1"
+                                                placeholder="date début">
                                             <label for="dateDebut" class="form-label">Date de début:</label>
                                         </div>
                                         <div class=" form-floating">
-                                            <input type="date" id="dateFin" name="dateFin" class="form-control x1" placeholder="date fin">
+                                            <input type="date" id="dateFin" name="dateFin" class="form-control x1"
+                                                placeholder="date fin">
                                             <label for="dateFin" class="form-label">Date de fin:</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <textarea id="description" name="description" class="form-control" placeholder="Description.." rows="4"></textarea>
+                                        <textarea id="description" name="description" class="form-control"
+                                            placeholder="Description.." rows="4"></textarea>
                                         <!-- <label for="description" class="form-label">Description:</label> -->
                                     </div>
                                     <button type="submit" class="btn btn-primary">Terminé</button>
                                 </form>
                             </div>
                         </div>
+                        <div class="card hidden" id="formation1">
+                            <div class="card-body">
+                                <form action="#" method="post">
+                                    <div class=" form-floating">
+                                        <input type="text" id="formation" name="formation" class="form-control"
+                                            placeholder="titre de formation" required>
+                                        <label for="formation" class="form-label">Titre de Formation:</label>
+                                    </div>
+
+                                    <div class="form-floating">
+                                        <input type="text" id="etablissement" name="etablissement"
+                                            class="form-control x1" placeholder="etablissement" required>
+                                        <label for="etablissement" class="form-label">Établissement:</label>
+                                    </div>
+
+                                    <div class=" form-floating">
+                                        <input type="text" id="ville" name="ville" class="form-control x1"
+                                            placeholder="ville" required>
+                                        <label for="ville" class="form-label">Ville:</label>
+                                    </div>
+
+                                    <div class="input-group ">
+                                        <div class=" form-floating">
+                                            <input type="date" id="dateDebut" name="dateDebut" class="form-control x1"
+                                                placeholder="date début">
+                                            <label for="dateDebut" class="form-label">Date de début:</label>
+                                        </div>
+                                        <div class=" form-floating">
+                                            <input type="date" id="dateFin" name="dateFin" class="form-control x1"
+                                                placeholder="date fin">
+                                            <label for="dateFin" class="form-label">Date de fin:</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea id="description" name="description" class="form-control"
+                                            placeholder="Description.." rows="4"></textarea>
+                                        <!-- <label for="description" class="form-label">Description:</label> -->
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Terminé</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card hidden" id="formation2" >
+                            <div class="card-body">
+                                <form action="#" method="post">
+                                    <div class=" form-floating">
+                                        <input type="text" id="formation" name="formation" class="form-control"
+                                            placeholder="titre de formation" required>
+                                        <label for="formation" class="form-label">Titre de Formation:</label>
+                                    </div>
+
+                                    <div class="form-floating">
+                                        <input type="text" id="etablissement" name="etablissement"
+                                            class="form-control x1" placeholder="etablissement" required>
+                                        <label for="etablissement" class="form-label">Établissement:</label>
+                                    </div>
+
+                                    <div class=" form-floating">
+                                        <input type="text" id="ville" name="ville" class="form-control x1"
+                                            placeholder="ville" required>
+                                        <label for="ville" class="form-label">Ville:</label>
+                                    </div>
+
+                                    <div class="input-group ">
+                                        <div class=" form-floating">
+                                            <input type="date" id="dateDebut" name="dateDebut" class="form-control x1"
+                                                placeholder="date début">
+                                            <label for="dateDebut" class="form-label">Date de début:</label>
+                                        </div>
+                                        <div class=" form-floating">
+                                            <input type="date" id="dateFin" name="dateFin" class="form-control x1"
+                                                placeholder="date fin">
+                                            <label for="dateFin" class="form-label">Date de fin:</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea id="description" name="description" class="form-control"
+                                            placeholder="Description.." rows="4"></textarea>
+                                        <!-- <label for="description" class="form-label">Description:</label> -->
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Terminé</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card hidden " id="formation3" >
+                            <div class="card-body">
+                                <form action="#" method="post">
+                                    <div class=" form-floating">
+                                        <input type="text" id="formation" name="formation" class="form-control"
+                                            placeholder="titre de formation" required>
+                                        <label for="formation" class="form-label">Titre de Formation:</label>
+                                    </div>
+
+                                    <div class="form-floating">
+                                        <input type="text" id="etablissement" name="etablissement"
+                                            class="form-control x1" placeholder="etablissement" required>
+                                        <label for="etablissement" class="form-label">Établissement:</label>
+                                    </div>
+
+                                    <div class=" form-floating">
+                                        <input type="text" id="ville" name="ville" class="form-control x1"
+                                            placeholder="ville" required>
+                                        <label for="ville" class="form-label">Ville:</label>
+                                    </div>
+
+                                    <div class="input-group ">
+                                        <div class=" form-floating">
+                                            <input type="date" id="dateDebut" name="dateDebut" class="form-control x1"
+                                                placeholder="date début">
+                                            <label for="dateDebut" class="form-label">Date de début:</label>
+                                        </div>
+                                        <div class=" form-floating">
+                                            <input type="date" id="dateFin" name="dateFin" class="form-control x1"
+                                                placeholder="date fin">
+                                            <label for="dateFin" class="form-label">Date de fin:</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea id="description" name="description" class="form-control"
+                                            placeholder="Description.." rows="4"></textarea>
+                                        <!-- <label for="description" class="form-label">Description:</label> -->
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Terminé</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card hidden" id="formation4" >
+                            <div class="card-body">
+                                <form action="#" method="post">
+                                    <div class=" form-floating">
+                                        <input type="text" id="formation" name="formation" class="form-control"
+                                            placeholder="titre de formation" required>
+                                        <label for="formation" class="form-label">Titre de Formation:</label>
+                                    </div>
+
+                                    <div class="form-floating">
+                                        <input type="text" id="etablissement" name="etablissement"
+                                            class="form-control x1" placeholder="etablissement" required>
+                                        <label for="etablissement" class="form-label">Établissement:</label>
+                                    </div>
+
+                                    <div class=" form-floating">
+                                        <input type="text" id="ville" name="ville" class="form-control x1"
+                                            placeholder="ville" required>
+                                        <label for="ville" class="form-label">Ville:</label>
+                                    </div>
+
+                                    <div class="input-group ">
+                                        <div class=" form-floating">
+                                            <input type="date" id="dateDebut" name="dateDebut" class="form-control x1"
+                                                placeholder="date début">
+                                            <label for="dateDebut" class="form-label">Date de début:</label>
+                                        </div>
+                                        <div class=" form-floating">
+                                            <input type="date" id="dateFin" name="dateFin" class="form-control x1"
+                                                placeholder="date fin">
+                                            <label for="dateFin" class="form-label">Date de fin:</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea id="description" name="description" class="form-control"
+                                            placeholder="Description.." rows="4"></textarea>
+                                        <!-- <label for="description" class="form-label">Description:</label> -->
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Terminé</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-md-flex justify-content-md-end">
+                        <button class="btn-with-icon btn" type="button" id="remove-formation"><span class="icon-span" role="img"><img src="/media/moins.png"
+                                    alt="icon"></span> Suprimer formation </button>
+                        <button class="btn-with-icon btn" type="button" id="add-formation"><span class="icon-span" role="img"><img src="/media/croix-plus.png"
+                                    alt="icon"></span> Ajouter formation </button>
                     </div>
                 </div>
                 <hr>
@@ -243,25 +424,17 @@
             <div class="section">
                 <h3 class="section-title">Language</h3>
                 <input type="range" name="" id="" disabled>
-
             </div>
         </div>
 
     </aside>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.js"
-        integrity="sha512-Fd3EQng6gZYBGzHbKd52pV76dXZZravPY7lxfg01nPx5mdekqS8kX4o1NfTtWiHqQyKhEGaReSf4BrtfKc+D5w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="/btsp/js/jquery-3.7.1.min.js"></script>
+    <script src="/btsp/js/printThis.js"></script>
     <script src="saveToPdf.js"></script>
     <script src="/btsp/js/bootstrap.min.js"></script>
     <script src="/btsp/js/popper.min.js"></script>
-
-
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
-
 </body>
 
 </html>
