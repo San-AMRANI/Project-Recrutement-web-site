@@ -1,0 +1,18 @@
+.background-image {
+    position: relative;
+    z-index: 1; /* Assure que l'image de fond est derrière le contenu au-dessus */
+}
+
+.background-image img {
+    width: 100%; /* Ajustez selon vos besoins */
+    height: auto; /* Ajustez selon vos besoins */
+}
+
+.container-above {
+    position: absolute; /* ou 'fixed' selon le comportement souhaité */
+    top: 0; /* Ajustez la position selon vos besoins */
+    left: 0; /* Ajustez la position selon vos besoins */
+    z-index: 2; /* Assure que ce conteneur apparaît au-dessus de l'image de fond */
+    width: 100%; /* Ajustez selon vos besoins */
+    /* Ajoutez d'autres styles ici selon vos besoins */
+}

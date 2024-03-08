@@ -50,3 +50,43 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+
+  window.onscroll = function() {
+    // Obtenir la barre de navigation par son identifiant ou sa classe
+    var navbar = document.querySelector('.navbar'); // Ajustez ce sélecteur selon votre HTML
+
+    // Vérifier si la page a été défilée de plus de 100 pixels
+    if (window.scrollY > 100) {
+        // Ajouter la classe 'fixed-top' si elle n'est pas déjà présente
+        navbar.classList.add('fixed-top');
+
+        // Ajouter des styles spécifiques
+        navbar.style.backgroundColor = "white";
+        navbar.style.paddingLeft = "250px";
+        navbar.style.paddingRight = "250px";
+        navbar.style.paddingTop = "10px";
+        navbar.style.paddingBottom = "10px";
+        navbar.style.boxShadow= "2px 2px 2px 1px rgb(0 0 0 / 20%)";
+
+        // Optionnel: Ajouter un padding-top au corps de la page pour éviter un saut de contenu
+        document.body.style.paddingTop = navbar.offsetHeight + 'px';
+    } else {
+        // Retirer la classe 'fixed-top' quand on est en haut de la page
+        navbar.classList.remove('fixed-top');
+
+        // Retirer les styles spécifiques
+        navbar.style.backgroundColor = ""; // Remettre la couleur de fond par défaut
+        navbar.style.paddingLeft = "";
+        navbar.style.paddingRight = "";
+        navbar.style.paddingTop = "";
+        navbar.style.paddingBottom = "";
+        navbar.style.boxShadow="";
+
+        // Optionnel: Retirer le padding-top du corps de la page
+        document.body.style.paddingTop = '0';
+    }
+};
+
+
+
+
