@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../btsp/css/bootstrap.css">
+    <link rel="stylesheet" href="../btsp/css/bootstrap.min.css">
+    <title>Créer votre CV</title>
+    <link rel="stylesheet" href="styleCV.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg container nav-underline">
+
+        <div>
+            <img src="../media/logo.jpeg" alt="logo" class="logo">
+            <a class="navbar-brand" href="index.html">Jobido</a>
+        </div>
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="../Wassim/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Offres</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+
+                </ul>
+
+            </div>
+            <span
+                class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border  rounded-pill">
+                <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg"
+                    alt="profile"> <a class="nav-link" href="../jihane/profilCandidat.html">Username</a>
+            </span>
+        </div>
+    </nav>
+
+
+    <aside class="side" id="cv-info">
+        <div class="form-info-cv">
+            <form action="" method="post">
+
+                <div class="form-group">
+                    <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-personnel"
+                        aria-expanded="false" aria-controls="info-personnel">
+                        Informations Personnel <span>&#x2B9F;</span>
+                    </button>
+                </div>
+
+                <div class=" form-floating collapse" id="info-personnel"> <!--add collapse-->
+
+                    <div class="x">
+
+                        <div class="" type="file" role="button" id="import-user-img"><img src="/media/logo.jpeg"
+                                id="uploaded-img" alt=""></div>
+
+                        <div id="div-name">
+                            <div class="form-floating">
+                                <input type="text" class="form-control x1" placeholder="First name" id="first-name"
+                                    aria-label="First name">
+                                <label class="form-label" for="first-name">First name</label>
+                            </div>
+                            <div class="form-floating">
+
+                                <input type="text" class="form-control x1" placeholder="First name" id="last-name"
+                                    aria-label="Last name">
+                                <label class="form-label" for="last-name">Last name</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="date" class="form-control x1" placeholder="date naissance" id="date-naissance"
+                                    aria-label="Last name">
+                                <label class="form-label" for="birth-date">Date de naissance</label>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="e-a-t input-group">
+                        <div class="form-floating">
+                            <input type="text" class="form-control x1" id="inputmail" placeholder="Email">
+                            <label for="inputmail" class="form-label">Email</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control x1" id="inputAddress" placeholder="Address">
+                            <label for="inputAddress" class="form-label">Address</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="tel" class="form-control x1" id="inputTele" placeholder="Telephone">
+                            <label for="inputTele" class="form-label">N° Telephone</label>
+                        </div>
+                    </div>
+                    <div class="sexe-check row justify-content-center">
+                        <div class="form-check col-auto">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                            <label class="form-check-label" for="male">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check col-auto">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                            <label class="form-check-label" for="female">
+                                Female
+                            </label>
+                        </div>
+                    </div>
+
+
+                </div>
+                <hr>
+                <div class="form-group">
+                    <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-formation"
+                        aria-expanded="false" aria-controls="info-formation">
+                        Formations <span>&#x2B9F;</span>
+                    </button>
+                </div>
+                <div class=" form-floating " id="info-formation"> <!--add collapse-->
+                    <div class="container ">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="#" method="post">
+                                    <div class=" form-floating">
+                                        <input type="text" id="formation" name="formation" class="form-control" placeholder="titre de formation" required>
+                                        <label for="formation" class="form-label">Titre de Formation:</label>
+                                    </div>
+                    
+                                    <div class=" form-floating">
+                                        <input type="text" id="etablissement" name="etablissement" class="form-control x1" placeholder="etablissement" required>
+                                        <label for="etablissement" class="form-label">Établissement:</label>
+                                    </div>
+                    
+                                    <div class=" form-floating">
+                                        <input type="text" id="ville" name="ville" class="form-control x1" placeholder="ville" required>
+                                        <label for="ville" class="form-label">Ville:</label>
+                                    </div>
+                    
+                                    <div class="input-group ">
+                                        <div class=" form-floating">
+                                            <input type="date" id="dateDebut" name="dateDebut" class="form-control x1" placeholder="date début">
+                                            <label for="dateDebut" class="form-label">Date de début:</label>
+                                        </div>
+                                        <div class=" form-floating">
+                                            <input type="date" id="dateFin" name="dateFin" class="form-control x1" placeholder="date fin">
+                                            <label for="dateFin" class="form-label">Date de fin:</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea id="description" name="description" class="form-control" placeholder="Description.." rows="4"></textarea>
+                                        <!-- <label for="description" class="form-label">Description:</label> -->
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Terminé</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class=" d-md-flex justify-content-md-end">
+                    <input type="submit" value="Save" class="me-md-2 btn btn-outline-primary reset">
+                    <input type="button" id="btn-print-this" class="btn btn-outline-primary submit" value="Save as PDF">
+                </div>
+            </form>
+
+        </div>
+
+    </aside>
+
+    <aside class="side" id="cv-figure">
+        <div class=" cv-template">
+            <div id="cv-head">
+                <div role="img" id="cvImg">
+                    <img src="/media/logo.jpeg" alt="Photo Personnel" id="user-img">
+                </div>
+                <span class="cv-head-info" id="user-name">Hassan AMRANI</span>
+                <table class="cv-head-info">
+                    <tr>
+                        <td>
+                            <img src="/media/enveloppe.png" alt="" class="cv-info-icon">
+                        </td>
+                        <td>
+                            <span class="cv-head-info" id="user-email">mail</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="/media/appel.png" alt="" class="cv-info-icon">
+                        </td>
+                        <td>
+                            <span class="cv-head-info" id="user-phone">06 123 456 789</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="/media/cartes-et-drapeaux.png" alt="" class="cv-info-icon">
+                        </td>
+                        <td>
+                            <span class="cv-head-info" id="user-street">SACJAVSHJ JSCJSHBCJHSLKJSQSCQSCSC SCQSS
+                                CBQSJKCBSJKCBSDDV DVSSDFHJC</span>
+                        </td>
+                    </tr>
+                </table>
+                <span class="cv-head-info" id="user-title">Web spaner</span>
+
+            </div>
+
+
+
+            <div class="section">
+                <h3 class="section-title">Education</h3>
+                <ul>
+
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Experience</h3>
+                <ul>
+
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Skills</h3>
+                <ul>
+
+                </ul>
+            </div>
+            <div class="section">
+                <h3 class="section-title">Language</h3>
+                <input type="range" name="" id="" disabled>
+
+            </div>
+        </div>
+
+    </aside>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.js"
+        integrity="sha512-Fd3EQng6gZYBGzHbKd52pV76dXZZravPY7lxfg01nPx5mdekqS8kX4o1NfTtWiHqQyKhEGaReSf4BrtfKc+D5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="saveToPdf.js"></script>
+    <script src="/btsp/js/bootstrap.min.js"></script>
+    <script src="/btsp/js/popper.min.js"></script>
+
+
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+</body>
+
+</html>
