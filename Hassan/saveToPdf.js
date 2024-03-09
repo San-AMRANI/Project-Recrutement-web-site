@@ -95,6 +95,70 @@ removeExperience.addEventListener('click', function () {
         }
     }
 });
+const addLangue = document.getElementById('add-langue');
+const removeLangue = document.getElementById('remove-langue');
+
+const langueTab = [];
+
+addLangue.addEventListener('click', function () {
+    for (let i = 0; i < 4; i++) {
+        langueTab[i] = document.getElementById(`language${i + 1}`);
+        let computedStyle = window.getComputedStyle(langueTab[i]);
+        if (computedStyle.display === 'none') {
+            langueTab[i].style.display = 'flex';
+            return;
+        }
+    }
+});
+
+removeLangue.addEventListener('click', function () {
+    for (let i = langueTab.length - 1; i >= 0; i--) {
+        let computedStyle = window.getComputedStyle(langueTab[i]);
+        if (computedStyle.display === 'flex') {
+            langueTab[i].style.display = 'none';
+            let input = langueTab[i].querySelector('input'); 
+            let select = langueTab[i].querySelector('select'); 
+            if (input) {
+                input.value = "";
+            }
+            if (select) {
+                select.selectedIndex = 0; 
+            }
+            return;
+        }
+    }
+});
+const addCompetence = document.getElementById('add-competence');
+const removeCompetence  = document.getElementById('remove-competence');
+
+const competenceTab = [];
+
+addCompetence.addEventListener('click', function () {
+    for (let i = 0; i < 4; i++) {
+        competenceTab[i] = document.getElementById(`competence${i + 1}`);
+        let computedStyle = window.getComputedStyle(competenceTab[i]);
+        if (computedStyle.display === 'none') {
+            competenceTab[i].style.display = 'flex';
+            return;
+        }
+    }
+});
+
+removeCompetence.addEventListener('click', function () {
+    for (let i = competenceTab.length - 1; i >= 0; i--) {
+        let computedStyle = window.getComputedStyle(competenceTab[i]);
+        if (computedStyle.display === 'flex') {
+            competenceTab[i].style.display = 'none';
+            let input = competenceTab[i].querySelector('input'); 
+            let range = competenceTab[i].querySelector('input[type="range"]'); 
+            if (input) {
+                input.value = "";
+                range.value = 2;
+            }
+            return;
+        }
+    }
+});
 
 
 
