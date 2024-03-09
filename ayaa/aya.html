@@ -64,41 +64,50 @@
                   <div class="center-wrap">
                     <div class="section text-center">
                       <h4 class="mb-3 pb-3">Sign Up</h4>
-                      
+                      <form action="login.php" method="post" enctype="multipart/form-data">
                         <input  type="radio" id="candidate" name="registration-type" value="candidate">
                         <label for="candidate">Candidat</label>
                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         
-                        <input type="radio" id="recruteur" name="registration-type" value="recruiter">
+                        <input type="radio" id="recruteur" name="registration-type" value="recruteur">
                         <label for="recruteur">Recruteur</label>
                     </div>
                     
-                      <form>
-                        <div class="form-group">
-                          <input type="text" class="form-style" placeholder="Full Name">
+                     
+                    
+                        
+                    <div class="form-group mt-2">
+                      <input type="text" class="form-style" placeholder="FirstName" id="prenom" name="prenom" required>
+                      <i class="input-icon uil uil-user"></i>
+                    </div>
+                    <div class="form-group mt-2">
+                          <input type="text" class="form-style" placeholder="LastName" id="nom" name="nom" required>
                           <i class="input-icon uil uil-user"></i>
                         </div>
+
+                        
+
                         <div class="form-group mt-2">
-                          <input type="tel" class="form-style" placeholder="Phone Number">
+                          <input type="tel" class="form-style" placeholder="Phone Number" id="tel" name="tel" required>
                           <i class="input-icon uil uil-phone"></i>
                         </div>
                  
                         <div class="form-group mt-2">
-                          <input type="email" class="form-style" placeholder="Email">
+                          <input type="email" class="form-style" placeholder="Email" id="email" name="email" required>
                           <i class="input-icon uil uil-at"></i>
                         </div>
                         <div class="form-group mt-2">
-                          <input type="password" class="form-style" placeholder="Password">
+                          <input type="password" class="form-style" placeholder="Password" id="password" name="password" required>
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
                         <div class="form-group mt-2">
-                          <input type="password" class="form-style" placeholder="Confirm your Password">
+                          <input type="password" class="form-style" placeholder="Confirm your Password" id="cpassword" name="cpassword" required>
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
                       
                       
                         <div class="form-group mt-2">
-                          <input type="text" class="form-style" placeholder="Company">
+                          <input type="text" class="form-style" placeholder="Company" id="company" name="Company" required>
                           <i class="input-icon uil uil-store"></i>
                         </div>
                     
@@ -107,11 +116,11 @@
                        
                         <hr>
                         <div class="form-group mt-1">
-                          <input type="radio" id="terms" class="">
+                          <input type="radio" id="terms" name="terms">
                           <label for="terms">I agree to the terms and conditions</label>
                         </div>
-                    <button class="btn mt-4" onclick="confirmCode()">enregistrer</button>
-                      
+                    <button class="btn mt-4" onclick="confirmCode()" type="submit">enregistrer</button>
+                      </form>
                     </div>
                   </div>
                 </div>
