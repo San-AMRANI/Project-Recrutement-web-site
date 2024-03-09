@@ -79,14 +79,13 @@ aside#cv-figure {
   right: 0;
   transform: scale(0.9); /* Adjust the scale factor as needed */
   transform-origin: top;
-    height: 105%;
+  height: 105%;
 }
 
 div.cv-template {
   border: 2px solid #ff6347;
   background-color: white;
-  
-  
+
   /* position: absolute; */
 
   /* height: 1000px; */
@@ -137,7 +136,7 @@ span#user-name {
   position: absolute;
   margin: 3% 0%;
   font-size: 3em;
-   padding-top: 0;
+  padding-top: 0;
   margin-top: 0;
   font-family: Georgia, serif;
   font-weight: bold;
@@ -200,7 +199,7 @@ h3.section-title {
   justify-content: center;
 }
 
-.section{
+.section {
   /* margin: 1%; */
 }
 /* ****************************************************************************** */
@@ -312,4 +311,53 @@ div.competence {
 .hidden {
   margin: 10px;
   display: none;
+}
+
+.card0 {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.card0-body {
+  padding: none;
+}
+
+.card0-h {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Add this line to evenly distribute items */
+}
+
+.title {
+  display: inline;
+}
+
+.card0-h h6 {
+  display: inline;
+}
+
+.date0 {
+  display: flex;
+  justify-content: flex-end;
+  order: 1; /* Set the order to move date0 to the end */
+}
+
+.datede,
+.datef {
+  display: inline;
+  font-size: 0.8em;
+}
+
+.card0-m {
+  padding: none;
+}
+
+.etab,
+.vill {
+  display: inline;
+  margin-left: 10px;
+}
+
+.desc {
+  font-size: 14px;
 }
