@@ -47,6 +47,7 @@ CREATE TABLE cv (
 );
 
 CREATE TABLE formation (
+    idformation INT PRIMARY KEY,
     nomFormation VARCHAR(100),
     datedebut DATE,
     datefin DATE,
