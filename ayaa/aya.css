@@ -54,6 +54,7 @@ display: none;
   cursor: pointer;
   background-color: #6c63ff;
 }
+
 .checkbox:checked + label:before,
 .checkbox:not(:checked) + label:before{
   position: absolute;
@@ -72,6 +73,8 @@ display: none;
   text-align: center;
   font-size: 24px;
   transition: all 0.5s ease;
+  
+  
 }
 .checkbox:checked + label:before {
   transform: translateX(44px) rotate(-270deg);
@@ -136,7 +139,7 @@ display: none;
   line-height: 22px;
   letter-spacing: 0.5px;
   outline: none;
-  color: #c4c3ca;
+  color: #070707;
   background-color: white;
   border: none;
   -webkit-transition: all 200ms linear;
@@ -182,6 +185,15 @@ display: none;
   color: #6c63ff;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
+
+
+#recruteur:not(:checked) + label {
+  color: #333; /* Couleur du texte des boutons radio "Candidat" et "Recruteur" */
+}
+#candidate:not(:checked) + label {
+  color: #333; /* Couleur du texte des boutons radio "Candidat" et "Recruteur" */
+}
+
 
 
 @keyframes animStar {
