@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-  <title>Webleb</title>
+  <title>eya</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="aya.css">
+  <script src="aya.js"></script>
   <style>
     /* Additional styles for scrolling */
     html,
@@ -22,7 +23,10 @@
       min-height: 100% !important;
       /* Ensure that the section covers the entire viewport height */
     }
+    
   </style>
+  
+ 
 </head>
 
 <body>
@@ -60,15 +64,25 @@
                   <div class="center-wrap">
                     <div class="section text-center">
                       <h4 class="mb-3 pb-3">Sign Up</h4>
+                      
+                        <input  type="radio" id="candidate" name="registration-type" value="candidate">
+                        <label for="candidate">Candidat</label>
+                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        
+                        <input type="radio" id="recruteur" name="registration-type" value="recruiter">
+                        <label for="recruteur">Recruteur</label>
+                    </div>
+                    
                       <form>
                         <div class="form-group">
                           <input type="text" class="form-style" placeholder="Full Name">
                           <i class="input-icon uil uil-user"></i>
                         </div>
                         <div class="form-group mt-2">
-                          <input type="date" id="birthdate" class="form-style">
-                          <i class="input-icon uil uil-calendar-alt"></i>
+                          <input type="tel" class="form-style" placeholder="Phone Number">
+                          <i class="input-icon uil uil-phone"></i>
                         </div>
+                 
                         <div class="form-group mt-2">
                           <input type="email" class="form-style" placeholder="Email">
                           <i class="input-icon uil uil-at"></i>
@@ -81,31 +95,23 @@
                           <input type="password" class="form-style" placeholder="Confirm your Password">
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
+                      
+                      
                         <div class="form-group mt-2">
-                          <input type="tel" class="form-style" placeholder="Phone Number">
-                          <i class="input-icon uil uil-phone"></i>
+                          <input type="text" class="form-style" placeholder="Company">
+                          <i class="input-icon uil uil-store"></i>
                         </div>
-                        <div class="form-group mt-2">
-                          <input type="text" class="form-style" placeholder="Address">
-                          <i class="input-icon uil uil-home"></i>
-                        </div>
-                        <div class="form-group mt-2">
-                          <select class="form-style">
-                            <option value="" disabled selected>Country</option>
-                            <option value="1">USA</option>
-                            <option value="2">Canada</option>
-                            <option value="3">UK</option>
-                            <option value="4">Australia</option>
-                          </select>
-                          <i class="input-icon uil uil-globe"></i>
-                        </div>
+                    
+                    
+                     
+                       
                         <hr>
                         <div class="form-group mt-1">
-                          <input type="checkbox" id="terms" class="form-style">
+                          <input type="radio" id="terms" class="">
                           <label for="terms">I agree to the terms and conditions</label>
                         </div>
-
-                        <a class="btn mt-4">enregistrer</a>
+                    <button class="btn mt-4" onclick="confirmCode()">enregistrer</button>
+                      
                     </div>
                   </div>
                 </div>
