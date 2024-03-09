@@ -1,0 +1,210 @@
+nav li:hover{
+    text-align: center;
+    color:white;
+    background-color:#a4a0ed;
+    
+  }
+  .logo{
+  width:50px;
+  }
+  #color{
+  border-radius: 10px;
+  list-style-type: none;
+  padding: 0;
+  background-color: #6c63ff;
+  width: 20%;
+  margin-top:10px ;
+  
+  
+  }
+  
+  #color>li>a{
+  
+  width: 100%;
+  display: block;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-decoration: none;
+  border-radius: 10px;
+  text-align: center;
+  color:white; 
+  
+  }
+  #color>li>a:hover{
+  
+  background-color: #a4a0ed;
+  text-align: center;
+  border-radius: 10px;
+  }
+
+  ul input[type="image"]{
+    width: 150px;
+    
+    float:left;
+  }
+  
+  #info{
+  list-style-type: none;
+  text-align: left;
+  border:1px solid none;
+
+  
+  }
+  input:disabled,
+  select:disabled {
+    border-style: none;
+     
+  }
+  form{
+  
+    padding-left:50px;
+    padding-right:50px;
+  }
+  #main{
+   border-radius: 20px;
+   box-shadow: 0 0 5px #6c63ff;
+  
+   width: 70%;
+   margin-top: 20px;
+   margin-left: 160px;
+   }
+#ligne{display: flex;
+}
+
+#name{display:block; 
+    padding-left: 30px;width: 80%;}
+
+  .button1{
+  width: 100px;
+  border-radius: 10px;
+  box-shadow:0 0 ;
+  color: white;
+  border: none;
+  box-shadow: 0 0 5px #ff6347;
+  background-color: #ff6347;
+  padding: 15px;
+  }
+  
+  .button1{text-decoration: none;
+  color:white;}
+  
+  .button1:hover{
+  background-color: #f39d8e;
+  }
+  
+  .button2{
+  width: 100px;
+  border-radius: 10px;
+  box-shadow:0 0 ;
+  color: white;
+  border: none;
+  box-shadow: 0 0 5px #6c63ff ;
+  background-color: #6c63ff;
+  padding: 10px;
+  
+  
+  }
+  .button2>a{
+    text-decoration: none;
+    color: white;
+  }
+  
+  .button2:hover{
+  background-color: #a4a0ed;
+  }
+  
+  #left{
+  float: right;
+  margin-right: 10px;
+  }
+  .global{
+  
+  font-family: Arial, sans-serif;
+  margin:50px;
+  padding: 50px;
+  margin: 5px auto;
+  padding: 50px;
+  }
+  
+  caption{
+     font-size: large;
+     
+  }
+  
+  .ftco-footer {
+     font-size: 16px;
+     background: #000000;
+     padding: 7em 0;
+  }
+  
+  @media (min-width: 992px){
+  .container { 
+     max-width: 960px;
+  }
+  }
+  @media (min-width: 768px){
+  .col-md {
+     -ms-flex-preferred-size: 0;
+     flex-basis: 0;
+     -webkit-box-flex: 1;
+     -ms-flex-positive: 1;
+     flex-grow: 1;
+     max-width: 100%;
+  }
+  }
+  .ftco-footer .ftco-footer-widget h2 {
+     font-weight: normal;
+     color: #fff;
+     margin-bottom: 40px;
+     font-size: 20px;
+     font-weight: 700;
+  }
+  
+  .ftco-footer-social li {
+     list-style: none;
+     margin: 0 10px 0 0;
+     display: inline-block;
+  }
+  .ftco-footer-widget li a{
+     color: white;
+     opacity: 0.7;
+     text-decoration: none;
+  }
+  
+  /* Style pour les étiquettes */
+  label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  /* Style pour les champs de saisie */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+  
+  /* Style pour les champs radio */
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  /* Style pour le conteneur de la liste */
+  #info {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Style pour chaque élément de la liste */
+  #info li {
+    margin-bottom: 20px;
+  }
+  
+  input[type="radio"]{accent-color: #6c63ff;}

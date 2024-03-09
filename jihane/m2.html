@@ -6,7 +6,7 @@
         <!--IMPORRTING BOOTSTRAP-->
         <link href="../btsp/css/bootstrap.css" rel="stylesheet" >
         <script src="../btsp/js/bootstrap.js" ></script>
-        <link rel="stylesheet" href="modifierProfil.css">
+        <link rel="stylesheet" href="m2.css">
         
         
     </head>
@@ -43,41 +43,35 @@
             </div>
           </nav>
         </div>
-        <div class="nav2">
-            <ul id="color">
-          
-                <li><a href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#about">About</a></li>
-              </ul>
-            <div class="about" id="main">
-                
-                
+      
+        <div class="about" id="main">
                 <br>
                 
-                <form>
+                <form id="formulaire">
     
                 <ul id="info">
-                  <input type="image">
+                <div id="ligne">
+                  <input type="image" src="../media/pic.png">
                   <br><br><br>
 
                     
                     
-                                            
+                <div id="name">                      
                     <li>
                         <label for="firstname"><strong>First Name:</strong></label>
-                        <input type="text" name="firstname" id="firstname" placeholder="First Name">
+                        <input type="text" name="firstname" id="firstname" placeholder="First Name" value="aaaaa" disabled>
                     </li>
                 
                     <li>
                         <label for="lastname"><strong>Last Name:</strong></label>
-                        <input type="text" name="lastname" id="lastname" placeholder="Last Name">
+                        <input type="text" name="lastname" id="lastname" placeholder="Last Name" value="aaaaa" disabled>
                     </li>
-                
+                </div>
+                </div>
+                <br><br>
                     <li>
                         <label for="cities"><strong>City:</strong></label>
-                        <select id="cities" class="form-select" name="cities">
+                        <select id="cities" class="form-select" name="cities" disabled>
                                 <option selected>Choisir..</option>
                                 <option value="Casablanca">Casablanca</option>
                                 <option value="Rabat">Rabat</option>
@@ -102,7 +96,7 @@
                     </li>
                     <li >
                         <label for="sexe"><strong>Sexe:</strong></label>
-                        <select id="sexe" class="form-select" name="sexe">
+                        <select id="sexe" class="form-select" name="sexe" disabled>
                             <option selected>Choisir..</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -110,16 +104,16 @@
                     </li>
                     <li>
                         <label for="phone"><strong>Phone:</strong></label>
-                        <input type="tel" name="phone" id="phone" placeholder="+212 600000000" required>
+                        <input type="tel" name="phone" id="phone" placeholder="+212 600000000" required value="111111" disabled>
                     </li>
                 
                     <li>
                         <label for="email"><strong>Email:</strong></label>
-                        <input type="email" name="email" id="email" placeholder="xyz@example.com" required>
+                        <input type="email" name="email" id="email" placeholder="xyz@example.com" required value="aaa@gmail.com" disabled>
                     </li>
                     <li >
                         <label for="level"><strong>Level:</strong></label>
-                        <select id="level" class="form-select" name="level">
+                        <select id="level" class="form-select" name="level" disabled>
                         <option selected  class="form-select">Choisir..</option>
                         <option value="bac+1" class="form-select item1">BAC</option>
                         <option value="bac+1" class="form-select item2">BAC+1</option>
@@ -132,21 +126,21 @@
                     </li>
                     <li>
                         <label for="speciality"><strong>Specialty:</strong></label>
-                        <input type="text" name="speciality" id="speciality" placeholder="Web Developer" required>
+                        <input type="text" name="speciality" id="speciality" placeholder="Web Developer" required value="aaaa" disabled>
                     </li>
                     
                     <li>
                         
                             <label><strong>Status:</strong></label>
-                            <input type="radio" name="status" id="student">
+                            <input type="radio" name="status" id="student" disabled>
                             <label for="student">Student</label>
-                            <input type="radio" name="status" id="alumni">
+                            <input type="radio" name="status" id="alumni" disabled>
                             <label for="alumni">Alumni</label>
                         
                     </li>
                     <li>
                         <label for="school"><strong>School:</strong></label>
-                        <input type="text" name="school" id="school" placeholder="University Hassan II" required>
+                        <input type="text" name="school" id="school" placeholder="University Hassan II" required value="aaaaa" disabled>
                     </li>
 
                 
@@ -163,7 +157,7 @@
         <div id="left">
          <a class="button1" href="profilCandidat.html">Cancel</a>
           &nbsp;
-          <button class="button2"type="Submit">Submit</button></div>
+          <button class="button2">Modify</button></div>
           <br><br><br>
         </div>  
     </form>
@@ -224,5 +218,6 @@
         </div>
         </footer>
         <script src="Bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="m2.js"></script>
     </body>
 </html>
