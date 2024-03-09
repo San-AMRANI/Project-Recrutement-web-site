@@ -90,6 +90,7 @@ CREATE TABLE loisir (
 );
 
 CREATE TABLE information (
+    idinformation INT PRIMARY KEY,
     nom VARCHAR(50),
     prenom VARCHAR(50),
     email VARCHAR(100),
