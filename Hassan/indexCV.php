@@ -258,7 +258,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateDebutfor0"
                           name="dateDebut"
                           class="form-control x1"
@@ -270,7 +270,7 @@
                       </div>
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateFinfor0"
                           name="dateFin"
                           class="form-control x1"
@@ -282,7 +282,8 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <div id="descriptionfor0">
+                      <input type="hidden" name="" id="descriptionfor-input0" />
+                      <div type="text" id="descriptionfor0">
                         <p>Description</p>
                       </div>
                     </div>
@@ -338,7 +339,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateDebutfor1"
                           name="dateDebut"
                           class="form-control x1"
@@ -350,7 +351,7 @@
                       </div>
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateFinfor1"
                           name="dateFin"
                           class="form-control x1"
@@ -362,6 +363,7 @@
                       </div>
                     </div>
                     <div class="form-group">
+                      <input type="hidden" name="" id="descriptionfor-input1" />
                       <div id="descriptionfor1">
                         <p>Description..</p>
                       </div>
@@ -418,7 +420,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateDebutfor2"
                           name="dateDebut"
                           class="form-control x1"
@@ -430,7 +432,7 @@
                       </div>
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateFinfor2"
                           name="dateFin"
                           class="form-control x1"
@@ -442,6 +444,7 @@
                       </div>
                     </div>
                     <div class="form-group">
+                      <input type="hidden" name="" id="descriptionfor-input2" />
                       <div id="descriptionfor2">
                         <p>Description..</p>
                       </div>
@@ -499,7 +502,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateDebutfor3"
                           name="dateDebut"
                           class="form-control x1"
@@ -511,7 +514,7 @@
                       </div>
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateFinfor3"
                           name="dateFin"
                           class="form-control x1"
@@ -523,6 +526,7 @@
                       </div>
                     </div>
                     <div class="form-group">
+                      <input type="hidden" name="" id="descriptionfor-input3" />
                       <div id="descriptionfor3">
                         <p>Description..</p>
                       </div>
@@ -580,7 +584,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateDebutfor4"
                           name="dateDebut"
                           class="form-control x1"
@@ -592,7 +596,7 @@
                       </div>
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateFinfor4"
                           name="dateFin"
                           class="form-control x1"
@@ -700,7 +704,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateDebutexp0"
                           name="dateDebut"
                           class="form-control x1"
@@ -712,7 +716,7 @@
                       </div>
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateFinexp0"
                           name="dateFin"
                           class="form-control x1"
@@ -754,7 +758,7 @@
                     <div class="form-floating">
                       <input
                         type="text"
-                        id="Employeur1"
+                        id="employeur1"
                         name="employeur1"
                         class="form-control x1"
                         placeholder="employeur"
@@ -780,7 +784,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateDebutexp1"
                           name="dateDebut"
                           class="form-control x1"
@@ -792,7 +796,7 @@
                       </div>
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateFinexp1"
                           name="dateFin"
                           class="form-control x1"
@@ -834,7 +838,7 @@
                     <div class="form-floating">
                       <input
                         type="text"
-                        id="Employeur2"
+                        id="employeur2"
                         name="employeur2"
                         class="form-control x1"
                         placeholder="employeur"
@@ -860,7 +864,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateDebutexp2"
                           name="dateDebut"
                           class="form-control x1"
@@ -872,7 +876,7 @@
                       </div>
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateFinexp2"
                           name="dateFin"
                           class="form-control x1"
@@ -914,7 +918,7 @@
                     <div class="form-floating">
                       <input
                         type="text"
-                        id="Employeur3"
+                        id="employeur3"
                         name="employeur3"
                         class="form-control x1"
                         placeholder="employeur"
@@ -940,7 +944,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateDebutexp3"
                           name="dateDebut"
                           class="form-control x1"
@@ -952,7 +956,7 @@
                       </div>
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateFinexp3"
                           name="dateFin"
                           class="form-control x1"
@@ -1020,7 +1024,7 @@
                     <div class="input-group">
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateDebutexp4"
                           name="dateDebut"
                           class="form-control x1"
@@ -1032,7 +1036,7 @@
                       </div>
                       <div class="form-floating">
                         <input
-                          type="month"
+                          type="date"
                           id="dateFinexp4"
                           name="dateFin"
                           class="form-control x1"
@@ -1123,13 +1127,13 @@
                       type="text"
                       class="form-control x1"
                       placeholder="Langue"
-                      id="title-language1"
+                      id="title-language0"
                       required
                     />
                     <label for="title-language0" class="form-label"
                       >Langue</label
                     >
-                    <select id="level-language1">
+                    <select id="level-language0">
                       <option checked>Niveau..</option>
                       <option value="1">Débutant</option>
                       <option value="2">Intermédiaire</option>
@@ -1433,67 +1437,58 @@
             </div>
             <div class="grid-container">
               <div class="row">
-                <div
-                  class="col-md-6"
-                  id="column1"
-                  style="border-right: 3px solid"
-                >
-                  <div class="card0" id="formation00">
+                <div class="col-md-6" style="border-right: 3px solid">
+                  <div class="card0">
                     <div class="card0-body">
                       <div class="card0-h">
                         <div class="title">
-                          <h6 id="titre-formation00">Genie Informatique</h6>
+                          <h6>Genie Informatique</h6>
                         </div>
-                        <div class="date00">
-                          <div class="datede" id="dateDebutfor00">
-                            08/2024 -
-                          </div>
-                          <div class="datef" id="dateFinfor00">11/2025</div>
+                        <div class="date0">
+                          <div class="datede">08/2024 -</div>
+                          <div class="datef">11/2025</div>
                         </div>
                       </div>
                       <div class="card0-m">
                         <div
                           class="etab"
                           style="display: inline; margin-left: 10px"
-                          id="etablissement00"
                         >
                           FST
                         </div>
-                        <div class="vill" id="villefor00">Settat</div>
+                        <div class="vill">Settat</div>
                       </div>
                       <div class="card0-desc">
-                        <div class="desc" id="descriptionfor00">
+                        <div class="desc">
                           Lorem ipsum, dolor sit amet consectetur adipisicing
                           elit. Obcaecati minima aliquam at molestiae eveniet
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="card0" id="formation11">
+
+                  <div class="card0">
                     <div class="card0-body">
                       <div class="card0-h">
                         <div class="title">
-                          <h6 id="titre-formation11">Genie Informatique</h6>
+                          <h6>Genie Informatique</h6>
                         </div>
-                        <div class="date11">
-                          <div class="datede" id="dateDebutfor11">
-                            08/2024 -
-                          </div>
-                          <div class="datef" id="dateFinfor11">11/2025</div>
+                        <div class="date0">
+                          <div class="datede">08/2024 -</div>
+                          <div class="datef">11/2025</div>
                         </div>
                       </div>
                       <div class="card0-m">
                         <div
                           class="etab"
                           style="display: inline; margin-left: 10px"
-                          id="etablissement11"
                         >
                           FST
                         </div>
-                        <div class="vill" id="villefor11">Settat</div>
+                        <div class="vill">Settat</div>
                       </div>
                       <div class="card0-desc">
-                        <div class="desc" id="descriptionfor11">
+                        <div class="desc">
                           Lorem ipsum, dolor sit amet consectetur adipisicing
                           elit. Obcaecati minima aliquam at molestiae eveniet
                         </div>
@@ -1503,62 +1498,56 @@
                 </div>
 
                 <div class="col-md-6">
-                  <div class="card0" id="formation22">
+                  <div class="card0">
                     <div class="card0-body">
                       <div class="card0-h">
                         <div class="title">
-                          <h6 id="titre-formation22">Genie Informatique</h6>
+                          <h6>Genie Informatique</h6>
                         </div>
-                        <div class="date22">
-                          <div class="datede" id="dateDebutfor22">
-                            08/2024 -
-                          </div>
-                          <div class="datef" id="dateFinfor22">11/2025</div>
+                        <div class="date0">
+                          <div class="datede">08/2024 -</div>
+                          <div class="datef">11/2025</div>
                         </div>
                       </div>
                       <div class="card0-m">
                         <div
                           class="etab"
                           style="display: inline; margin-left: 10px"
-                          id="etablissement22"
                         >
                           FST
                         </div>
-                        <div class="vill" id="villefor22">Settat</div>
+                        <div class="vill">Settat</div>
                       </div>
                       <div class="card0-desc">
-                        <div class="desc" id="descriptionfor22">
+                        <div class="desc">
                           Lorem ipsum, dolor sit amet consectetur adipisicing
                           elit. Obcaecati minima aliquam at molestiae eveniet
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="card0" id="formation33">
+                  <div class="card0">
                     <div class="card0-body">
                       <div class="card0-h">
                         <div class="title">
-                          <h6 id="titre-formation33">Genie Informatique</h6>
+                          <h6>Genie Informatique</h6>
                         </div>
-                        <div class="date33">
-                          <div class="datede" id="dateDebutfor33">
-                            08/2024 -
-                          </div>
-                          <div class="datef" id="dateFinfor33">11/2025</div>
+                        <div class="date0">
+                          <div class="datede">08/2024 -</div>
+                          <div class="datef">11/2025</div>
                         </div>
                       </div>
                       <div class="card0-m">
                         <div
                           class="etab"
                           style="display: inline; margin-left: 10px"
-                          id="etablissement33"
                         >
                           FST
                         </div>
-                        <div class="vill" id="villefor33">Settat</div>
+                        <div class="vill">Settat</div>
                       </div>
                       <div class="card0-desc">
-                        <div class="desc" id="descriptionfor33">
+                        <div class="desc">
                           Lorem ipsum, dolor sit amet consectetur adipisicing
                           elit. Obcaecati minima aliquam at molestiae eveniet
                         </div>
@@ -1576,125 +1565,25 @@
             </div>
             <div class="row">
               <div class="col-md-6" style="border-right: 3px solid">
-                <div class="card1" id="experience00">
-                  <div class="card1-body">
-                    <div class="card0-h">
-                      <div class="title">
-                        <h6 id="titre-experience00">Developpeur Java</h6>
-                      </div>
-                      <div class="date1">
-                        <div class="datede" id="dateDebutexp00">08/2024 -</div>
-                        <div class="datef" id="dateFinexp00">11/2025</div>
-                      </div>
-                    </div>
-                    <div class="card1-m">
-                      <div
-                        class="etab"
-                        style="display: inline; margin-left: 10px"
-                        id="Employeur00"
-                      >
-                        Capgimini
-                      </div>
-                      <div class="vill" id="villeexp00">Casablnca</div>
-                    </div>
-                    <div class="card1-desc">
-                      <div class="desc" id="descriptionexp00">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Obcaecati minima aliquam at molestiae eveniet
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card1" id="experience11">
-                  <div class="card1-body">
-                    <div class="card0-h">
-                      <div class="title">
-                        <h6 id="titre-experience11">Developpeur Java</h6>
-                      </div>
-                      <div class="date1">
-                        <div class="datede" id="dateDebutexp11">08/2024 -</div>
-                        <div class="datef" id="dateFinexp11">11/2025</div>
-                      </div>
-                    </div>
-                    <div class="card1-m">
-                      <div
-                        class="etab"
-                        style="display: inline; margin-left: 10px"
-                        id="Employeur11"
-                      >
-                        Capgimini
-                      </div>
-                      <div class="vill" id="villeexp11">Casablnca</div>
-                    </div>
-                    <div class="card1-desc">
-                      <div class="desc" id="descriptionexp11">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Obcaecati minima aliquam at molestiae eveniet
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Consequuntur dolores, ut mollitia nisi voluptatem nesciunt
+                quisquam beatae earum autem odit quidem perspiciatis quasi id
+                ipsa nemo corrupti error cumque tempora. Lorem ipsum dolor, sit
+                amet consectetur adipisicing elit. Consequuntur dolores, ut
+                mollitia nisi voluptatem nesciunt quisquam beatae earum autem
+                odit quidem perspiciatis quasi id ipsa nemo corrupti error
+                cumque tempora.
               </div>
 
               <div class="col-md-6">
-                <div class="card1" id="experience22">
-                  <div class="card1-body">
-                    <div class="card0-h">
-                      <div class="title">
-                        <h6 id="titre-experience22">Developpeur Java</h6>
-                      </div>
-                      <div class="date1">
-                        <div class="datede" id="dateDebutexp22">08/2024 -</div>
-                        <div class="datef" id="dateFinexp22">11/2025</div>
-                      </div>
-                    </div>
-                    <div class="card1-m">
-                      <div
-                        class="etab"
-                        style="display: inline; margin-left: 10px"
-                        id="Employeur22"
-                      >
-                        Capgimini
-                      </div>
-                      <div class="vill" id="villeexp22">Casablnca</div>
-                    </div>
-                    <div class="card1-desc">
-                      <div class="desc" id="descriptionexp22">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Obcaecati minima aliquam at molestiae eveniet
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card1" id="experience33">
-                  <div class="card1-body">
-                    <div class="card0-h">
-                      <div class="title">
-                        <h6 id="titre-experience33">Developpeur Java</h6>
-                      </div>
-                      <div class="date1">
-                        <div class="datede" id="dateDebutexp33">08/2024 -</div>
-                        <div class="datef" id="dateFinexp33">11/2025</div>
-                      </div>
-                    </div>
-                    <div class="card1-m">
-                      <div
-                        class="etab"
-                        style="display: inline; margin-left: 10px"
-                        id="Employeur33"
-                      >
-                        Capgimini
-                      </div>
-                      <div class="vill" id="villeexp33">Casablnca</div>
-                    </div>
-                    <div class="card1-desc">
-                      <div class="desc" id="descriptionexp33">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Obcaecati minima aliquam at molestiae eveniet
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Consequuntur dolores, ut mollitia nisi voluptatem nesciunt
+                quisquam beatae earum autem odit quidem perspiciatis quasi id
+                ipsa nemo corrupti error cumque tempora. Lorem ipsum dolor, sit
+                amet consectetur adipisicing elit. Consequuntur dolores, ut
+                mollitia nisi voluptatem nesciunt quisquam beatae earum autem
+                odit quidem perspiciatis quasi id ipsa nemo corrupti error
+                cumque tempora. error cumque tempora.
               </div>
             </div>
           </div>
@@ -1702,56 +1591,31 @@
           <div class="row">
             <div class="section col-md-6">
               <div class="centred">
-                <h3 class="section-title">Compétence</h3>
+                <h3 class="section-title">Competence</h3>
               </div>
-              <div class="competence-container">
-                <div class="competence-item">
-                  <div class="cmp" id="title-competence00">HTML :</div>
-                  <div class="nvcp" id="level-competence00">Avancé</div>
-                </div>
-                <div class="competence-item">
-                  <div class="cmp" id="title-competence11">CSS :</div>
-                  <div class="nvcp" id="level-competence11">Avancé</div>
-                </div>
-                <div class="competence-item">
-                  <div class="cmp" id="title-competence22">JavaScript :</div>
-                  <div class="nvcp" id="level-competence22">Intermédiaire</div>
-                </div>
-                <div class="competence-item">
-                  <div class="cmp" id="title-competence33">Python :</div>
-                  <div class="nvcp" id="level-competence33">Avancé</div>
-                </div>
-              </div>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex unde
+              explicabo voluptate mollitia reprehenderit quod magni aliquid
+              praesentium laudantium iusto saepe assumenda, harum eligendi
+              eveniet, at vero ducimus nobis placeat.
             </div>
-
             <div class="section col-md-6">
               <div class="centred">
                 <h3 class="section-title">Languages</h3>
               </div>
-              <div class="language-container">
-                <div class="language-item">
-                  <div class="lng" id="title-language00">Français :</div>
-                  <div class="nvLg" id="level-language00">Intermédiaire</div>
-                </div>
-                <div class="language-item">
-                  <div class="lng" id="title-language11">English :</div>
-                  <div class="nvLg" id="level-language11">Advanced</div>
-                </div>
-                <div class="language-item">
-                  <div class="lng" id="title-language22">Español :</div>
-                  <div class="nvLg" id="level-language22">Intermedio</div>
-                </div>
-                <div class="language-item">
-                  <div class="lng" id="title-language33">Deutsch :</div>
-                  <div class="nvLg" id="level-language33">Fortgeschritten</div>
-                </div>
-              </div>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum
+              perferendis tenetur, molestiae rerum laborum quae corporis
+              consequatur nostrum consequuntur eaque sequi facere commodi! Ex
+              quasi iste vel excepturi illo. Reprehenderit. Lorem ipsum dolor
+              sit amet consectetur, adipisicing elit. Eum perferendis tenetur,
+              molestiae rerum laborum quae corporis consequatur nostrum
+              consequuntur eaque sequi facere commodi! Ex quasi iste vel
+              excepturi illo. Reprehenderit.
             </div>
           </div>
         </div>
       </div>
     </aside>
-    <script src="testt.js"></script>
+
     <script src="/btsp/js/jquery-3.7.1.min.js"></script>
     <script src="/btsp/js/printThis.js"></script>
     <script src="saveToPdf.js"></script>
