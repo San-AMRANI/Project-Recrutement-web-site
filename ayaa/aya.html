@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>eya</title>
   <meta charset="utf-8">
@@ -21,14 +20,10 @@
 
     .section {
       min-height: 100% !important;
-      /* Ensure that the section covers the entire viewport height */
     }
     
   </style>
-  
- 
 </head>
-
 <body>
   <div id="stars"></div>
   <div id="stars2"></div>
@@ -64,63 +59,48 @@
                   <div class="center-wrap">
                     <div class="section text-center">
                       <h4 class="mb-3 pb-3">Sign Up</h4>
-                      <form action="login.php" method="post" enctype="multipart/form-data">
-                        <input  type="radio" id="candidate" name="registration-type" value="candidate">
+                      <div class="container">
+                        <input type="radio" id="candidate" name="registration-type" value="candidate" checked>
                         <label for="candidate">Candidat</label>
-                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         <input type="radio" id="recruteur" name="registration-type" value="recruteur">
                         <label for="recruteur">Recruteur</label>
-                    </div>
-                    
-                     
-                    
-                        
-                    <div class="form-group mt-2">
-                      <input type="text" class="form-style" placeholder="FirstName" id="prenom" name="prenom" required>
-                      <i class="input-icon uil uil-user"></i>
-                    </div>
-                    <div class="form-group mt-2">
-                          <input type="text" class="form-style" placeholder="LastName" id="nom" name="nom" required>
-                          <i class="input-icon uil uil-user"></i>
-                        </div>
-
-                        
-
-                        <div class="form-group mt-2">
-                          <input type="tel" class="form-style" placeholder="Phone Number" id="tel" name="tel" required>
-                          <i class="input-icon uil uil-phone"></i>
-                        </div>
-                 
-                        <div class="form-group mt-2">
-                          <input type="email" class="form-style" placeholder="Email" id="email" name="email" required>
-                          <i class="input-icon uil uil-at"></i>
-                        </div>
-                        <div class="form-group mt-2">
-                          <input type="password" class="form-style" placeholder="Password" id="password" name="password" required>
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-                        <div class="form-group mt-2">
-                          <input type="password" class="form-style" placeholder="Confirm your Password" id="cpassword" name="cpassword" required>
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-                      
-                      
-                        <div class="form-group mt-2">
-                          <input type="text" class="form-style" placeholder="Company" id="company" name="Company" required>
-                          <i class="input-icon uil uil-store"></i>
-                        </div>
-                    
-                    
-                     
-                       
-                        <hr>
-                        <div class="form-group mt-1">
-                          <input type="radio" id="terms" name="terms">
-                          <label for="terms">I agree to the terms and conditions</label>
-                        </div>
-                    <button class="btn mt-4" onclick="confirmCode()" type="submit">enregistrer</button>
-                      </form>
+                      </div>
+                      <!-- Champs obligatoires -->
+                      <div class="form-group mt-2">
+                        <input type="text" class="form-style" placeholder="FirstName" id="prenom" name="prenom" required>
+                        <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="text" class="form-style" placeholder="LastName" id="nom" name="nom" required>
+                        <i class="input-icon uil uil-user"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="tel" class="form-style" placeholder="Phone Number" id="tel" name="tel" required>
+                        <i class="input-icon uil uil-phone"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="email" class="form-style" placeholder="Email" id="email" name="email" required>
+                        <i class="input-icon uil uil-at"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="password" class="form-style" placeholder="Password" id="password" name="password" required>
+                        <i class="input-icon uil uil-lock-alt"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="password" class="form-style" placeholder="Confirm your Password" id="cpassword" name="cpassword" required>
+                        <i class="input-icon uil uil-lock-alt"></i>
+                      </div>
+                      <div class="form-group mt-2" id="companyContainer" style="display: none;">
+                        <input type="text" class="form-style" placeholder="Company" id="company" name="Company" required>
+                        <i class="input-icon uil uil-store"></i>
+                      </div>
+                      <hr>
+                      <div class="form-group mt-1">
+                        <input type="radio" id="terms" name="terms" re>
+                        <label for="terms">I agree to the terms and conditions</label>
+                      </div>
+                      <button class="btn mt-4" onclick="confirmCode()" type="button">enregistrer</button>
                     </div>
                   </div>
                 </div>
@@ -131,6 +111,26 @@
       </div>
     </div>
   </div>
+  <script>
+    // Fonction pour afficher ou masquer la case "Company" en fonction de la sélection de l'utilisateur
+    function toggleCompanyInput() {
+      var companyContainer = document.getElementById('companyContainer');
+      var recruteurRadio = document.getElementById('recruteur');
+      
+      // Si le bouton radio "Recruteur" est sélectionné, afficher la case "Company", sinon la masquer
+      if (recruteurRadio.checked) {
+        companyContainer.style.display = 'block';
+      } else {
+        companyContainer.style.display = 'none';
+      }
+    }
+    
+    var candidateRadio = document.getElementById('candidate');
+    var recruteurRadio = document.getElementById('recruteur');
+    candidateRadio.addEventListener('change', toggleCompanyInput);
+    recruteurRadio.addEventListener('change', toggleCompanyInput);
+    
+    toggleCompanyInput();
+  </script>
 </body>
-
 </html>
