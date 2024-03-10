@@ -7,8 +7,6 @@
     <title>Offres d'emplois</title>
     <link rel="stylesheet" href="../btsp/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 </head>
 
@@ -21,7 +19,7 @@
         </div>
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -143,20 +141,48 @@
 
         <div class="card-list-nav">
             <div class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container"> <!-- Move the container-fluid outside of the pagination -->
-
-                    <div class="container-add-offre">
-                        <button id="displayoffre" type="button" class="card"> <span class="icon-span" role="img"><img
-                                    src="/media/croix-plus.png" alt="icon" /></span> Offre</button>
-                    </div>
+                <div class="container-fluid"> <!-- Move the container-fluid outside of the pagination -->
 
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>
+            </div>
+        </div>
 
 
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <img class="img_recruteur" src="../media/logo.jpeg" alt="">
+                </div>
+                <div class="titre_offre">
+                    <h5 class="card-title"> <b>Special title treatment</b></h5>
+                </div>
+                <p class="duree_offre"> <img src="../media/horloge.png" width="20px" alt=""> <b>2 mois</b> </p>
+                <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
+                    <b>Casablanca</b>
+                </p>
+                <span class="badge rounded-pill text-bg-danger specialiste_offre">Specialité</span>
+                <a href="#" class="btn btn-primary postuler">Postuler</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <img class="img_recruteur" src="../media/logo.jpeg" alt="">
+                </div>
+                <div class="titre_offre">
+                    <h5 class="card-title"> <b>Special title treatment</b></h5>
+                </div>
+                <p class="duree_offre"> <img src="../media/horloge.png" width="20px" alt=""> <b>2 mois</b> </p>
+                <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
+                    <b>Casablanca</b>
+                </p>
+                <span class="badge rounded-pill text-bg-danger specialiste_offre">Specialité</span>
+                <a href="#" class="btn btn-primary postuler">Postuler</a>
             </div>
         </div>
 
@@ -206,7 +232,6 @@
                 <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
                     <b>Casablanca</b>
                 </p>
-                <span class="badge rounded-pill text-bg-danger specialiste_offre">Specialité</span>
                 <a href="#" class="btn btn-primary postuler">Postuler</a>
             </div>
         </div>
@@ -224,67 +249,8 @@
                 <a class="page-link" href="#">&#10149;</a>
             </li>
         </ul>
-
     </div>
 
-
-    <div class="card cardnewoffre hidden">
-        <div class="card-body">
-            <form id="formoffre" action="#" method="post">
-                <div class="form-floating mrg">
-                    <input type="text" id="titre-offre" name="titre-offre00" class="form-control"
-                        placeholder="titre-offre" required />
-                    <label for="titre-offre" class="form-label">Titre de votre offre:</label>
-                </div>
-
-                <div class="form-floating mrg">
-                    <input type="text" id="type-de-contrat00" name="type-de-contrat" class="form-control x1"
-                        placeholder="type-de-contrat" required />
-                    <label for="type-de-contrat00" class="form-label">Type de Contrat:</label>
-                </div>
-
-                
-                <div class="input-group ">
-                    <div class="form-floating mrg">
-                        <input type="number" id="salaire-min00" name="salaire00" class="form-control x1" placeholder="salaire" required />
-                        <label for="salaire-min00" class="form-label">Salaire(min):</label>
-                    </div>
-                    <div class="form-floating mrg">
-                        <input type="number" id="salaire-max00" name="salaire00" class="form-control x1" placeholder="salaire" required />
-                        <label for="salaire-max00" class="form-label">Salaire(max):</label>
-                    </div>
-                </div>
-                <div class="input-group ">
-                    <div class="form-floating mrg">
-                        <input type="date" id="dateDebutexp2" name="dateDebut" class="form-control x1"
-                            placeholder="date début" />
-                        <label for="dateDebutexp2" class="form-label">Deadline:</label>
-                    </div>
-                    <div class="form-floating mrg">
-                        <input type="text" id="villeoff00" name="ville" class="form-control x1" placeholder="ville"
-                            required />
-                        <label for="villeoff00" class="form-label">Ville:</label>
-                    </div>
-                </div>
-                <div class="form-group mrg">
-                    <div id="descriptionoffre00" class="quill-editor">
-                        <p>Description..</p>
-                    </div>
-                    <!-- <label for="description" class="form-label">Description:</label> -->
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    Terminé
-                </button>
-                <button type="reset" class="btn btn-primary" id="canceloffre">
-                    Annuler
-                </button>
-            </form>
-        </div>
-    </div>
-
-
-
-    <script src="mainindex.js"></script>
     <script src="btsp/js/popper.min.js"></script>
     <script src="btsp/js/jquery-3.7.1.min.js"></script>
     <script src="btsp/js/bootstrap.js"></script>
