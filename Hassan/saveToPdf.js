@@ -11,6 +11,7 @@ $(document).ready(function () {
 });
 //descriptoions text editor 
 //formation
+
 var editorsFor = [];
 
 for (let i = 0; i < 5; i++) {
@@ -116,20 +117,20 @@ removeLangue.addEventListener('click', function () {
         let computedStyle = window.getComputedStyle(langueTab[i]);
         if (computedStyle.display === 'flex') {
             langueTab[i].style.display = 'none';
-            let input = langueTab[i].querySelector('input'); 
-            let select = langueTab[i].querySelector('select'); 
+            let input = langueTab[i].querySelector('input');
+            let select = langueTab[i].querySelector('select');
             if (input) {
                 input.value = "";
             }
             if (select) {
-                select.selectedIndex = 0; 
+                select.selectedIndex = 0;
             }
             return;
         }
     }
 });
 const addCompetence = document.getElementById('add-competence');
-const removeCompetence  = document.getElementById('remove-competence');
+const removeCompetence = document.getElementById('remove-competence');
 
 const competenceTab = [];
 
@@ -149,8 +150,8 @@ removeCompetence.addEventListener('click', function () {
         let computedStyle = window.getComputedStyle(competenceTab[i]);
         if (computedStyle.display === 'flex') {
             competenceTab[i].style.display = 'none';
-            let input = competenceTab[i].querySelector('input'); 
-            let range = competenceTab[i].querySelector('input[type="range"]'); 
+            let input = competenceTab[i].querySelector('input');
+            let range = competenceTab[i].querySelector('input[type="range"]');
             if (input) {
                 input.value = "";
                 range.value = 2;
