@@ -132,6 +132,8 @@ padding:10px;
 overflow: auto;
 box-sizing:border-box;}
 
+.card-list{margin:2px;}
+
  .btn-outline-primary {
     color: white;
     background-color:#ff6347;
