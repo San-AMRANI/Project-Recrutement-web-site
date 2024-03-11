@@ -194,8 +194,8 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-body">
+        <div class="card" id="cardWithCollapse">
+            <div class="card-body" onclick="toggleCollapse()">
                 <div>
                     <img class="img_recruteur" src="../media/logo.jpeg" alt="">
                 </div>
@@ -209,7 +209,17 @@
                 <span class="badge rounded-pill text-bg-danger specialiste_offre">Specialité</span>
                 <a href="#" class="btn btn-primary postuler">Postuler</a>
             </div>
+            <div class="collapse" id="info">
+                <div id="discriptionplace">
+                    scsbjkbdjvbjsdbvjhdbsjvhbdsbvjhdsbjvbjdbvjdbcdscdcsdcvjkbsdvjbjdbvjbdjvbdjvbkjdbvjkbjv <br>
+                    scjkbvjlkbdjkvbjkvbjkbvjkbdljkldbvjkb cj bv <br>
+                    scjkbvjlkbdjkvbjkvbjkbvjkbdljkldbvjkb cj bv <br>
+                    fbd
+                </div>
+            </div>
         </div>
+
+
 
         <ul class="pagination">
             <li class="page-item disabled">
@@ -228,6 +238,7 @@
     </div>
 
 
+
     <div class="card cardnewoffre hidden">
         <div class="card-body">
             <form id="formoffre" action="#" method="post">
@@ -243,14 +254,16 @@
                     <label for="type-de-contrat00" class="form-label">Type de Contrat:</label>
                 </div>
 
-                
+
                 <div class="input-group ">
                     <div class="form-floating mrg">
-                        <input type="number" id="salaire-min00" name="salaire00" class="form-control x1" placeholder="salaire" required />
+                        <input type="number" id="salaire-min00" name="salaire00" class="form-control x1"
+                            placeholder="salaire" required />
                         <label for="salaire-min00" class="form-label">Salaire(min):</label>
                     </div>
                     <div class="form-floating mrg">
-                        <input type="number" id="salaire-max00" name="salaire00" class="form-control x1" placeholder="salaire" required />
+                        <input type="number" id="salaire-max00" name="salaire00" class="form-control x1"
+                            placeholder="salaire" required />
                         <label for="salaire-max00" class="form-label">Salaire(max):</label>
                     </div>
                 </div>
@@ -284,10 +297,11 @@
 
 
 
+    <script src="/btsp/js/printThis.js"></script>
     <script src="mainindex.js"></script>
-    <script src="btsp/js/popper.min.js"></script>
-    <script src="btsp/js/jquery-3.7.1.min.js"></script>
-    <script src="btsp/js/bootstrap.js"></script>
+    <script src="../btsp/js/popper.min.js"></script>
+    <script src="../btsp/js/jquery-3.7.1.min.js"></script>
+    <script src="../btsp/js/bootstrap.js"></script>
 </body>
 
 </html>
