@@ -7,11 +7,15 @@ img.logo {
   height: 10%;
 }
 
+
 div.card {
   width: 100%;
   padding: 0px;
   border: 2px solid lightgrey;
-  margin: 2%;
+  /* margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%; */
+  scale: 0.95;
 }
 div.card-body {
   padding-top: 0;
@@ -19,7 +23,7 @@ div.card-body {
 }
 
 div.card:hover {
-  border: 2px solid #6c63ff;
+  /* border: 2px solid #6c63ff; */
   opacity: 0.7;
 }
 
@@ -49,7 +53,7 @@ div.card-body > div.titre_offre {
             float:inline-start;
             margin-top:3%; */
   position: absolute;
-  left: 15%;
+  left: 15vw;
   top: 2vw;
   margin-left: 5px;
 }
@@ -57,8 +61,8 @@ div.card-body > div.titre_offre {
 div.card-body > p.duree_offre {
   position: absolute;
   color: #ff6347;
-  left: 30vw;
-  top: 5vw;
+  left: 40vw;
+  top: 7vw;
 }
 
 div.card-body > p.duree_offre > img {
@@ -70,20 +74,20 @@ div.card-body > p.duree_offre > img {
 div.card-body > p.location_offre {
   position: absolute;
   color: #ff6347;
-  left: 13vw;
-  top: 5vw;
+  left: 20vw;
+  top: 7vw;
 }
 
 div.card-body > p.location_offre > img {
   position: absolute;
   right: 105%;
-  top: 10%;
+  /* top: 10%; */
 }
 
 div.card-body > span.specialiste_offre {
   position: absolute;
-  top: 5vw;
-  left: 40vw;
+  top: 7vw;
+  left: 65vw;
 }
 
 a.postuler {

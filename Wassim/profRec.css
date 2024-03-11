@@ -220,3 +220,16 @@ img {
   border: 1px solid #f2f4f9;
   border-radius: 0.25rem;
 }
+/* iframe style  & card of adding offre*/
+
+#offresframe, .offresframe{
+  margin: 0;
+  padding: 0;
+  height: 90%;
+}
+#offresframe{
+  height: 97%;
+}
+.mrg {
+  margin: 7px 0 !important;
+}
