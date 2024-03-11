@@ -179,11 +179,11 @@ box-shadow: 0 0 5px #6c63ff;
 
     .card-list-nav{
         display: flex;
-        justify-content: center; /* Centrer horizontalement */
-        align-items: center; /* Centrer verticalement */
+        justify-content: center ; /* Centrer horizontalement */
+        align-items: center ; /* Centrer verticalement */
         margin-bottom: 20px; /* Ajouter un espace en bas pour l'esthétique */
     }
- 
+    
 
  /*/////////////////////////////////////////////////////////*/
  
@@ -221,3 +221,9 @@ height:37px;}
 .btn-primary:hover{background-color: #a19df3;
     box-shadow: 0 0 5px #a29eef;
 }
+
+.text-bg-success{width:100px;
+height:25px;
+justify-content: center;
+margin-left:150px;
+background-color: rgb(7, 195, 35) !important;}
