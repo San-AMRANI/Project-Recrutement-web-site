@@ -17,8 +17,15 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin"
-                                    class="rounded-circle p-1 bg-primary" width="110">
+                                <div class="thumb-up">
+                                    <div class="profile-box ">
+                                        <img class="profile-pic" src="../media/utilisateur.png">
+                                    </div>
+                                    <div class="p-image">
+                                        <button type="button" value="login" class="btn upload-button">Upload</button>
+                                        <input class="file-upload" type="file" accept="image/*">
+                                    </div>
+                                </div>
                                 <div class="mt-3">
                                     <h4>John Doe</h4>
                                     <p class="text-secondary mb-1">Full Stack Developer</p>
@@ -97,7 +104,7 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="John Doe">
+                                    <input disabled type="text" class="form-control" value="John Doe">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -105,7 +112,7 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="john@example.com">
+                                    <input disabled type="text" class="form-control" value="john@example.com">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -113,7 +120,7 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="(239) 816-9029">
+                                    <input disabled type="text" class="form-control" value="(239) 816-9029">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -121,7 +128,7 @@
                                     <h6 class="mb-0">Mobile</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="(320) 380-4539">
+                                    <input disabled type="text" class="form-control" value="(320) 380-4539">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -129,13 +136,13 @@
                                     <h6 class="mb-0">Address</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
+                                    <input disabled type="text" class="form-control"
+                                        value="Bay Area, San Francisco, CA">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="button" class="btn btn-primary px-4" value="Save Changes">
                                 </div>
                             </div>
                         </div>
@@ -144,7 +151,7 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="mb-3" id="label-pdf-upload">
-                                    <label for="pdf-upload" class="form-label" >Importer votre CV</label>
+                                    <label for="pdf-upload" class="form-label">Importer votre CV</label>
                                 </div>
                                 <button id="remove-pdf">Remove PDF</button>
                                 <input class="form-control" type="file" id="pdf-upload" accept=".pdf">
@@ -160,11 +167,13 @@
     </div>
 
 
-    <script src="mainprofil.js"></script>
-    <script src="mainindex.js"></script>
-    <script src="../btsp/js/popper.min.js"></script>
+
     <script src="../btsp/js/jquery-3.7.1.min.js"></script>
+    <script src="mainprofil.js"></script>
+    <!-- <script src="mainindex.js"></script> -->
+    <script src="../btsp/js/popper.min.js"></script>
     <script src="../btsp/js/bootstrap.js"></script>
+
 </body>
 
 </html>
