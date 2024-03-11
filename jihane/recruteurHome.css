@@ -211,4 +211,13 @@ box-shadow: 0 0 5px #6c63ff;
 .pagination{margin-top:10px;
 float: right;}
 
-  
+.img-xs{width: 37px;
+height:37px;}
+
+.btn-primary{background-color: #6c63ff;
+    box-shadow: 0 0 5px #a29eef;
+}
+
+.btn-primary:hover{background-color: #a19df3;
+    box-shadow: 0 0 5px #a29eef;
+}
