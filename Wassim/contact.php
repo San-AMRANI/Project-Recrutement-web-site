@@ -18,7 +18,7 @@
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container-fluid" >
               <!-- Logo -->
-              <a class="navbar-brand" href="#" style="color: black; font-size: larger; font-weight:900;">Jobpply</a>
+              <a class="navbar-brand" href="acceuil.php" style="color: black; font-size: larger; font-weight:900;">Jobpply</a>
 
           
               <!-- Toggler button for mobile view -->
@@ -31,7 +31,7 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 listt">
                   <!-- Navigation Links -->
                   <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link " aria-current="page" href="acceuil.php">Home</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" id="homelink" href="#">About</a>
@@ -41,13 +41,13 @@
                   </li>
                   
                   <li class="nav-item">
-                    <a class="nav-link" id="contactlink" href="contact.html" style="margin-right: 10px;color: #6c63ff;">Contact us</a>
+                    <a class="nav-link" id="contactlink" href="contact.php" style="margin-right: 10px;color: #6c63ff;">Contact us</a>
                   </li>
                 </ul>
                 <!-- Login and Sign Up buttons for mobile view -->
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a href="../ayaa/aya.html" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
+                    <a href="/login" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
                   </li>
                   <li class="nav-item">
                     <a href="../ayaa/aya.html" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>

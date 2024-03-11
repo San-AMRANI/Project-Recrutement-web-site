@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="aya.css">
-  <script src="aya.js"></script>
+  
   <style>
     /* Additional styles for scrolling */
     html,
@@ -25,6 +25,7 @@
   </style>
 </head>
 <body>
+  <form action="../jihane/login.php" method="post" >
   <div id="stars"></div>
   <div id="stars2"></div>
   <div id="stars3"></div>
@@ -97,10 +98,10 @@
                       </div>
                       <hr>
                       <div class="form-group mt-1">
-                        <input type="radio" id="terms" name="terms" re>
+                        <input type="radio" id="terms" name="terms" required>
                         <label for="terms">I agree to the terms and conditions</label>
                       </div>
-                      <button class="btn mt-4" onclick="confirmCode()" type="button">enregistrer</button>
+                      <button class="btn mt-4" onclick="confirmCode()" type="submit">enregistrer</button>
                     </div>
                   </div>
                 </div>
@@ -111,6 +112,7 @@
       </div>
     </div>
   </div>
+</form>
   <script>
     // Fonction pour afficher ou masquer la case "Company" en fonction de la sélection de l'utilisateur
     function toggleCompanyInput() {

@@ -5,11 +5,13 @@ $username = "root";
 $password = "";
 $dbname = "databaseproject";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn =mysqli_connect($servername, $username, $password, "$dbname");
 
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if(!$conn) {
+    die('Could not Connect MySql Server:' .mysql_error());
+} else {
+    echo 'connected';
 }
 
 
@@ -22,7 +24,7 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['cpassword'];
-    $company = $_POST['company'];
+    $company = $_POST['Company'];
     $terms = isset($_POST['terms']) ? 1 : 0;
     $registrationType = $_POST['registration-type'];
    
