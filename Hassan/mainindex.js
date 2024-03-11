@@ -1,3 +1,7 @@
+function toggleCollapse() {
+    var info = document.getElementById('info');
+    info.classList.toggle('show');
+}
 
 
 let descriptionOffre = new Quill('#descriptionoffre00', {
@@ -27,4 +31,5 @@ cancelOffre.addEventListener('click', function () {
         return;
     }
 })
+
 

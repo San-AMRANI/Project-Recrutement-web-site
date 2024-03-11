@@ -54,30 +54,35 @@
 
     <aside class="side" id="cv-info">
         <div class="form-info-cv">
-            <form action="" method="post">
-                <div class="form-group">
-                    <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-personnel"
-                        aria-expanded="false" aria-controls="info-personnel">
-                        Informations Personnel <span>&#x2B9F;</span>
-                    </button>
-                </div>
+            <div class="form-group">
+                <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-personnel"
+                    aria-expanded="false" aria-controls="info-personnel">
+                    Informations Personnel <span>&#x2B9F;</span>
+                </button>
+            </div>
 
-                <div class="form-floating collapse" id="info-personnel">
-                    <!--add collapse-->
-
+            <div class="form-floating collapse" id="info-personnel">
+                <!--add collapse-->
+                <form id="forminfoper">
                     <div class="x">
-                        <div class="" type="file" role="button" id="import-user-img">
-                            <img src="/media/logo.jpeg" id="uploaded-img" alt="" />
+                        <div class="thumb-up">
+                            <div class="profile-box ">
+                                <img class="profile-pic" src="img/picture1.png">
+                            </div>
+                            <div class="p-image">
+                                <button type="button" value="login" class="btn upload-button">Upload</button>
+                                <input class="file-upload" type="file" accept="image/*">
+                            </div>
                         </div>
 
                         <div id="div-name">
                             <div class="form-floating">
-                                <input type="text" class="form-control x1" placeholder="First name" id="first-name"
+                                <input type="text" class="form-control x1 name" placeholder="First name" id="first-name"
                                     aria-label="First name" value="hassan" />
                                 <label class="form-label" for="first-name">First name</label>
                             </div>
                             <div class="form-floating">
-                                <input type="text" class="form-control x1" placeholder="First name" id="last-name"
+                                <input type="text" class="form-control x1 name" placeholder="First name" id="last-name"
                                     aria-label="Last name" />
                                 <label class="form-label" for="last-name">Last name</label>
                             </div>
@@ -87,6 +92,7 @@
                                 <label class="form-label" for="birth-date">Date de naissance</label>
                             </div>
                         </div>
+                        
                     </div>
                     <div class="e-a-t input-group">
                         <div class="form-floating">
@@ -107,27 +113,22 @@
                             <input type="tel" class="form-control x1" id="inputSpécialité" placeholder="Spécialité" />
                             <label for="inputSpécialité" class="form-label">Spécialité</label>
                         </div>
-                        <div class="col-auto" style="margin: 10px">
-                            <div class="form-check row-auto">
-                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" />
-                                <label class="form-check-label" for="male"> Male </label>
-                            </div>
-                            <div class="form-check row-auto">
-                                <input class="form-check-input" type="radio" name="gender" id="female" value="female" />
-                                <label class="form-check-label" for="female"> Female </label>
-                            </div>
-                        </div>
+                        
                     </div>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-formation"
-                        aria-expanded="false" aria-controls="info-formation">
-                        Formations <span>&#x2B9F;</span>
+                    <button type="submit" class="btn btn-primary">
+                        Terminé
                     </button>
-                </div>
-                <div class="form-floating collapse" id="info-formation">
-                    <!--add collapse-->
+                </form>
+            </div>
+            <hr />
+            <div class="form-group">
+                <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-formation"
+                    aria-expanded="false" aria-controls="info-formation">
+                    Formations <span>&#x2B9F;</span>
+                </button>
+            </div>
+            <div class="form-floating collapse" id="info-formation">
+                <form id="forminfoper">
                     <div class="container">
                         <div class="card formation0">
                             <div class="card-body">
@@ -152,12 +153,12 @@
 
                                     <div class="input-group">
                                         <div class="form-floating">
-                                            <input type="month" id="dateDebutfor0" name="dateDebut"
+                                            <input type="date" id="dateDebutfor0" name="dateDebut"
                                                 class="form-control x1" placeholder="date début" />
                                             <label for="dateDebutfor0" class="form-label">Date de début:</label>
                                         </div>
                                         <div class="form-floating">
-                                            <input type="month" id="dateFinfor0" name="dateFin" class="form-control x1"
+                                            <input type="date" id="dateFinfor0" name="dateFin" class="form-control x1"
                                                 placeholder="date fin" />
                                             <label for="dateFinfor0" class="form-label">Date de fin:</label>
                                         </div>
@@ -173,6 +174,7 @@
                                 </form>
                             </div>
                         </div>
+
                         <div class="card hidden" id="formation1">
                             <div class="card-body">
                                 <form id="formfor1" action="#" method="post">
@@ -196,12 +198,12 @@
 
                                     <div class="input-group">
                                         <div class="form-floating">
-                                            <input type="month" id="dateDebutfor1" name="dateDebut"
+                                            <input type="date" id="dateDebutfor1" name="dateDebut"
                                                 class="form-control x1" placeholder="date début" />
                                             <label for="dateDebutfor1" class="form-label">Date de début:</label>
                                         </div>
                                         <div class="form-floating">
-                                            <input type="month" id="dateFinfor1" name="dateFin" class="form-control x1"
+                                            <input type="date" id="dateFinfor1" name="dateFin" class="form-control x1"
                                                 placeholder="date fin" />
                                             <label for="dateFinfor1" class="form-label">Date de fin:</label>
                                         </div>
@@ -240,12 +242,12 @@
 
                                     <div class="input-group">
                                         <div class="form-floating">
-                                            <input type="month" id="dateDebutfor2" name="dateDebut"
+                                            <input type="date" id="dateDebutfor2" name="dateDebut"
                                                 class="form-control x1" placeholder="date début" />
                                             <label for="dateDebutfor2" class="form-label">Date de début:</label>
                                         </div>
                                         <div class="form-floating">
-                                            <input type="month" id="dateFinfor2" name="dateFin" class="form-control x1"
+                                            <input type="date" id="dateFinfor2" name="dateFin" class="form-control x1"
                                                 placeholder="date fin" />
                                             <label for="dateFinfor2" class="form-label">Date de fin:</label>
                                         </div>
@@ -285,12 +287,12 @@
 
                                     <div class="input-group">
                                         <div class="form-floating">
-                                            <input type="month" id="dateDebutfor3" name="dateDebut"
+                                            <input type="date" id="dateDebutfor3" name="dateDebut"
                                                 class="form-control x1" placeholder="date début" />
                                             <label for="dateDebutfor3" class="form-label">Date de début:</label>
                                         </div>
                                         <div class="form-floating">
-                                            <input type="month" id="dateFinfor3" name="dateFin" class="form-control x1"
+                                            <input type="date" id="dateFinfor3" name="dateFin" class="form-control x1"
                                                 placeholder="date fin" />
                                             <label for="dateFinfor3" class="form-label">Date de fin:</label>
                                         </div>
@@ -307,52 +309,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="card hidden" id="formation4">
-                            <div class="card-body">
-                                <form id="formfor4" action="#" method="post">
-                                    <div class="form-floating">
-                                        <input type="text" id="titre-formation4" name="formation4" class="form-control"
-                                            placeholder="titre de formation" required />
-                                        <label for="formation4" class="form-label">Titre de Formation:</label>
-                                    </div>
 
-                                    <div class="form-floating">
-                                        <input type="text" id="etablissement4" name="etablissement4"
-                                            class="form-control x1" placeholder="etablissement" required />
-                                        <label for="etablissement4" class="form-label">Établissement:</label>
-                                    </div>
-
-                                    <div class="form-floating">
-                                        <input type="text" id="villefor4" name="ville" class="form-control x1"
-                                            placeholder="ville" required />
-                                        <label for="villefor4" class="form-label">Ville:</label>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <div class="form-floating">
-                                            <input type="month" id="dateDebutfor4" name="dateDebut"
-                                                class="form-control x1" placeholder="date début" />
-                                            <label for="dateDebutfor4" class="form-label">Date de début:</label>
-                                        </div>
-                                        <div class="form-floating">
-                                            <input type="month" id="dateFinfor4" name="dateFin" class="form-control x1"
-                                                placeholder="date fin" />
-                                            <label for="dateFinfor4" class="form-label">Date de fin:</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="hidden" name="" id="descriptionfor-input4" />
-                                        <div id="descriptionfor4">
-                                            <p>Description..</p>
-                                        </div>
-                                        <!-- <label for="description" class="form-label">Description:</label> -->
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">
-                                        Terminé
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
 
                         <div class="d-md-flex justify-content-md-end">
                             <button class="btn-with-icon btn" type="button" id="remove-formation">
@@ -365,413 +322,346 @@
                             </button>
                         </div>
                     </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-experience"
+                    aria-expanded="false" aria-controls="info-experience">
+                    Experience <span>&#x2B9F;</span>
+                </button>
+            </div>
+            <div class="form-floating collapse" id="info-experience">
+                <div class="container">
+                    <div class="card experience0">
+                        <div class="card-body">
+                            <form id="formexp0" action="#" method="post">
+                                <div class="form-floating">
+                                    <input type="text" id="titre-experience0" name="experience0" class="form-control"
+                                        placeholder="Post" required />
+                                    <label for="experience0" class="form-label">Post:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" id="Employeur0" name="Employeur0" class="form-control x1"
+                                        placeholder="Employeur" required />
+                                    <label for="Employeur0" class="form-label">Employeur:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" id="villeexp0" name="ville" class="form-control x1"
+                                        placeholder="ville" required />
+                                    <label for="villeexp0" class="form-label">Ville:</label>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="form-floating">
+                                        <input type="date" id="dateDebutexp0" name="dateDebut" class="form-control x1"
+                                            placeholder="date début" />
+                                        <label for="dateDebutexp0" class="form-label">Date de début:</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="date" id="dateFinexp0" name="dateFin" class="form-control x1"
+                                            placeholder="date fin" />
+                                        <label for="dateFinexp0" class="form-label">Date de fin:</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="" id="descriptionexp-input0" />
+                                    <div id="descriptionexp0">
+                                        <p>Description..</p>
+                                    </div>
+                                    <!-- <label for="description" class="form-label">Description:</label> -->
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    Terminé
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card hidden" id="experience1">
+                        <div class="card-body">
+                            <form id="formexp1" action="#" method="post">
+                                <div class="form-floating">
+                                    <input type="text" id="titre-experience1" name="experience1" class="form-control"
+                                        placeholder="Post" required />
+                                    <label for="experience1" class="form-label">Post:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" id="Employeur1" name="employeur1" class="form-control x1"
+                                        placeholder="employeur" required />
+                                    <label for="employeur1" class="form-label">Employeur:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" id="villeexp1" name="ville" class="form-control x1"
+                                        placeholder="ville" required />
+                                    <label for="villeexp1" class="form-label">Ville:</label>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="form-floating">
+                                        <input type="date" id="dateDebutexp1" name="dateDebut" class="form-control x1"
+                                            placeholder="date début" />
+                                        <label for="dateDebutexp1" class="form-label">Date de début:</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="date" id="dateFinexp1" name="dateFin" class="form-control x1"
+                                            placeholder="date fin" />
+                                        <label for="dateFinexp1" class="form-label">Date de fin:</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="" id="descriptionexp-input1" />
+                                    <div id="descriptionexp1">
+                                        <p>Description..</p>
+                                    </div>
+                                    <!-- <label for="description" class="form-label">Description:</label> -->
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    Terminé
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card hidden" id="experience2">
+                        <div class="card-body">
+                            <form id="formexp2" action="#" method="post">
+                                <div class="form-floating">
+                                    <input type="text" id="titre-experience2" name="experience2" class="form-control"
+                                        placeholder="Post" required />
+                                    <label for="experience2" class="form-label">Post:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" id="Employeur2" name="employeur2" class="form-control x1"
+                                        placeholder="employeur" required />
+                                    <label for="employeur2" class="form-label">Employeur:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" id="villeexp2" name="ville" class="form-control x1"
+                                        placeholder="ville" required />
+                                    <label for="villeexp2" class="form-label">Ville:</label>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="form-floating">
+                                        <input type="date" id="dateDebutexp2" name="dateDebut" class="form-control x1"
+                                            placeholder="date début" />
+                                        <label for="dateDebutexp2" class="form-label">Date de début:</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="date" id="dateFinexp2" name="dateFin" class="form-control x1"
+                                            placeholder="date fin" />
+                                        <label for="dateFinexp2" class="form-label">Date de fin:</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="" id="descriptionexp-input2" />
+                                    <div id="descriptionexp2">
+                                        <p>Description..</p>
+                                    </div>
+                                    <!-- <label for="description" class="form-label">Description:</label> -->
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    Terminé
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card hidden" id="experience3">
+                        <div class="card-body">
+                            <form id="formexp3" action="#" method="post">
+                                <div class="form-floating">
+                                    <input type="text" id="titre-experience3" name="experience3" class="form-control"
+                                        placeholder="Post" required />
+                                    <label for="experience3" class="form-label">Post:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" id="Employeur3" name="employeur3" class="form-control x1"
+                                        placeholder="employeur" required />
+                                    <label for="employeur3" class="form-label">Employeur:</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" id="villeexp3" name="ville" class="form-control x1"
+                                        placeholder="ville" required />
+                                    <label for="villeexp3" class="form-label">Ville:</label>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="form-floating">
+                                        <input type="date" id="dateDebutexp3" name="dateDebut" class="form-control x1"
+                                            placeholder="date début" />
+                                        <label for="dateDebutexp3" class="form-label">Date de début:</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="date" id="dateFinexp3" name="dateFin" class="form-control x1"
+                                            placeholder="date fin" />
+                                        <label for="dateFinexp3" class="form-label">Date de fin:</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="" id="descriptionexp-input3" />
+                                    <div id="descriptionexp3">
+                                        <p>Description..</p>
+                                    </div>
+                                    <!-- <label for="description" class="form-label">Description:</label> -->
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    Terminé
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="d-md-flex justify-content-md-end">
+                        <button class="btn-with-icon btn" type="button" id="remove-experience">
+                            <span class="icon-span" role="img"><img src="/media/moins.png" alt="icon" /></span>
+                            Suprimer experience
+                        </button>
+                        <button class="btn-with-icon btn" type="button" id="add-experience">
+                            <span class="icon-span" role="img"><img src="/media/croix-plus.png" alt="icon" /></span>
+                            Ajouter experience
+                        </button>
+                    </div>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-experience"
-                        aria-expanded="false" aria-controls="info-experience">
-                        Experience <span>&#x2B9F;</span>
-                    </button>
-                </div>
-                <div class="form-floating collapse" id="info-experience">
-                    <div class="container">
-                        <div class="card experience0">
-                            <div class="card-body">
-                                <form id="formexp0" action="#" method="post">
-                                    <div class="form-floating">
-                                        <input type="text" id="titre-experience0" name="experience0"
-                                            class="form-control" placeholder="Post" required />
-                                        <label for="experience0" class="form-label">Post:</label>
-                                    </div>
+            </div>
 
-                                    <div class="form-floating">
-                                        <input type="text" id="Employeur0" name="Employeur0" class="form-control x1"
-                                            placeholder="Employeur" required />
-                                        <label for="Employeur0" class="form-label">Employeur:</label>
-                                    </div>
+            <hr />
+            <div class="form-group">
+                <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-language"
+                    aria-expanded="false" aria-controls="info-language">
+                    Language <span>&#x2B9F;</span>
+                </button>
+            </div>
 
-                                    <div class="form-floating">
-                                        <input type="text" id="villeexp0" name="ville" class="form-control x1"
-                                            placeholder="ville" required />
-                                        <label for="villeexp0" class="form-label">Ville:</label>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <div class="form-floating">
-                                            <input type="month" id="dateDebutexp0" name="dateDebut"
-                                                class="form-control x1" placeholder="date début" />
-                                            <label for="dateDebutexp0" class="form-label">Date de début:</label>
-                                        </div>
-                                        <div class="form-floating">
-                                            <input type="month" id="dateFinexp0" name="dateFin" class="form-control x1"
-                                                placeholder="date fin" />
-                                            <label for="dateFinexp0" class="form-label">Date de fin:</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="hidden" name="" id="descriptionexp-input0" />
-                                        <div id="descriptionexp0">
-                                            <p>Description..</p>
-                                        </div>
-                                        <!-- <label for="description" class="form-label">Description:</label> -->
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">
-                                        Terminé
-                                    </button>
-                                </form>
+            <div class="form-floating collapse" id="info-language">
+                <div class="card language">
+                    <div class="card-body">
+                        <form action="">
+                            <div class="slider form-floating" id="language0">
+                                <input type="text" class="form-control x1" placeholder="Langue" id="title-language0"
+                                    required />
+                                <label for="title-language0" class="form-label">Langue</label>
+                                <select id="level-language0">
+                                    <option checked>Niveau..</option>
+                                    <option value="1">Débutant</option>
+                                    <option value="2">Intermédiaire</option>
+                                    <option value="3">Avancé</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="card hidden" id="experience1">
-                            <div class="card-body">
-                                <form id="formexp1" action="#" method="post">
-                                    <div class="form-floating">
-                                        <input type="text" id="titre-experience1" name="experience1"
-                                            class="form-control" placeholder="Post" required />
-                                        <label for="experience1" class="form-label">Post:</label>
-                                    </div>
-
-                                    <div class="form-floating">
-                                        <input type="text" id="Employeur1" name="employeur1" class="form-control x1"
-                                            placeholder="employeur" required />
-                                        <label for="employeur1" class="form-label">Employeur:</label>
-                                    </div>
-
-                                    <div class="form-floating">
-                                        <input type="text" id="villeexp1" name="ville" class="form-control x1"
-                                            placeholder="ville" required />
-                                        <label for="villeexp1" class="form-label">Ville:</label>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <div class="form-floating">
-                                            <input type="month" id="dateDebutexp1" name="dateDebut"
-                                                class="form-control x1" placeholder="date début" />
-                                            <label for="dateDebutexp1" class="form-label">Date de début:</label>
-                                        </div>
-                                        <div class="form-floating">
-                                            <input type="month" id="dateFinexp1" name="dateFin" class="form-control x1"
-                                                placeholder="date fin" />
-                                            <label for="dateFinexp1" class="form-label">Date de fin:</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="hidden" name="" id="descriptionexp-input1" />
-                                        <div id="descriptionexp1">
-                                            <p>Description..</p>
-                                        </div>
-                                        <!-- <label for="description" class="form-label">Description:</label> -->
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">
-                                        Terminé
-                                    </button>
-                                </form>
+                            <div class="slider form-floating hidden" id="language1">
+                                <input type="text" class="form-control x1" placeholder="Langue" id="title-language1"
+                                    required />
+                                <label for="title-language0" class="form-label">Langue</label>
+                                <select id="level-language1">
+                                    <option checked>Niveau..</option>
+                                    <option value="1">Débutant</option>
+                                    <option value="2">Intermédiaire</option>
+                                    <option value="3">Avancé</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="card hidden" id="experience2">
-                            <div class="card-body">
-                                <form id="formexp2" action="#" method="post">
-                                    <div class="form-floating">
-                                        <input type="text" id="titre-experience2" name="experience2"
-                                            class="form-control" placeholder="Post" required />
-                                        <label for="experience2" class="form-label">Post:</label>
-                                    </div>
 
-                                    <div class="form-floating">
-                                        <input type="text" id="Employeur2" name="employeur2" class="form-control x1"
-                                            placeholder="employeur" required />
-                                        <label for="employeur2" class="form-label">Employeur:</label>
-                                    </div>
-
-                                    <div class="form-floating">
-                                        <input type="text" id="villeexp2" name="ville" class="form-control x1"
-                                            placeholder="ville" required />
-                                        <label for="villeexp2" class="form-label">Ville:</label>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <div class="form-floating">
-                                            <input type="month" id="dateDebutexp2" name="dateDebut"
-                                                class="form-control x1" placeholder="date début" />
-                                            <label for="dateDebutexp2" class="form-label">Date de début:</label>
-                                        </div>
-                                        <div class="form-floating">
-                                            <input type="month" id="dateFinexp2" name="dateFin" class="form-control x1"
-                                                placeholder="date fin" />
-                                            <label for="dateFinexp2" class="form-label">Date de fin:</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="hidden" name="" id="descriptionexp-input2" />
-                                        <div id="descriptionexp2">
-                                            <p>Description..</p>
-                                        </div>
-                                        <!-- <label for="description" class="form-label">Description:</label> -->
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">
-                                        Terminé
-                                    </button>
-                                </form>
+                            <div class="slider form-floating hidden" id="language2">
+                                <input type="text" class="form-control x1" placeholder="Langue" id="title-language2"
+                                    required />
+                                <label for="title-language2" class="form-label">Langue</label>
+                                <select id="level-language2">
+                                    <option checked>Niveau..</option>
+                                    <option value="1">Débutant</option>
+                                    <option value="2">Intermédiaire</option>
+                                    <option value="3">Avancé</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="card hidden" id="experience3">
-                            <div class="card-body">
-                                <form id="formexp3" action="#" method="post">
-                                    <div class="form-floating">
-                                        <input type="text" id="titre-experience3" name="experience3"
-                                            class="form-control" placeholder="Post" required />
-                                        <label for="experience3" class="form-label">Post:</label>
-                                    </div>
-
-                                    <div class="form-floating">
-                                        <input type="text" id="Employeur3" name="employeur3" class="form-control x1"
-                                            placeholder="employeur" required />
-                                        <label for="employeur3" class="form-label">Employeur:</label>
-                                    </div>
-
-                                    <div class="form-floating">
-                                        <input type="text" id="villeexp3" name="ville" class="form-control x1"
-                                            placeholder="ville" required />
-                                        <label for="villeexp3" class="form-label">Ville:</label>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <div class="form-floating">
-                                            <input type="month" id="dateDebutexp3" name="dateDebut"
-                                                class="form-control x1" placeholder="date début" />
-                                            <label for="dateDebutexp3" class="form-label">Date de début:</label>
-                                        </div>
-                                        <div class="form-floating">
-                                            <input type="month" id="dateFinexp3" name="dateFin" class="form-control x1"
-                                                placeholder="date fin" />
-                                            <label for="dateFinexp3" class="form-label">Date de fin:</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="hidden" name="" id="descriptionexp-input3" />
-                                        <div id="descriptionexp3">
-                                            <p>Description..</p>
-                                        </div>
-                                        <!-- <label for="description" class="form-label">Description:</label> -->
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">
-                                        Terminé
-                                    </button>
-                                </form>
+                            <div class="slider form-floating hidden" id="language3">
+                                <input type="text" class="form-control x1" placeholder="Langue" id="title-language3"
+                                    required />
+                                <label for="title-language3" class="form-label">Langue</label>
+                                <select id="level-language3">
+                                    <option checked>Niveau..</option>
+                                    <option value="1">Débutant</option>
+                                    <option value="2">Intermédiaire</option>
+                                    <option value="3">Avancé</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="card hidden" id="experience4">
-                            <div class="card-body">
-                                <form id="formexp4" action="#" method="post">
-                                    <div class="form-floating">
-                                        <input type="text" id="titre-experience4" name="experience4"
-                                            class="form-control" placeholder="Post" required />
-                                        <label for="experience4" class="form-label">Post:</label>
-                                    </div>
 
-                                    <div class="form-floating">
-                                        <input type="text" id="employeur4" name="employeur4" class="form-control x1"
-                                            placeholder="employeur" required />
-                                        <label for="employeur4" class="form-label">Employeur:</label>
-                                    </div>
-
-                                    <div class="form-floating">
-                                        <input type="text" id="villeexp4" name="ville" class="form-control x1"
-                                            placeholder="ville" required />
-                                        <label for="villeexp4" class="form-label">Ville:</label>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <div class="form-floating">
-                                            <input type="month" id="dateDebutexp4" name="dateDebut"
-                                                class="form-control x1" placeholder="date début" />
-                                            <label for="dateDebutexp4" class="form-label">Date de début:</label>
-                                        </div>
-                                        <div class="form-floating">
-                                            <input type="month" id="dateFinexp4" name="dateFin" class="form-control x1"
-                                                placeholder="date fin" />
-                                            <label for="dateFinexp4" class="form-label">Date de fin:</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="hidden" name="" id="descriptionexp-input4" />
-                                        <div id="descriptionexp4">
-                                            <p>Description..</p>
-                                        </div>
-                                        <!-- <label for="description" class="form-label">Description:</label> -->
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">
-                                        Terminé
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
+                            <button type="submit" class="btn btn-primary">Terminé</button>
+                        </form>
                         <div class="d-md-flex justify-content-md-end">
-                            <button class="btn-with-icon btn" type="button" id="remove-experience">
+                            <button class="btn-with-icon btn" type="button" id="remove-langue">
                                 <span class="icon-span" role="img"><img src="/media/moins.png" alt="icon" /></span>
-                                Suprimer experience
                             </button>
-                            <button class="btn-with-icon btn" type="button" id="add-experience">
+                            <button class="btn-with-icon btn" type="button" id="add-langue">
                                 <span class="icon-span" role="img"><img src="/media/croix-plus.png" alt="icon" /></span>
-                                Ajouter experience
                             </button>
                         </div>
                     </div>
                 </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-competence"
+                    aria-expanded="false" aria-controls="info-competence">
+                    Compétence <span>&#x2B9F;</span>
+                </button>
+            </div>
 
-                <hr />
-                <div class="form-group">
-                    <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-language"
-                        aria-expanded="false" aria-controls="info-language">
-                        Language <span>&#x2B9F;</span>
-                    </button>
-                </div>
-
-                <div class="form-floating collapse" id="info-language">
-                    <div class="card language">
-                        <div class="card-body">
-                            <form action="">
-                                <div class="slider form-floating" id="language0">
-                                    <input type="text" class="form-control x1" placeholder="Langue" id="title-language0"
-                                        required />
-                                    <label for="title-language0" class="form-label">Langue</label>
-                                    <select id="level-language0">
-                                        <option checked>Niveau..</option>
-                                        <option value="1">Débutant</option>
-                                        <option value="2">Intermédiaire</option>
-                                        <option value="3">Avancé</option>
-                                    </select>
-                                </div>
-                                <div class="slider form-floating hidden" id="language1">
-                                    <input type="text" class="form-control x1" placeholder="Langue" id="title-language1"
-                                        required />
-                                    <label for="title-language0" class="form-label">Langue</label>
-                                    <select id="level-language1">
-                                        <option checked>Niveau..</option>
-                                        <option value="1">Débutant</option>
-                                        <option value="2">Intermédiaire</option>
-                                        <option value="3">Avancé</option>
-                                    </select>
-                                </div>
-
-                                <div class="slider form-floating hidden" id="language2">
-                                    <input type="text" class="form-control x1" placeholder="Langue" id="title-language2"
-                                        required />
-                                    <label for="title-language2" class="form-label">Langue</label>
-                                    <select id="level-language2">
-                                        <option checked>Niveau..</option>
-                                        <option value="1">Débutant</option>
-                                        <option value="2">Intermédiaire</option>
-                                        <option value="3">Avancé</option>
-                                    </select>
-                                </div>
-                                <div class="slider form-floating hidden" id="language3">
-                                    <input type="text" class="form-control x1" placeholder="Langue" id="title-language3"
-                                        required />
-                                    <label for="title-language3" class="form-label">Langue</label>
-                                    <select id="level-language3">
-                                        <option checked>Niveau..</option>
-                                        <option value="1">Débutant</option>
-                                        <option value="2">Intermédiaire</option>
-                                        <option value="3">Avancé</option>
-                                    </select>
-                                </div>
-                                <div class="slider form-floating hidden" id="language4">
-                                    <input type="text" class="form-control x1" placeholder="Langue" id="title-language4"
-                                        required />
-                                    <label for="title-language4" class="form-label">Langue</label>
-                                    <select id="level-language4">
-                                        <option checked>Niveau..</option>
-                                        <option value="1">Débutant</option>
-                                        <option value="2">Intermédiaire</option>
-                                        <option value="3">Avancé</option>
-                                    </select>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Terminé</button>
-                            </form>
-                            <div class="d-md-flex justify-content-md-end">
-                                <button class="btn-with-icon btn" type="button" id="remove-langue">
-                                    <span class="icon-span" role="img"><img src="/media/moins.png" alt="icon" /></span>
-                                </button>
-                                <button class="btn-with-icon btn" type="button" id="add-langue">
-                                    <span class="icon-span" role="img"><img src="/media/croix-plus.png"
-                                            alt="icon" /></span>
-                                </button>
+            <div class="form-floating collapse" id="info-competence">
+                <div class="card competence">
+                    <div class="card-body">
+                        <form action="">
+                            <div class="slider form-floating" id="competence0">
+                                <input type="text" class="form-control x1" placeholder="competence"
+                                    id="title-competence0" required />
+                                <label for="title-competence0" class="form-label">competence</label>
+                                <input type="range" class="form-range" id="level-competence0" min="1" max="3"
+                                    value="2" />
                             </div>
+                            <div class="slider hidden form-floating" id="competence1">
+                                <input type="text" class="form-control x1" placeholder="competence"
+                                    id="title-competence1" required />
+                                <label for="title-competence1" class="form-label">competence</label>
+                                <input type="range" class="form-range" id="level-competence1" min="1" max="3"
+                                    value="2" />
+                            </div>
+
+                            <div class="slider hidden form-floating" id="competence2">
+                                <input type="text" class="form-control x1" placeholder="competence"
+                                    id="title-competence2" required />
+                                <label for="title-competence2" class="form-label">competence</label>
+                                <input type="range" class="form-range" id="level-competence2" min="1" max="3"
+                                    value="2" />
+                            </div>
+                            <div class="slider hidden form-floating" id="competence3">
+                                <input type="text" class="form-control x1" placeholder="competence"
+                                    id="title-competence3" required />
+                                <label for="title-competence3" class="form-label">competence</label>
+                                <input type="range" class="form-range" id="level-competence3" min="1" max="3"
+                                    value="2" />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Terminé</button>
+                        </form>
+                        <div class="d-md-flex justify-content-md-end">
+                            <button class="btn-with-icon btn" type="button" id="remove-competence">
+                                <span class="icon-span" role="img"><img src="/media/moins.png" alt="icon" /></span>
+                            </button>
+                            <button class="btn-with-icon btn" type="button" id="add-competence">
+                                <span class="icon-span" role="img"><img src="/media/croix-plus.png" alt="icon" /></span>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <hr />
-                <div class="form-group">
-                    <button class="btn-collapse" type="button" data-toggle="collapse" data-target="#info-competence"
-                        aria-expanded="false" aria-controls="info-competence">
-                        Compétence <span>&#x2B9F;</span>
-                    </button>
-                </div>
-
-                <div class="form-floating collapse" id="info-competence">
-                    <div class="card competence">
-                        <div class="card-body">
-                            <form action="">
-                                <div class="slider form-floating" id="competence0">
-                                    <input type="text" class="form-control x1" placeholder="competence"
-                                        id="title-competence0" required />
-                                    <label for="title-competence0" class="form-label">competence</label>
-                                    <input type="range" class="form-range" id="level-competence0" min="1" max="4"
-                                        value="2" />
-                                </div>
-                                <div class="slider hidden form-floating" id="competence1">
-                                    <input type="text" class="form-control x1" placeholder="competence"
-                                        id="title-competence1" required />
-                                    <label for="title-competence1" class="form-label">competence</label>
-                                    <input type="range" class="form-range" id="level-competence1" min="1" max="4"
-                                        value="2" />
-                                </div>
-
-                                <div class="slider hidden form-floating" id="competence2">
-                                    <input type="text" class="form-control x1" placeholder="competence"
-                                        id="title-competence2" required />
-                                    <label for="title-competence2" class="form-label">competence</label>
-                                    <input type="range" class="form-range" id="level-competence2" min="1" max="4"
-                                        value="2" />
-                                </div>
-                                <div class="slider hidden form-floating" id="competence3">
-                                    <input type="text" class="form-control x1" placeholder="competence"
-                                        id="title-competence3" required />
-                                    <label for="title-competence3" class="form-label">competence</label>
-                                    <input type="range" class="form-range" id="level-competence3" min="1" max="4"
-                                        value="2" />
-                                </div>
-                                <div class="slider hidden form-floating" id="competence4">
-                                    <input type="text" class="form-control x1" placeholder="competence"
-                                        id="title-competence4" required />
-                                    <label for="title-competence4" class="form-label">competence</label>
-                                    <input type="range" class="form-range" id="level-competence4" min="1" max="4"
-                                        value="2" />
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Terminé</button>
-                            </form>
-                            <div class="d-md-flex justify-content-md-end">
-                                <button class="btn-with-icon btn" type="button" id="remove-competence">
-                                    <span class="icon-span" role="img"><img src="/media/moins.png" alt="icon" /></span>
-                                </button>
-                                <button class="btn-with-icon btn" type="button" id="add-competence">
-                                    <span class="icon-span" role="img"><img src="/media/croix-plus.png"
-                                            alt="icon" /></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <hr />
-                <div class="d-md-flex justify-content-md-end">
-                    <input type="submit" value="Save" class="me-md-2 btn btn-outline-primary reset" />
-                    <input type="button" id="btn-print-this" class="btn btn-outline-primary submit"
-                        value="Save as PDF" />
-                </div>
+            </div>
+            <!-- <iframe src="../media/AMRANI_HASSAN_CV.pdf" frameborder="0"></iframe> -->
+            <hr />
+            <div class="d-md-flex justify-content-md-end">
+                <input type="submit" value="Save" class="me-md-2 btn btn-outline-primary reset" />
+                <input type="button" id="btn-print-this" class="btn btn-outline-primary submit" value="Save as PDF" />
+            </div>
             </form>
         </div>
     </aside>
@@ -780,7 +670,7 @@
         <div class="cv-template">
             <div id="cv-head">
                 <div role="img" id="cvImg">
-                    <img src="/media/logo.jpeg" alt="Photo Personnel" id="user-img" />
+                    <img src="img/picture1.png" alt="Photo Personnel" class="profile-pic" id="user-img" />
                 </div>
                 <span class="cv-head-info" id="user-name">Hassan AMRANI</span>
                 <table class="cv-head-info">
@@ -808,6 +698,14 @@
                             <span class="cv-head-info" id="user-street">SACJAVSHJ JSCJSHBCJHSLKJSQSCQSCSC SCQSS
                                 CBQSJKCBSJKCBSDDV
                                 DVSSDFHJC</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="/media/date-de-naissance.png" alt="icon" class="cv-info-icon" />
+                        </td>
+                        <td>
+                            <span class="cv-head-info" id="user-age"> 12:32":1332</span>
                         </td>
                     </tr>
                 </table>
@@ -955,7 +853,7 @@
                                             <h6 id="titre-experience00">Developpeur Java</h6>
                                         </div>
                                         <div class="date1">
-                                            <div class="datede" id="dateDebutexp00">08/2024 -</div>
+                                            <div class="datede" id="dateDebutexp00">08/2024 - </div>
                                             <div class="datef" id="dateFinexp00">11/2025</div>
                                         </div>
                                     </div>

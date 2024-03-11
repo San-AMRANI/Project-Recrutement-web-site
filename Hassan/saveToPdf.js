@@ -21,7 +21,7 @@ const removeFormation = document.getElementById("remove-formation");
 const formationTab = [];
 
 addFormation.addEventListener("click", function () {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 3; i++) {
     formationTab[i] = document.getElementById(`formation${i + 1}`);
     let computedStyle = window.getComputedStyle(formationTab[i]);
     if (computedStyle.display === "none") {
@@ -52,7 +52,7 @@ const removeExperience = document.getElementById("remove-experience");
 const experienceTab = [];
 
 addExperience.addEventListener("click", function () {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 3; i++) {
     experienceTab[i] = document.getElementById(`experience${i + 1}`);
     let computedStyle = window.getComputedStyle(experienceTab[i]);
     if (computedStyle.display === "none") {
@@ -81,7 +81,7 @@ const removeLangue = document.getElementById("remove-langue");
 const langueTab = [];
 
 addLangue.addEventListener("click", function () {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 3; i++) {
     langueTab[i] = document.getElementById(`language${i + 1}`);
     let computedStyle = window.getComputedStyle(langueTab[i]);
     if (computedStyle.display === "none") {
@@ -108,13 +108,54 @@ removeLangue.addEventListener("click", function () {
     }
   }
 });
+/////imageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+
+
+$(document).ready(function () {
+
+  var defaultImage = '../media/utilisateur.png';
+
+  var readURL = function (input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('.profile-pic').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      // Set default image
+      $('.profile-pic').attr('src', defaultImage);
+    }
+  }
+
+  $(".file-upload").on('change', function () {
+    readURL(this);
+  });
+
+  $(".upload-button").on('click', function () {
+    $(".file-upload").click();
+  });
+
+  // Initialize with default image
+  $('.profile-pic').attr('src', defaultImage);
+
+});
+/////imageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+
+
+
+
+
+
 const addCompetence = document.getElementById("add-competence");
 const removeCompetence = document.getElementById("remove-competence");
 
 const competenceTab = [];
 
 addCompetence.addEventListener("click", function () {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 3; i++) {
     competenceTab[i] = document.getElementById(`competence${i + 1}`);
     let computedStyle = window.getComputedStyle(competenceTab[i]);
     if (computedStyle.display === "none") {
@@ -167,3 +208,4 @@ for (let i = 0; i < 5; i++) {
     });
 }
 // lis
+
