@@ -96,3 +96,7 @@ document.getElementById("imageInput").addEventListener("change", function () {
 
   reader.readAsDataURL(file);
 });
+
+discriptionOffre = new Quill('#descriptionoffre00', {
+  theme: 'snow'
+})

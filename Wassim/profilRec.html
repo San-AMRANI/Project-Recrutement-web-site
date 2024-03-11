@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../btsp/css/bootstrap.css" />
   <link rel="stylesheet" href="profRec.css" />
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <title>Company's Profile</title>
 </head>
 
@@ -400,37 +402,39 @@
               <div class="card-body">
                 <form id="formoffre" action="#" method="post">
                   <div class="form-floating mrg">
-                    <input type="text" id="titre-offre" name="titre-offre00" class="form-control" placeholder="titre-offre"
-                      required />
+                    <input type="text" id="titre-offre" name="titre-offre00" class="form-control"
+                      placeholder="titre-offre" required />
                     <label for="titre-offre" class="form-label">Titre de votre offre:</label>
                   </div>
-            
+
                   <div class="form-floating mrg">
                     <input type="text" id="type-de-contrat00" name="type-de-contrat" class="form-control x1"
                       placeholder="type-de-contrat" required />
                     <label for="type-de-contrat00" class="form-label">Type de Contrat:</label>
                   </div>
-            
-            
+
+
                   <div class="input-group ">
                     <div class="form-floating mrg">
-                      <input type="number" id="salaire-min00" name="salaire00" class="form-control x1" placeholder="salaire"
-                        required />
+                      <input type="number" id="salaire-min00" name="salaire00" class="form-control x1"
+                        placeholder="salaire" required />
                       <label for="salaire-min00" class="form-label">Salaire(min):</label>
                     </div>
                     <div class="form-floating mrg">
-                      <input type="number" id="salaire-max00" name="salaire00" class="form-control x1" placeholder="salaire"
-                        required />
+                      <input type="number" id="salaire-max00" name="salaire00" class="form-control x1"
+                        placeholder="salaire" required />
                       <label for="salaire-max00" class="form-label">Salaire(max):</label>
                     </div>
                   </div>
                   <div class="input-group ">
                     <div class="form-floating mrg">
-                      <input type="date" id="dateDebutexp2" name="dateDebut" class="form-control x1" placeholder="date début" />
+                      <input type="date" id="dateDebutexp2" name="dateDebut" class="form-control x1"
+                        placeholder="date début" />
                       <label for="dateDebutexp2" class="form-label">Deadline:</label>
                     </div>
                     <div class="form-floating mrg">
-                      <input type="text" id="villeoff00" name="ville" class="form-control x1" placeholder="ville" required />
+                      <input type="text" id="villeoff00" name="ville" class="form-control x1" placeholder="ville"
+                        required />
                       <label for="villeoff00" class="form-label">Ville:</label>
                     </div>
                   </div>
@@ -441,10 +445,7 @@
                     <!-- <label for="description" class="form-label">Description:</label> -->
                   </div>
                   <button type="submit" class="btn btn-primary">
-                    Terminé
-                  </button>
-                  <button type="reset" class="btn btn-primary" id="canceloffre">
-                    Annuler
+                    Ajouter
                   </button>
                 </form>
               </div>
