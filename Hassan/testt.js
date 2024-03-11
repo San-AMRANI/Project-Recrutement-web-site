@@ -197,3 +197,33 @@ for (let i = 0; i < 4; i++) {
     }
   });
 }
+
+
+//iformation personnel typer
+//NAME
+document.getElementById('first-name').addEventListener('input', function(){
+  document.getElementById('user-name').textContent = document.getElementById('first-name').value +' '+document.getElementById('last-name').value;
+})
+document.getElementById('last-name').addEventListener('input', function(){
+  document.getElementById('user-name').textContent = document.getElementById('first-name').value +' '+document.getElementById('last-name').value;
+})
+//DATEBIRTH
+document.getElementById('date-naissance').addEventListener('input', function(){
+  document.getElementById('user-age').textContent = document.getElementById('date-naissance').value;
+})
+//email
+document.getElementById('inputmail').addEventListener('input', function(){
+  document.getElementById('user-email').textContent = document.getElementById('inputmail').value;
+})
+//address
+document.getElementById('inputAddress').addEventListener('input', function(){
+  document.getElementById('user-street').textContent = document.getElementById('inputAddress').value;
+})
+//tele
+document.getElementById('inputTele').addEventListener('input', function(){
+  document.getElementById('user-phone').textContent = document.getElementById('inputTele').value;
+})
+//Specialite
+document.getElementById('inputSpécialité').addEventListener('input', function(){
+  document.getElementById('user-title').textContent = document.getElementById('inputSpécialité').value;
+})

@@ -89,40 +89,40 @@ div.card-body > div.titre_offre {
     margin-top:3%; */
   position: absolute;
   left: 15%;
-  top: 20%;
+  top: 2vw;
   margin-left: 5px;
 }
 
 div.card-body > p.duree_offre {
   position: absolute;
   color: #ff6347;
-  left: 45%;
-  top: 50%;
+  left: 30vw;
+  top: 5vw;
 }
 
 div.card-body > p.duree_offre > img {
   position: absolute;
-  right: 100%;
-  top: 10%;
+  right: 105%;
+  top: 5%;
 }
 
 div.card-body > p.location_offre {
   position: absolute;
   color: #ff6347;
-  left: 20%;
-  top: 50%;
+  left: 13vw;
+  top: 5vw;
 }
 
 div.card-body > p.location_offre > img {
   position: absolute;
-  right: 100%;
+  right: 105%;
   top: 10%;
 }
 
 div.card-body > span.specialiste_offre {
   position: absolute;
-  top: 50%;
-  left: 65%;
+  top: 5vw;
+  left: 40vw;
 }
 
 a.postuler {
@@ -178,8 +178,8 @@ input.form-check-input:checked {
   border: 1px solid white;
   -webkit-box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.22);
   box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.22);
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
+  /* -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px); */
   border-radius: 17px;
   text-align: center;
   cursor: pointer;
@@ -284,6 +284,40 @@ input.form-check-input:checked {
 }
 .hidden{
   display: none;/* return absolut*/
+}
+
+#info{
+  text-align: left;
+  margin-left: 0;
+  max-width: 70%;
+}
+
+#infobtn{
+  position: absolute;
+  border: 0;
+  margin-left: 0;
+  left: 2vw;
+  top: 9.5vw;
+  background: transparent;
+  text-decoration: underline;  
+
+}
+
+#info * {
+  
+  position: relative;
+
+}
+#info {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0; /* Start with opacity 0 */
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out; /* Add opacity transition */
+}
+
+#info.show {
+    max-height: 1000px; /* Adjust this value based on the maximum height of your content */
+    opacity: 1; /* Change opacity to 1 when the collapse is shown */
 }
 
 
