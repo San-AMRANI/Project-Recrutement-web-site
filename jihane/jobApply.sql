@@ -35,12 +35,14 @@ CREATE TABLE recruteur (
 
 CREATE TABLE message (
     idmessage INT PRIMARY KEY,
-    idcandidat INT,
-    idrecruteur INT,
-    contenuemsg TEXT,
+    idcandidat INT NOT NULL,
+    idrecruteur INT NOT NULL,
+    contenuemsg TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat),
     FOREIGN KEY (idrecruteur) REFERENCES recruteur(idrecruteur)
 );
+
 
 CREATE TABLE offre (
     idoffre INT PRIMARY KEY,
