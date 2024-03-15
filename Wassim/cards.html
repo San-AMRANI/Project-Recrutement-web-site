@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../btsp/css/bootstrap.css" />
+    <link rel="stylesheet" href="test.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../btsp/css/bootstrap.css" />
-  <link rel="stylesheet" href="test.css" />
-</head>
-
-<body>
-  <div class="card" id="cardWithCollapse">
-    <div class="card-body" onclick="toggleCollapse()">
-      <div>
-        <img class="img_recruteur" src="../media/logo.jpeg" alt="" />
+  <body>
+    <div class="card" id="cardWithCollapse">
+      <div class="card-body" onclick="toggleCollapse()">
+        <div>
+          <img class="img_recruteur" src="../media/logo.jpeg" alt="" />
+        </div>
+        <div class="titre_offre">
+          <h5 class="card-title"><b>Special title treatment</b></h5>
+        </div>
+        <p class="duree_offre">
+          <img src="../media/horloge.png" width="20px" alt="" /> <b>2 mois</b>
+        </p>
+        <p class="location_offre">
+          <img src="../media/maps-and-location.png" width="20px" alt="" />
+          <b>Casablanca</b>
+        </p>
+        <span class="badge rounded-pill text-bg-danger specialiste_offre"
+          >Specialité</span
+        >
+        <a href="#" class="btn btn-primary postuler">Postuler</a>
       </div>
-      <div class="titre_offre">
-        <h5 class="card-title"><b>Special title treatment</b></h5>
+      <div class="collapse" id="info">
+        <div id="discriptionplace">
+          <pre>
+  scsbjkbdjvbjsdbvjhdbsjvhbdsbvjhdsbjvbjdbvjdb
+  cdscdcsdcvjkbsdvjbjdbvjbdjvbdjvbkjdbvjkbjv
+  scjkbvjlkbdjkvbjkvbjkbvjkbdljkldbvjkb cj bv 
+ scjkbvjlkbdjkvbjkvbjkbvjkbdljkldbvjkb cj bv 
+ fbd</pre
+          >
+        </div>
       </div>
-      <p class="duree_offre">
-        <img src="../media/horloge.png" width="20px" alt="" /> <b>2 mois</b>
-      </p>
-      <p class="location_offre">
-        <img src="../media/maps-and-location.png" width="20px" alt="" />
-        <b>Casablanca</b>
-      </p>
-      <span class="badge rounded-pill text-bg-danger specialiste_offre">Specialité</span>
-      <a href="#" class="btn btn-primary postuler">Postuler</a>
     </div>
-    <div class="collapse" id="info">
-      <div id="discriptionplace">
-        scsbjkbdjvbjsdbvjhdbsjvhbdsbvjhdsbjvbjdbvjdbcdscdcsdcvjkbsdvjbjdbvjbdjvbdjvbkjdbvjkbjv
-        <br />
-        scjkbvjlkbdjkvbjkvbjkbvjkbdljkldbvjkb cj bv <br />
-        scjkbvjlkbdjkvbjkvbjkbvjkbdljkldbvjkb cj bv <br />
-        fbd
-      </div>
-    </div>
-  </div>
-  <script src="/btsp/js/printThis.js"></script>
-  <script src="/Hassan/mainindex.js"></script>
-  <script src="../btsp/js/popper.min.js"></script>
-  <script src="../btsp/js/jquery-3.7.1.min.js"></script>
-  <script src="../btsp/js/bootstrap.js"></script>
-</body>
-
+    <script src="/btsp/js/printThis.js"></script>
+    <script src="/Hassan/mainindex.js"></script>
+    <script src="../btsp/js/popper.min.js"></script>
+    <script src="../btsp/js/jquery-3.7.1.min.js"></script>
+    <script src="../btsp/js/bootstrap.js"></script>
+  </body>
 </html>

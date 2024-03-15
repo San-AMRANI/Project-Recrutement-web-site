@@ -1,3 +1,29 @@
+<?php
+session_start(); // démarrer la session 
+// Récupérer l'ID de l'utilisateur à partir de la session
+$userId = $_SESSION['user_id'];
+
+// Vérifier le rôle de l'utilisateur à partir de la session
+$userRole = $_SESSION['user_role']; // Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,14 +62,18 @@
                   <li class="nav-item">
                     <a class="nav-link" href="#">Offers</a>
                   </li>
-                  <!--<li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
-                  </li> -->
+                  <!-- la page des candidats reste confidentiel seul les recruteurs peuvent la voir-->
+                  <?php if($userRole == "recruteur") {?>
+                  <li class="nav-item">
+                  <a class="nav-link" href="../jihane/recruteurHome.html">Candidate</a>
+                  </li> 
+                  <?php }?>
                   <li class="nav-item">
                     <a class="nav-link" id="contactlink" href="contact.php" style="margin-right: 10px;">Contact us</a>
                   </li>
                 </ul>
                 <!-- Login and Sign Up buttons for mobile view -->
+                <?php if(! isset($_SESSION["userId"])){ ?>
                 <ul class="navbar-nav">
                   <li class="nav-item">
                     <a href="/login" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
@@ -51,6 +81,16 @@
                   <li class="nav-item">
                     <a href="/signup" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
                   </li>
+                  <?php }else { ?> 
+                  <li>
+                  <span
+                class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border rounded-pill">
+                <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg"
+                    alt="profile" />
+                <a class="nav-link" href="../jihane/profilCandidat.html">Username</a>
+            </span>
+                  </li>
+                  <?php }?>
                 </ul>
               </div>
             </div>
@@ -88,7 +128,7 @@
               <div class="col-oek">
                 <div class="content-12q p-2in">
                   <div class="tab-ggw fa-nys sho-7df act-pww">
-                    <form class="search-ikh">
+                    <form class="search-ikh ">
                       <div class="row-7gg no-j87">
                         <div class="col-ifw mr-md-ajo">
                           <div class="form-group-lv4">
@@ -316,34 +356,34 @@
         <div class="row">
         <div class="col-md-3 ftco-animate">
         <ul class="category wawa">
-        <li><a href="#">Web Development <br><span class="number">354</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">Graphic Designer <br><span class="number">143</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">Multimedia <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">Advertising <br><span class="number">90</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Web Development <br><span class="number">354</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Graphic Designer <br><span class="number">143</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Multimedia <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Advertising <br><span class="number">90</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
         </ul>
         </div>
         <div class="col-md-3 ftco-animate">
         <ul class="category wawa">
-        <li><a href="#">Education &amp; Training <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">English <br><span class="number">200</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">Social Media <br><span class="number">300</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">Writing <br><span class="number">150</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Education &amp; Training <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">English <br><span class="number">200</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Social Media <br><span class="number">300</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Writing <br><span class="number">150</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
         </ul>
         </div>
         <div class="col-md-3 ftco-animate">
         <ul class="category wawa">
-        <li><a href="#">PHP Programming <br><span class="number">400</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">Project Management <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">Finance Management <br><span class="number">222</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">Office &amp; Admin <br><span class="number">123</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">PHP Programming <br><span class="number">400</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Project Management <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Finance Management <br><span class="number">222</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Office &amp; Admin <br><span class="number">123</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
         </ul>
         </div>
         <div class="col-md-3 ftco-animate">
         <ul class="category wawa">
-        <li><a href="#">Web Designer <br><span class="number">324</span> <span>Open position</span></span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">Customer Service <br><span class="number">564</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">Marketing &amp; Sales <br><span class="number">234</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-        <li><a href="#">Software Development <br><span class="number">425</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Web Designer <br><span class="number">324</span> <span>Open position</span></span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Customer Service <br><span class="number">564</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Marketing &amp; Sales <br><span class="number">234</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+        <li><a href="../Hassan/index.html">Software Development <br><span class="number">425</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
         </ul>
         </div>
         </div>

@@ -2,11 +2,20 @@ CREATE TABLE candidat (
     idcandidat INT PRIMARY KEY,
     nom VARCHAR(50),
     prenom VARCHAR(50),
+    adresse VARCHAR(255),
+    phone VARCHAR(20),
+    nomcv VARCHAR(512),
+    specialite VARCHAR(100),
     email VARCHAR(100),
-    motdepasse VARCHAR(100),
-    ville VARCHAR(50),
-    phone VARCHAR(20)
+    motdepasse VARCHAR(255),
+    datenaissance DATE,
+    insta VARCHAR(512),
+    linkedin VARCHAR(512),
+    github VARCHAR(512),
+    discord VARCHAR(512),
+    datesingup datetime
 );
+
 
 CREATE TABLE recruteur (
     idrecruteur INT PRIMARY KEY,
@@ -16,19 +25,34 @@ CREATE TABLE recruteur (
     motdepasse VARCHAR(100),
     ville VARCHAR(50),
     phone VARCHAR(20),
-    entreprise VARCHAR(100)
+    entreprise VARCHAR(100),
+    about TEXT,
+    insta VARCHAR(512),
+    linkedin VARCHAR(512),
+    facebook VARCHAR(512),
+    datesingup datetime
 );
 
 CREATE TABLE message (
     idmessage INT PRIMARY KEY,
-    contenuemsg TEXT
+    idcandidat INT NOT NULL,
+    idrecruteur INT NOT NULL,
+    contenuemsg TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat),
+    FOREIGN KEY (idrecruteur) REFERENCES recruteur(idrecruteur)
 );
+
 
 CREATE TABLE offre (
     idoffre INT PRIMARY KEY,
     datepub DATE,
     delai DATE,
-    centenue VARCHAR(100),
+    typecontrat VARCHAR(100),
+    slairemin INT,
+    slairemax INT,
+    ville VARCHAR(100),
+    descriptionoffre VARCHAR(100),
     nomentreprise VARCHAR(100),
     idrecruteur INT,
     FOREIGN KEY (idrecruteur) REFERENCES recruteur(idrecruteur)
@@ -36,14 +60,11 @@ CREATE TABLE offre (
 
 CREATE TABLE postulation (
     idpos INT PRIMARY KEY,
-    datepub DATE
-);
-
-CREATE TABLE cv (
-    idcv INT PRIMARY KEY,
-    datepub DATE,
     idcandidat INT,
-    FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat)
+    idoffre INT,
+    datepub DATE,
+    FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat),
+    FOREIGN KEY (idoffre) REFERENCES offre(idoffre)
 );
 
 CREATE TABLE formation (
@@ -51,25 +72,11 @@ CREATE TABLE formation (
     nomFormation VARCHAR(100),
     datedebut DATE,
     datefin DATE,
-    diplome VARCHAR(100),
     etablissement VARCHAR(100),
-    idcv INT,
-    FOREIGN KEY (idcv) REFERENCES cv(idcv)
-);
-
-CREATE TABLE langue (
-    idlangue INT PRIMARY KEY,
-    nomlangue VARCHAR(50),
-    niveau VARCHAR(50),
-    idcv INT,
-    FOREIGN KEY (idcv) REFERENCES cv(idcv)
-);
-
-CREATE TABLE competence (
-    idcompetence INT PRIMARY KEY,
-    nomcompetence VARCHAR(100),
-    idcv INT,
-    FOREIGN KEY (idcv) REFERENCES cv(idcv)
+    descriptionfor TEXT,
+    ville VARCHAR(50),
+    idcandidat INT,
+    FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat)
 );
 
 CREATE TABLE experience (
@@ -77,27 +84,26 @@ CREATE TABLE experience (
     poste VARCHAR(100),
     datedebut DATE,
     datefin DATE,
-    description TEXT,
+    descriptionexp TEXT,
     nomentreprise VARCHAR(100),
-    idcv INT,
-    FOREIGN KEY (idcv) REFERENCES cv(idcv)
+    ville VARCHAR(50),
+    idcandidat INT,
+    FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat)
 );
 
-CREATE TABLE loisir (
-    idloisir INT PRIMARY KEY,
-    nomloisir VARCHAR(100),
-    idcv INT,
-    FOREIGN KEY (idcv) REFERENCES cv(idcv)
+CREATE TABLE langue (
+    idlangue INT PRIMARY KEY,
+    nomlangue VARCHAR(50),
+    niveau VARCHAR(50),
+    idcandidat INT,
+    FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat)
 );
 
-CREATE TABLE information (
-    idinformation INT PRIMARY KEY,
-    nom VARCHAR(50),
-    prenom VARCHAR(50),
-    email VARCHAR(100),
-    phone VARCHAR(20),
-    adresse VARCHAR(100),
-    specialite VARCHAR(100),
-    idcv INT,
-    FOREIGN KEY (idcv) REFERENCES cv(idcv)
+CREATE TABLE competence (
+    idcompetence INT PRIMARY KEY,
+    nomcompetence VARCHAR(100),
+    idcandidat INT,
+    niveau VARCHAR(50),
+    FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat)
 );
+
