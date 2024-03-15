@@ -1,3 +1,28 @@
+<?php
+session_start(); // démarrer la session 
+// Récupérer l'ID de l'utilisateur à partir de la session
+$userId = $_SESSION['user_id'];
+
+// Vérifier le rôle de l'utilisateur à partir de la session
+$userRole = $_SESSION['user_role']; // Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,19 +64,35 @@
                   <li class="nav-item">
                     <a class="nav-link" href="../Hassan/index.html">Offers</a>
                   </li>
-                  
+                 <!-- la page des candidats reste confidentiel seul les recruteurs peuvent la voir-->
+                 <?php if($userRole == "recruteur") {?>
                   <li class="nav-item">
-                    <a class="nav-link" id="contactlink" href="contact.php" style="margin-right: 10px;color: #6c63ff;">Contact us</a>
+                  <a class="nav-link" href="../jihane/recruteurHome.html">Candidate</a>
+                  </li> 
+                  <?php }?>
+                  <li class="nav-item">
+                    <a class="nav-link" id="contactlink" href="contact.php" style="margin-right: 10px;">Contact us</a>
                   </li>
                 </ul>
                 <!-- Login and Sign Up buttons for mobile view -->
+                <?php if(! isset($_SESSION["userId"])){ ?>
                 <ul class="navbar-nav">
                   <li class="nav-item">
                     <a href="/login" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../ayaa/aya.html" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
+                    <a href="/signup" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
                   </li>
+                  <?php }else { ?> 
+                  <li>
+                  <span
+                class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border rounded-pill">
+                <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg"
+                    alt="profile" />
+                <a class="nav-link" href="../jihane/profilCandidat.html">Username</a>
+            </span>
+                  </li>
+                  <?php }?>
                 </ul>
               </div>
             </div>

@@ -1,3 +1,129 @@
+<?php
+session_start(); // démarrer la session 
+// Récupérer l'ID de l'utilisateur à partir de la session
+$userId = $_SESSION['user_id'];
+$recruteurId = $_SESSION['company_id'];
+
+// Vérifier le rôle de l'utilisateur à partir de la session
+$userRole = $_SESSION['user_role']; // Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
+
+
+$servername = "localhost"; // Change this if your database is hosted on a different server
+$username = "root"; // Replace with your database username
+$password = ""; // Replace with your database password
+$dbname = "jobpply"; // Replace with your database name
+
+try {
+    // Create a PDO connection
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    
+    // Set the PDO error mode to exception
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Display a success message if connected successfully
+    echo "Connected to the $dbname database successfully.";
+} catch(PDOException $e) {
+    // Display an error message if unable to connect
+    echo "Connection failed: " . $e->getMessage();
+}
+
+function getRecruterData ($pdo , $recruteurId) {
+// Prepare the SQL query
+$sql = "SELECT * FROM recruteur WHERE idrecruteur = :idrecruteur";
+// Prepare the statement
+$stmt = $pdo->prepare($sql);
+// Bind the parameter
+$stmt->bindParam(':idrecruteur', $recruteurId, PDO::PARAM_INT);
+// Execute the statement
+$stmt->execute();
+// Fetch the data
+$recruteurData = $stmt->fetch(PDO::FETCH_ASSOC);
+return $recruteurData;
+}
+
+$recruteurData =getRecruterData ($pdo , $recruteurId);
+$IDuser = $recruteurData['idsuer'];
+
+// a function that extract all the 
+function getImagedata($pdo ,$IDuser){
+// Prepare the SQL query
+$sql = "SELECT avatar FROM photo WHERE iduser = :IDuser ORDER BY role DESC;";
+// Prepare the statement
+$stmt = $pdo->prepare($sql);
+// Bind the parameter
+$stmt->bindParam(':iduser', $IDuser, PDO::PARAM_INT);
+// Execute the statement
+$stmt->execute();
+// Fetch the data
+$Photos = $stmt->fetch(PDO::FETCH_ASSOC);
+return $Photos;
+}
+
+function fetchrecruteurcard($pdo)
+{
+    // Prepare the SQL query with LIMIT clause to fetch only the first 6 rows
+    $cardQuery = "SELECT idrecruteur, nom, prenom, avatar , about
+                  FROM recruteur, photo 
+                  WHERE recruteur.iduser = photo.iduser
+                  LIMIT 6";
+
+    // Prepare the statement
+    $stmt = $pdo->prepare($cardQuery);
+
+    // Execute the query
+    $stmt->execute();
+
+    // Fetch all rows
+    $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Initialize array to store card HTML
+    $cardHTML = array();
+
+    // Loop through rows to generate HTML structure
+    foreach ($cards as $card) {
+        $cardnom = $card['nom'];
+        $cardprenom = $card['prenom'];
+        $cardAvatar = $card['avatar'];
+        $cardabout = $card['about'];
+        $cardId = $card["idrecruteur"];
+        $truncatedabout = strlen($cardabout) > 50 ? substr($cardabout, 0, 50) . '...' : $cardabout;
+        // Generate HTML structure for each card
+        $cardHTML[] = "
+        <div class='d-flex justify-content-between mb-2 pb-2 border-bottom'>
+            <div class='d-flex align-items-center hover-pointer'>
+                <img class='img-xs rounded-circle' src='photo/$cardAvatar' alt='' />
+                <div class='ml-2'>
+                    <p> $cardnom $cardprenom</p>
+                    <p class='tx-11 text-muted'>$truncatedabout</p>
+                </div>
+            </div>
+        </div>";
+    }
+
+    return $cardHTML;
+}
+$cards =fetchrecruteurcard($pdo);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,36 +163,39 @@
             <li class="nav-item">
               <a class="nav-link" href="index.html" style="color: #6c63ff">Offers</a>
             </li>
-            <!--<li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
-                  </li> -->
-            <li class="nav-item">
-              <a class="nav-link" id="contactlink" href="../Wassim/contact.html" style="margin-right: 10px">Contact
-                us</a>
-            </li>
-          </ul>
-          <!-- Login and Sign Up buttons for mobile view -->
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a href="../ayaa/aya.html" class="btn btn-outline-primary me-2" type="button" style="
-                    padding: 8px 20px;
-                    background-color: #6c63ff;
-                    border: none;
-                    color: white;
-                  ">Login</a>
-            </li>
-            <li class="nav-item">
-              <a href="../ayaa/aya.html" class="btn btn-primary" type="button" style="
-                    margin-top: 4px;
-                    padding: 8px 20px;
-                    background-color: #ff6347;
-                    border: none;
-                  ">Sign Up</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+            <!-- la page des candidats reste confidentiel seul les recruteurs peuvent la voir-->
+            <?php if($userRole == "recruteur") {?>
+                  <li class="nav-item">
+                  <a class="nav-link" href="../jihane/recruteurHome.html">Candidate</a>
+                  </li> 
+                  <?php }?>
+                  <li class="nav-item">
+                    <a class="nav-link" id="contactlink" href="contact.php" style="margin-right: 10px;">Contact us</a>
+                  </li>
+                </ul>
+                <!-- Login and Sign Up buttons for mobile view -->
+                <?php if(! isset($_SESSION["userId"])){ ?>
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a href="/login" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/signup" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
+                  </li>
+                  <?php }else { ?> 
+                  <li>
+                  <span
+                class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border rounded-pill">
+                <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg"
+                    alt="profile" />
+                <a class="nav-link" href="../jihane/profilCandidat.html">Username</a>
+            </span>
+                  </li>
+                  <?php }?>
+                </ul>
+              </div>
+            </div>
+          </nav>
   </div>
   <style>
     .fas.fa-bars {
@@ -143,7 +272,7 @@
               <div class="cover-body d-flex justify-content-between align-items-center">
                 <div>
                   <img class="profile-pic" src="/media/volkswagen.png" alt="profile" />
-                  <span class="profile-name"> <input type="text" name="" id="" value="Amiah Burton" style="border: none; background-color: transparent;" disabled></span>
+                  <span class="profile-name">Amiah Burton</span>
                 </div>
                 <div class="d-none d-md-block">
                   <button class="btn btn-primary btn-icon-text btn-edit-profile">
@@ -545,50 +674,14 @@
                             </div>
 
                           </div>
-                          <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                            <div class="d-flex align-items-center hover-pointer">
-                              <img class="img-xs rounded-circle"
-                                src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" />
-                              <div class="ml-2">
-                                <p>Mike Popescu</p>
-                                <p class="tx-11 text-muted">12 Mutual Friends</p>
-                              </div>
-                            </div>
+                          
 
-                          </div>
-                          <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                            <div class="d-flex align-items-center hover-pointer">
-                              <img class="img-xs rounded-circle"
-                                src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" />
-                              <div class="ml-2">
-                                <p>Mike Popescu</p>
-                                <p class="tx-11 text-muted">12 Mutual Friends</p>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                            <div class="d-flex align-items-center hover-pointer">
-                              <img class="img-xs rounded-circle"
-                                src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="" />
-                              <div class="ml-2">
-                                <p>Mike Popescu</p>
-                                <p class="tx-11 text-muted">12 Mutual Friends</p>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                            <div class="d-flex align-items-center hover-pointer">
-                              <img class="img-xs rounded-circle"
-                                src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" />
-                              <div class="ml-2">
-                                <p>Mike Popescu</p>
-                                <p class="tx-11 text-muted">12 Mutual Friends</p>
-                              </div>
-                            </div>
-
-                          </div>
+                          <?php foreach ($cards as $card) {
+                            
+                            echo $cards;
+                          }?>
+                          
+                          
                           <div class="d-flex justify-content-between">
                             <div class="d-flex align-items-center hover-pointer">
                               <img class="img-xs rounded-circle"
