@@ -41,16 +41,6 @@ cancelOffre.addEventListener('click', function () {
     }
 })
 
-function submitForm(formname) {
-    // Prevent default form submission behavior
-    event.preventDefault();
-
-    // Perform any additional actions or validations here
-
-    // Manually submit the form using JavaScript
-    document.getElementsByName(formname).submit();
-}
-
 
 
 

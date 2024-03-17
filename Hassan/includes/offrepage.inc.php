@@ -28,7 +28,7 @@ function insertOffre()
             $salaireMax = htmlspecialchars($_POST['salairemax']);
             $deadline = htmlspecialchars($_POST['dateDebut']);
             $ville = htmlspecialchars($_POST['ville']);
-            $description = htmlspecialchars($_POST['discriptionoff']);
+            $description = htmlspecialchars_decode($_POST['discriptionoff']);
             // $idrecruteur = htmlspecialchars($_POST['idrecruteur']); // Assuming you have an input field for idrecruteur
 
             // Prepare the SQL statement
@@ -144,7 +144,8 @@ function getOffres()
             $typecontrat = htmlspecialchars($row["typecontrat"]);
             $slairemin = htmlspecialchars($row["slairemin"]);
             $slairemax = htmlspecialchars($row["slairemax"]);
-            $descriptionoffre = htmlspecialchars($row["descriptionoffre"]);
+            $specialite = htmlspecialchars($row["specialite"]);
+            $descriptionoffre = htmlspecialchars_decode($row["descriptionoffre"]);
 
             echo '
                 <div class="card" id="cardWithCollapse' . $i . '">
@@ -159,7 +160,7 @@ function getOffres()
                         <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
                             <b>' . $ville . '</b>
                         </p>
-                        <span class="badge rounded-pill text-bg-danger specialiste_offre">Specialité</span>
+                        <span class="badge rounded-pill text-bg-danger specialiste_offre">' . $specialite .'</span>
                         <a href="#" class="btn btn-primary postuler">Postuler</a>
                     </div>
                     <div class="collapse info" id="info' . $i . '">

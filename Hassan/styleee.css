@@ -96,7 +96,7 @@ div.card-body > div.titre_offre {
 div.card-body > p.duree_offre {
   position: absolute;
   color: #ff6347;
-  left: 30vw;
+  left: 45%;
   top: 5vw;
 }
 
@@ -109,7 +109,7 @@ div.card-body > p.duree_offre > img {
 div.card-body > p.location_offre {
   position: absolute;
   color: #ff6347;
-  left: 13vw;
+  left: 23%;
   top: 5vw;
 }
 
@@ -122,7 +122,7 @@ div.card-body > p.location_offre > img {
 div.card-body > span.specialiste_offre {
   position: absolute;
   top: 5vw;
-  left: 40vw;
+  left: 65%;
 }
 
 a.postuler {
@@ -130,7 +130,28 @@ a.postuler {
   bottom: 10%;
   right: 2%;
 }
+@media (max-width: 700px) {
+  div.card-body > div.titre_offre,
+  div.card-body > p.duree_offre,
+  div.card-body > p.location_offre,
+  div.card-body > span.specialiste_offre {
+    position: relative; /* Change to relative positioning */
+    justify-content: left;
+    align-items: start;
+    left: -10%; /* Reset left position */
+    top: auto; /* Reset top position */
+    margin-left: 0; /* Reset margin-left */
+    margin-bottom: 0px; /* Add margin between elements */
+  }
 
+  div.card-body > p.duree_offre > img,
+  div.card-body > p.location_offre > img {
+    position: absolute; /* Keep images positioned absolutely */
+    right: 65%;
+    /* top: 5%; */
+  }
+  
+}
 /*The side bar style*/
 aside.sidebar-filter {
   /* border:1px solid black; */
@@ -298,3 +319,6 @@ input.form-check-input:checked {
   position: relative !important;
 }
 
+.card-list-nav{
+  background-color: transparent !important;
+}

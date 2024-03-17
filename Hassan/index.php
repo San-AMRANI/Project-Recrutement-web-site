@@ -241,7 +241,8 @@ include('../Hassan/includes/offrepage.inc.php');
     </aside> -->
 
 
-    <h1 class="text-center"> Débloquez votre potentiel professionnel: <br> Découvrez <?php $nboffre = count(getOffresData()); echo "+$nboffre"?> opportunités de stage passionnantes au Maroc !"</h1>
+    <h1 class="text-center"> Débloquez votre potentiel professionnel: <br> Découvrez <?php $nboffre = count(getOffresData());
+                                                                                        echo "+$nboffre" ?> opportunités de stage passionnantes au Maroc !"</h1>
     <hr>
 
     <!-- <button type="button" class="btn btn-primary">Primary</button> -->
@@ -255,8 +256,6 @@ include('../Hassan/includes/offrepage.inc.php');
                 <p>
                 <h5 class="text-center">Filter</h5>
                 </p>
-
-
 
                 <div class="reset-submit container btn-group">
                     <input type="reset" value="Reset" class="btn btn-outline-primary reset">
@@ -333,7 +332,7 @@ include('../Hassan/includes/offrepage.inc.php');
         ?>
 
         <div class="card-list-nav">
-            <div class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="card-list-nav navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container"> <!-- Move the container-fluid outside of the pagination -->
 
                     <div class="container-add-offre">
