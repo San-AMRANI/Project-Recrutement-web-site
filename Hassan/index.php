@@ -342,12 +342,17 @@ include('../Hassan/includes/offrepage.inc.php');
                     echo '<ul class="pagination">';
                     global $totalPages;
                     global $currentpage;
+                    $currentURL = $_SERVER['REQUEST_URI'];
+
 
                     for ($i = 1; $i <= $totalPages; $i++) {
+                        // Add the page number to the current URL
+                        $paginationLink = $currentURL . '&page=' . $i;
+
                         // Add the active class to the current page
                         $activeClass = ($currentpage == $i) ? 'active' : '';
 
-                        echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+                        echo '<li class="page-item ' . $activeClass . '"><a class="page-link" href="' . $paginationLink . '">' . $i . '</a></li>';
                     }
                     echo '</ul>';
                     ?>

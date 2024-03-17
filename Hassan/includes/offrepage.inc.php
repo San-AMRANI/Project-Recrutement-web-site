@@ -9,7 +9,7 @@ $dsn = 'mysql:host=' . $host . ';dbname=' . $dbName;
 $pdo = new PDO($dsn, $user, $pwd);
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::ERRMODE_EXCEPTION);
 
-
+global $baseURL;
 
 function insertOffre()
 {
@@ -94,16 +94,20 @@ function getOffresData()
         $villef = $_GET['villef'];
         $specialitef = $_GET['specialitef'];
         $contratf = $_GET['contratf'];
-
+        global $baseURL;
+        $baseURL = "?";
         // Add filter conditions to the SQL query
         if (!empty($_GET['specialitef'])) {
             $sql .= " AND LOWER(specialite) = LOWER('$specialitef') ";
+            // $baseURL .= "specialitef=" . urlencode($specialitef) . "&";
         }
         if (!empty($_GET['contratf'])) {
             $sql .= " AND LOWER(typecontrat) = LOWER('$contratf')";
+            // $baseURL .= "contratf=" . urlencode($contratf) . "&";
         }
         if (!empty($_GET['villef'])) {
             $sql .= " AND LOWER(ville) = LOWER('$villef')";
+            // $baseURL .= "villef=" . urlencode($villef) . "&";
         }
     }
 
