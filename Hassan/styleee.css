@@ -135,7 +135,7 @@ a.postuler {
 aside.sidebar-filter {
   /* border:1px solid black; */
   width: 25%;
-
+  height: 100%;
   float: left;
 }
 
@@ -211,7 +211,7 @@ input.form-check-input:checked {
   opacity: 1 !important;
 }
 .cardnewoffre:hover {
-  transform: scale(1.25);
+  transform: scale(1.2);
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
 }
@@ -286,33 +286,15 @@ input.form-check-input:checked {
   display: none; /* return absolut*/
 }
 
-#info {
-  text-align: left;
-  margin-left: 0;
-  max-width: 70%;
+.info {
+  text-align: start !important;
+  margin-left: 0 !important;
+  width: 70% !important;
 }
 
-#infobtn {
-  position: absolute;
-  border: 0;
-  margin-left: 0;
-  left: 2vw;
-  top: 9.5vw;
-  background: transparent;
-  text-decoration: underline;
+
+
+.info * {
+  position: relative !important;
 }
 
-#info * {
-  position: relative;
-}
-#info {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0; /* Start with opacity 0 */
-  transition: max-height 0.3s ease-out, opacity 0.3s ease-out; /* Add opacity transition */
-}
-
-#info.show {
-  max-height: 1000px; /* Adjust this value based on the maximum height of your content */
-  opacity: 1; /* Change opacity to 1 when the collapse is shown */
-}

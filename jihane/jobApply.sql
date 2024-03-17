@@ -46,6 +46,7 @@ CREATE TABLE message (
 
 CREATE TABLE offre (
     idoffre INT PRIMARY KEY,
+    titreofre VARCHAR(512),
     datepub DATE,
     delai DATE,
     typecontrat VARCHAR(100),
