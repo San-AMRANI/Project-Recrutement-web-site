@@ -42,22 +42,54 @@ return $recruteurData;
 }
 
 $recruteurData =getRecruterData ($pdo , $recruteurId);
-$IDuser = $recruteurData['idsuer'];
+$IDrecruteur = $recruteurData['idrecruteur'];
 
 // a function that extract all the 
-function getImagedata($pdo ,$IDuser){
+function getImagedata($pdo ,$IDrecruteur){
 // Prepare the SQL query
-$sql = "SELECT avatar FROM photo WHERE iduser = :IDuser ORDER BY role DESC;";
+$sql = "SELECT photo.avatar
+        FROM recruteur
+        JOIN user ON recruteur.iduser = user.iduser
+        JOIN photo ON user.iduser = photo.iduser
+        WHERE recruteur.idrecruteur = :IDrecruteur
+        ORDER BY indx ;
+      ";
 // Prepare the statement
 $stmt = $pdo->prepare($sql);
 // Bind the parameter
-$stmt->bindParam(':iduser', $IDuser, PDO::PARAM_INT);
+$stmt->bindParam(':IDrecruteur', $IDrecruteur, PDO::PARAM_INT);
 // Execute the statement
 $stmt->execute();
 // Fetch the data
-$Photos = $stmt->fetch(PDO::FETCH_ASSOC);
+$Photos = $stmt->fetchALL(PDO::FETCH_ASSOC);
 return $Photos;
 }
+
+$images = getImagedata($pdo, $IDrecruteur);
+// Initialiser les variables pour stocker les images avec indx égal à 1 et 2
+$imageWithIndx1 = null;
+$imageWithIndx2 = null;
+
+// Initialiser la variable pour stocker les images avec indx égal à 3
+$imageWithIndx3 = array();
+
+// Parcourir les résultats pour trouver les images avec indx égal à 1, 2 ou 3
+foreach ($images as $image) {
+    if ($image['indx'] == 1) {
+        // Stocker l'image avec indx égal à 1
+        $imageWithIndx1 = $image;
+    } elseif ($image['indx'] == 2) {
+        // Stocker l'image avec indx égal à 2
+        $imageWithIndx2 = $image;
+    } elseif ($image['indx'] == 3) {
+        // Stocker l'image avec indx égal à 3
+            $imageWithIndx3[] = $image;
+        
+    }
+}
+
+
+
 
 function fetchrecruteurcard($pdo)
 {
@@ -103,6 +135,147 @@ function fetchrecruteurcard($pdo)
     return $cardHTML;
 }
 $cards =fetchrecruteurcard($pdo);
+
+
+
+
+
+function insererOffre($pdo, $titre, $typeContrat, $salaireMin, $salaireMax, $deadline, $ville, $description,$IDrecruteur ) {
+    try {
+        // Préparer la requête SQL d'insertion
+        $sql = "INSERT INTO offre (titre, typecontrat, slairemin, slairemax, delai, ville, descriptionoffre, idrecruteur ) 
+                VALUES (:titre, :typeContrat, :salaireMin, :salaireMax, :deadline, :ville, :description , :idrecruteur)";
+        
+        // Préparer la déclaration
+        $stmt = $pdo->prepare($sql);
+
+        // Lier les paramètres
+        $stmt->bindParam(':titre', $titre);
+        $stmt->bindParam(':typeContrat', $typeContrat);
+        $stmt->bindParam(':salaireMin', $salaireMin);
+        $stmt->bindParam(':salaireMax', $salaireMax);
+        $stmt->bindParam(':deadline', $deadline);
+        $stmt->bindParam(':ville', $ville);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':idrecruteur', $IDrecruteur);
+
+        // Exécuter la déclaration
+        $stmt->execute();
+
+        // Renvoyer true si l'insertion réussit
+        return true;
+    } catch (PDOException $e) {
+        // Gérer les exceptions
+        echo "Erreur d'insertion : " . $e->getMessage();
+        return false;
+    }
+}
+
+// Exemple d'utilisation :
+// Assurez-vous d'avoir une connexion PDO valide ($pdo) à votre base de données
+
+// Vérifier si le formulaire est soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les données du formulaire
+    $titre = $_POST['titre-offre00'];
+    $typeContrat = $_POST['type-de-contrat'];
+    $salaireMin = $_POST['salaire-min00'];
+    $salaireMax = $_POST['salaire-max00'];
+    $deadline = $_POST['dateDebut'];
+    $ville = $_POST['ville'];
+    $description = $_POST['descriptionoffre00'];
+
+    // Appeler la fonction pour insérer l'offre dans la base de données
+    if (insererOffre($pdo, $titre, $typeContrat, $salaireMin, $salaireMax, $deadline, $ville, $description ,$IDrecruteur)) {
+        echo "L'offre a été ajoutée avec succès.";
+    } else {
+        echo "Erreur lors de l'ajout de l'offre.";
+    }
+}
+
+
+function uploadImageAndInsertIntoDatabase($pdo, $indx)
+{
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["imageFile"])) {
+        // Récupérez les informations sur l'image téléchargée
+        $fileName = $_FILES["imageFile"]["name"];
+        $fileTmpName = $_FILES["imageFile"]["tmp_name"];
+        $fileError = $_FILES["imageFile"]["error"];
+
+        // Vérifiez s'il n'y a pas d'erreur lors du téléchargement
+        if ($fileError === UPLOAD_ERR_OK) {
+            // Déplacez le fichier téléchargé vers le dossier "photos" sur le serveur
+            $destination = "../photos/" . $fileName;
+            move_uploaded_file($fileTmpName, $destination);
+
+            // Maintenant, vous pouvez insérer le nom de l'image dans la base de données
+            $iduser = $_SESSION["iduser"]; // Supposons que vous avez déjà démarré une session
+
+            // Préparez la requête SQL pour insérer l'image dans la base de données
+            $sql = "INSERT INTO photo (iduser, avatar, indx) VALUES (?, ?, ?)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$iduser, $fileName, $indx]);
+
+            // Affichez un message de succès ou effectuez d'autres actions nécessaires
+            echo "L'image a été téléchargée avec succès et enregistrée dans la base de données.";
+        } else {
+            echo "Une erreur s'est produite lors du téléchargement de l'image.";
+        }
+    }
+}
+
+// Utilisation de la fonction avec l'indice approprié
+$indice = 1; // Par exemple, vous pouvez passer l'indice souhaité ici !!!!!!!!!!!
+uploadImageAndInsertIntoDatabase($pdo , $indice);
+
+
+
+// Initialise le texte par défaut du bouton
+$buttonText = "Edit profile";
+
+// Vérifie si le bouton a été soumis avec la valeur "Modify"
+if (isset($_POST['editButton']) && $_POST['editButton'] == "Modify") {
+    // Change le texte du bouton en "Edit profile"
+    $buttonText = "Edit profile";
+}
+
+
+
+// Génère du code JavaScript pour activer ou désactiver les champs de saisie en fonction du texte du bouton
+$jsCode = `
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var editButton = document.getElementById("EditButton");
+  var inputs = document.querySelectorAll("input");
+  
+  editButton.addEventListener("click", function() {
+    if (editButton.textContent == "Edit profile") {
+      editButton.textContent = "Modify";
+      inputs.forEach(function(input) {
+        input.disabled = false;
+      });
+    } else if (editButton.textContent == "Modify") {
+      editButton.textContent = "Edit profile";
+      inputs.forEach(function(input) {
+        input.disabled = true;
+      });
+    }
+  });
+});
+</script>`;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -275,14 +448,14 @@ $cards =fetchrecruteurcard($pdo);
                   <span class="profile-name">Amiah Burton</span>
                 </div>
                 <div class="d-none d-md-block">
-                  <button class="btn btn-primary btn-icon-text btn-edit-profile">
+                  <button class="btn btn-primary btn-icon-text btn-edit-profile" id="EditButton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                       class="feather feather-edit btn-icon-prepend">
                       <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                       <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                     </svg>
-                    Edit profile
+                    <?php echo $buttonText; ?>
                   </button>
                 </div>
               </div>
@@ -529,7 +702,7 @@ $cards =fetchrecruteurcard($pdo);
           <div class="row">
             <div class="card cardnewoffre hidden">
               <div class="card-body">
-                <form id="formoffre" action="#" method="post">
+                <form id="formoffre" action="proflRec.php" method="post">
                   <div class="form-floating mrg">
                     <input type="text" id="titre-offre" name="titre-offre00" class="form-control"
                       placeholder="titre-offre" required />
@@ -594,61 +767,69 @@ $cards =fetchrecruteurcard($pdo);
                     <div class="row">
                       <div class="col-md-4" id="col0">
                         <figure>
-                          <img class="img-fluid" id="figure-0" src="" alt="" />
+                          <img class="img-fluid" id="figure-0" src="../photos/" />
                         </figure>
                       </div>
                       <div class="col-md-4" id="col1">
                         <figure>
-                          <img class="img-fluid" id="figure-1" src="" alt="" />
+                          <img class="img-fluid" id="figure-1" src="../photos/" alt="" />
                         </figure>
                       </div>
                       <div class="col-md-4" id="col2">
                         <figure>
-                          <img class="img-fluid" id="figure-2" src="" alt="" />
+                          <img class="img-fluid" id="figure-2" src="../photos/" alt="" />
                         </figure>
                       </div>
                       <div class="col-md-4" id="col3">
                         <figure>
-                          <img class="img-fluid" id="figure-3" src="" alt="" />
+                          <img class="img-fluid" id="figure-3" src="../photos/" alt="" />
                         </figure>
                       </div>
                       <div class="col-md-4" id="col4">
                         <figure>
-                          <img class="img-fluid" id="figure-4" src="" alt="" />
+                          <img class="img-fluid" id="figure-4" src="../photos/" alt="" />
                         </figure>
                       </div>
                       <div class="col-md-4" id="col5">
                         <figure>
-                          <img class="img-fluid" id="figure-5" src="" alt="" />
+                          <img class="img-fluid" id="figure-5" src="../photos/" alt="" />
                         </figure>
                       </div>
                       <div class="col-md-4" id="col6">
                         <figure>
-                          <img class="img-fluid" id="figure-6" src="" alt="" />
+                          <img class="img-fluid" id="figure-6" src="../photos/" alt="" />
                         </figure>
                       </div>
                       <div class="col-md-4" id="col7">
                         <figure>
-                          <img class="img-fluid" id="figure-7" src="" alt="" />
+                          <img class="img-fluid" id="figure-7" src="../photos/" alt="" />
                         </figure>
                       </div>
                       <div class="col-md-4" id="col8">
                         <figure>
-                          <img class="img-fluid" id="figure-8" src="" alt="" />
+                          <img class="img-fluid" id="figure-8" src="../photos/" alt="" />
                         </figure>
                       </div>
                       <div class="col-md-4" id="col9">
                         <figure>
-                          <img class="img-fluid" id="figure-9" src="" alt="" />
+                          <img class="img-fluid" id="figure-9" src="../photos/" alt="" />
                         </figure>
                       </div>
 
+                      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" id="uploadForm">
                       <div class="col-md-4" id="coladd">
                         <figure id="addImageFigure" class="mb-0">
                           <img class="img-fluid" src="/media/add-image.png" alt="Add Image" id="addImage" />
                         </figure>
-                        <input type="file" id="imageInput" style="display: none;" accept="image/*" />
+                      <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" onchange="submitForm()">
                       </div>
+                      </form>
+                      <script>
+                        function submitForm() {
+                          document.getElementById("uploadForm").submit();
+                        }
+
+                      </script>
 
 
 
@@ -702,6 +883,9 @@ $cards =fetchrecruteurcard($pdo);
               </div>
             </div>
           </div>
+          <?php
+           // Affiche le code JavaScript généré
+          echo $jsCode; ?>
 </body>
 <script src="recru.js"></script>
 <script src="/btsp/js/printThis.js"></script>
