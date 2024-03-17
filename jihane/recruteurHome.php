@@ -1,3 +1,101 @@
+<?php
+session_start(); // démarrer la session 
+// Récupérer l'ID de l'utilisateur à partir de la session
+$userId = $_SESSION['user_id'];
+$recruteurId = $_SESSION['company_id'];
+
+// Vérifier le rôle de l'utilisateur à partir de la session
+$userRole = $_SESSION['user_role']; // Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
+
+
+$servername = "localhost"; // Change this if your database is hosted on a different server
+$username = "root"; // Replace with your database username
+$password = ""; // Replace with your database password
+$dbname = "jobpply"; // Replace with your database name
+
+
+try {
+    // Create a PDO connection
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    
+    // Set the PDO error mode to exception
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Display a success message if connected successfully
+    echo "Connected to the $dbname database successfully.";
+} catch(PDOException $e) {
+    // Display an error message if unable to connect
+    echo "Connection failed: " . $e->getMessage();
+}
+
+
+
+    // Prepare the SQL query
+    $sql = "SELECT nom,avatar, prenom,adresse,description,phone,specialite,email, FROM candidat,user, experience,formation WHERE candidat.idcandidat = user.iduser
+    and candidat.idcandidat = experience.idcandidat
+    and candidat.idcandidat = formation.idcandidat
+    and user.iduser=photo.id";
+    // Prepare the statement
+    $stmt = $pdo->prepare($sql);
+    // Execute the statement
+    $stmt->execute();
+    // Fetch the data
+    $candidatData = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+
+
+
+
+
+
+
+function fetchcandidatcard($pdo)
+{
+    // Prepare the SQL query with LIMIT clause to fetch only the first 6 rows
+    $cardQuery = "SELECT idcandidat, nom, prenom, avatar , about
+                  FROM candidat, photo 
+                  WHERE candidat.iduser = photo.iduser
+                  LIMIT 6";
+
+    // Prepare the statement
+    $stmt = $pdo->prepare($cardQuery);
+
+    // Execute the query
+    $stmt->execute();
+
+    // Fetch all rows
+    $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Initialize array to store card HTML
+    $cardHTML = array();
+
+    // Loop through rows to generate HTML structure
+    foreach ($cards as $card) {
+        $cardnom = $card['nom'];
+        $cardprenom = $card['prenom'];
+        $cardAvatar = $card['avatar'];
+        $cardabout = $card['about'];
+        $cardId = $card["idcandidat"];
+        $truncatedabout = strlen($cardabout) > 50 ? substr($cardabout, 0, 50) . '...' : $cardabout;
+        // Generate HTML structure for each card
+        $cardHTML[] = "
+        <div class='d-flex justify-content-between mb-2 pb-2 border-bottom'>
+            <div class='d-flex align-items-center hover-pointer'>
+                <img class='img-xs rounded-circle' src='photo/$cardAvatar' alt='' />
+                <div class='ml-2'>
+                    <p> $cardnom $cardprenom</p>
+                    <p class='tx-11 text-muted'>$truncatedabout</p>
+                </div>
+            </div>
+        </div>";
+    }
+
+    return $cardHTML;
+}
+$cards =fetchcandidatcard($pdo);
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -368,31 +466,35 @@
         </div>
 
 <div id="alignement-card">
+<?php
+        // Boucle pour chaque candidat
+        foreach ($resultats as $resultat) {
+            ?>
         <div class="card">
             <div class="card-body">
                 <div>
-                    <img class="img_recruteur" src="../media/pic.png" alt="">
+                    <img class="img_recruteur" src="<?php echo $resultat['avatar']; ?>" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>tayef </b></h5></b></h5>
+                    <h5 id="nom-candidat"> <b><?php echo $resultat['nom']; ?></b></h5></b></h5>
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
                 
                 <p>
-                <span class="badge rounded-pill text-bg-danger specialiste_offre">Developpement Web</span>
+                <span class="badge rounded-pill text-bg-danger specialiste_offre"><?php echo $resultat['specialite']; ?></span>
                 
                 </p>
                 <p><span class="badge text-bg-info">Description
-                </span> &nbsp; Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et quasi cupiditate voluptas. Omnis, temporibus. Eligendi ipsum, voluptas non numquam laborum sequi quae minima nostrum praesentium voluptatibus doloribus recusandae nihil debitis. ipsum dolor sit amet consectetur adipisicing elit. Saepe mollitia ipsam quam totam soluta vitae hic, dolorem reiciendis perspiciatis tempora laudantium, odit fuga nulla atque at, aliquam laboriosam magni id.</p>
+                </span> &nbsp;  <?php echo $resultat['description']; ?></p>
                 
                 <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
-                    <b>Casablanca</b>
+                    <b><?php echo $resultat['adresse']; ?></b>
                 </p>
                 <p class="email"> <img src="../media/@.png" width="20px" alt="">
-                    <b>xxx@email.com</b>
+                    <b><?php echo $resultat['email']; ?></b>
                 </p>
                 <p class="phone"> <img src="../media/phone.png" width="20px" alt="">
-                    <b>0611111111</b>
+                    <b><?php echo $resultat['phone']; ?></b>
                 </p>
 
                 
@@ -400,14 +502,16 @@
                 <a href="#" class="btn-msg">Send Message</a></div>
             </div>
         </div>
+
+        <?php } ?>
         
-        <div class="card">
+       <<!--<div class="card">
             <div class="card-body">
                 <div>
                     <img class="img_recruteur" src="../media/pic.png" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>Tayef jihane</b></h5>
+                    <h5 id="nom-candidat"> <b>hhh</b></h5>
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
                
@@ -441,7 +545,7 @@
                     <img class="img_recruteur" src="../media/pic.png" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>Tayef jihane</b></h5>
+                    <h5 id="nom-candidat"> <b>;;</b></h5>
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
                 
@@ -475,7 +579,7 @@
                     <img class="img_recruteur" src="../media/pic.png" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>Tayef jihane</b></h5>
+                    <h5 id="nom-candidat"> <b>,,</b></h5>
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
                 
@@ -508,7 +612,7 @@
                     <img class="img_recruteur" src="../media/pic.png" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>Tayef jihane</b></h5>
+                    <h5 id="nom-candidat"> <b>..</b></h5>
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
                 
@@ -541,7 +645,7 @@
                     <img class="img_recruteur" src="../media/pic.png" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>Tayef jihane</b></h5>
+                    <h5 id="nom-candidat"> <b>,,</b></h5>
                     
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
@@ -570,6 +674,7 @@
                 <a href="#" class="btn-msg">Send Message</a></div>
             </div>
         </div>
+        -->
 
 </div>
 
