@@ -1,65 +1,60 @@
+CREATE TABLE user (
+    iduser INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    prenom VARCHAR(100) NOT NULL,
+    email VARCHAR(250) NOT NULL,
+    motdepasse VARCHAR(100) NOT NULL,
+    datesignup TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    role VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE candidat (
-    idcandidat INT PRIMARY KEY,
-    nom VARCHAR(50),
-    prenom VARCHAR(50),
+    idcandidat INT AUTO_INCREMENT PRIMARY KEY,
     adresse VARCHAR(255),
     phone VARCHAR(20),
     nomcv VARCHAR(512),
     specialite VARCHAR(100),
-    email VARCHAR(100),
-    motdepasse VARCHAR(255),
     datenaissance DATE,
     insta VARCHAR(512),
+    description varchar(512),
     linkedin VARCHAR(512),
     github VARCHAR(512),
     discord VARCHAR(512),
-    datesingup datetime
+    datesignup DATETIME,
+    iduser INT,
+    FOREIGN KEY (iduser) REFERENCES user(iduser)
 );
 
-
 CREATE TABLE recruteur (
-    idrecruteur INT PRIMARY KEY,
-    nom VARCHAR(50),
-    prenom VARCHAR(50),
-    email VARCHAR(100),
-    motdepasse VARCHAR(100),
-    ville VARCHAR(50),
+    idrecruteur INT AUTO_INCREMENT PRIMARY KEY,
+    adresse VARCHAR(255),
     phone VARCHAR(20),
     entreprise VARCHAR(100),
     about TEXT,
     insta VARCHAR(512),
     linkedin VARCHAR(512),
     facebook VARCHAR(512),
-    datesingup datetime
+    datesignup DATETIME,
+    iduser INT,
+    FOREIGN KEY (iduser) REFERENCES user(iduser)
 );
-
-CREATE TABLE message (
-    idmessage INT PRIMARY KEY,
-    idcandidat INT NOT NULL,
-    idrecruteur INT NOT NULL,
-    contenuemsg TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat),
-    FOREIGN KEY (idrecruteur) REFERENCES recruteur(idrecruteur)
-);
-
 
 CREATE TABLE offre (
-    idoffre INT PRIMARY KEY,
-    datepub DATE,
+    idoffre INT AUTO_INCREMENT PRIMARY KEY,
+    datepub TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     delai DATE,
     typecontrat VARCHAR(100),
     slairemin INT,
     slairemax INT,
     ville VARCHAR(100),
-    descriptionoffre VARCHAR(100),
+    descriptionoffre TEXT,
     nomentreprise VARCHAR(100),
     idrecruteur INT,
     FOREIGN KEY (idrecruteur) REFERENCES recruteur(idrecruteur)
 );
 
 CREATE TABLE postulation (
-    idpos INT PRIMARY KEY,
+    idpos INT AUTO_INCREMENT PRIMARY KEY,
     idcandidat INT,
     idoffre INT,
     datepub DATE,
@@ -68,7 +63,7 @@ CREATE TABLE postulation (
 );
 
 CREATE TABLE formation (
-    idformation INT PRIMARY KEY,
+    idformation INT AUTO_INCREMENT PRIMARY KEY,
     nomFormation VARCHAR(100),
     datedebut DATE,
     datefin DATE,
@@ -80,7 +75,7 @@ CREATE TABLE formation (
 );
 
 CREATE TABLE experience (
-    idexperience INT PRIMARY KEY,
+    idexperience INT AUTO_INCREMENT PRIMARY KEY,
     poste VARCHAR(100),
     datedebut DATE,
     datefin DATE,
@@ -92,7 +87,7 @@ CREATE TABLE experience (
 );
 
 CREATE TABLE langue (
-    idlangue INT PRIMARY KEY,
+    idlangue INT AUTO_INCREMENT PRIMARY KEY,
     nomlangue VARCHAR(50),
     niveau VARCHAR(50),
     idcandidat INT,
@@ -100,10 +95,36 @@ CREATE TABLE langue (
 );
 
 CREATE TABLE competence (
-    idcompetence INT PRIMARY KEY,
+    idcompetence INT AUTO_INCREMENT PRIMARY KEY,
     nomcompetence VARCHAR(100),
     idcandidat INT,
     niveau VARCHAR(50),
     FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat)
 );
 
+CREATE TABLE conversation (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idrecruteur INT NOT NULL,
+    idcandidat INT NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    FOREIGN KEY (idcandidat) REFERENCES candidat(idcandidat),
+    FOREIGN KEY (idrecruteur) REFERENCES recruteur(idrecruteur)
+);
+
+CREATE TABLE message (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sender INT NOT NULL,
+    content TEXT , 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    idconversation INT ,
+    FOREIGN KEY (idconversation) REFERENCES conversation(id),
+    FOREIGN KEY (sender) REFERENCES user(iduser)
+);
+
+CREATE TABLE photo(
+    id INT AUTO_INCREMENT PRIMARY KEY ,
+    iduser INT NOT NULL,
+    avatar TEXT , 
+    indx INT , 
+    FOREIGN KEY (iduser) REFERENCES user(iduser)
+);
