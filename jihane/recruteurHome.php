@@ -1,17 +1,12 @@
 <?php
-session_start(); // démarrer la session 
-// Récupérer l'ID de l'utilisateur à partir de la session
-$userId = $_SESSION['user_id'];
-$recruteurId = $_SESSION['company_id'];
-
-// Vérifier le rôle de l'utilisateur à partir de la session
-$userRole = $_SESSION['user_role']; // Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
+session_start(); 
+// démarrer la session 
 
 
 $servername = "localhost"; // Change this if your database is hosted on a different server
 $username = "root"; // Replace with your database username
 $password = ""; // Replace with your database password
-$dbname = "jobpply"; // Replace with your database name
+$dbname = "jobapply"; // Replace with your database name
 
 
 try {
