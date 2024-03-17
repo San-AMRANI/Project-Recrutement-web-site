@@ -9,7 +9,11 @@ CREATE TABLE user (
 );
 
 CREATE TABLE candidat (
+
     idcandidat INT AUTO_INCREMENT PRIMARY KEY,
+
+    idcandidat INT AUTO_INCREMENT PRIMARY KEY, 
+
     adresse VARCHAR(255),
     phone VARCHAR(20),
     nomcv VARCHAR(512),
@@ -41,6 +45,8 @@ CREATE TABLE recruteur (
 
 CREATE TABLE offre (
     idoffre INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(500) NOT NULL ,
+
     datepub TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     delai DATE,
     typecontrat VARCHAR(100),

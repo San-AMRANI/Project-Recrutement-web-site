@@ -39,7 +39,7 @@
 document.getElementById("addImage").addEventListener("click", function () {
   document.getElementById("imageInput").click();
 });
-
+/*
 document.getElementById("imageInput").addEventListener("change", function () {
   var file = this.files[0];
   var reader = new FileReader();
@@ -97,6 +97,14 @@ document.getElementById("imageInput").addEventListener("change", function () {
   reader.readAsDataURL(file);
 });
 
-discriptionOffre = new Quill('#descriptionoffre00', {
-  theme: 'snow'
-})
+discriptionOffre = new Quill("#descriptionoffre00", {
+  theme: "snow",
+});
+
+document.getElementById("EditButton").addEventListener("click", function (e) {
+  if (e.textContent == "Edit profile") {
+    e.textContent = "Modify";
+  } else if (e.textContent == "Modify") {
+    e.textContent = "Edit profile"; // Utilisation de l'opérateur d'attribution "=" pour modifier le texte
+  }
+});
