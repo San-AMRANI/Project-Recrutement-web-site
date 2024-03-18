@@ -1,10 +1,9 @@
 <?php
-<<<<<<< HEAD
+
 session_start(); // démarrer la session 
-=======
-session_start(); 
-// démarrer la session 
->>>>>>> fbf4099315682049f6829a9e42444ad2ea8df355
+
+ 
+
 
 
 $servername = "localhost"; // Change this if your database is hosted on a different server
@@ -78,8 +77,7 @@ $nomrecruteur = fetchCandidatData($pdo);
 
 
 
-
-if(isset($_POST['submit']))
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
 
 {
 
@@ -104,7 +102,8 @@ $LANGUE = '';
 if (isset($_POST['langue']) && is_array($_POST['langue'])) {
 $LANGUE = implode(", ", $_POST['langue']);
 }
-$formation= $_POST['formation'];
+if (isset($_POST['formation'])) {
+    $formation = $_POST['formation'];}
 $note11 = $_POST['note11'];
 
 $experience= $_POST['experience'];
@@ -112,67 +111,82 @@ $note12 = $_POST['note12'];
 
 }
 
-function calculerScore($candidat, $formulaire) {
-    $score = 0;
+function calculerScore($formulaire, $pdo) {
+    // Requête SQL pour récupérer les données pertinentes des candidats
+    $sql = "SELECT candidat.idcandidat,specialite,nomFormation, nomlangue, nomcompetence, sum(extract(year FROM experience.datefin)-extract(year FROM experience.datedebut))
+    FROM candidat,formation,experience,langue,competence
+    where candidat.idcandidat = formation.idcandidat
+    and  candidat.idcandidat =experience.idcandidat
+    and candidat.idcandidat = competence.idcandidat
+    and candidat.idcandidat = langue.idcandidat";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $candidats = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-    // Vérifier si les champs sont égaux et ajouter les points en conséquence
-    if ($candidat['specialite'] == $formulaire['specialite']) {
-        $score += $candidat['note0'];
+    $scores = array();
+    
+    foreach ($candidats as $candidat) {
+        $score = 0;
+
+        // Vérifier si la spécialité correspond et ajouter le score
+        if (isset($candidat['specialite']) && isset($formulaire['specialite'])) {
+            if ($candidat['specialite'] == $formulaire['specialite']) {
+                // Faites quelque chose
+                $score += $candidat['note0'];
+            }
+        } 
+        
+        
+
+        // Vérifier l'expérience et ajouter le score
+        if (isset($candidat['experience']) && isset($formulaire['experience'])) {
+            if ($candidat['experience'] == $formulaire['experience']) {
+            $score += $candidat['note12'];
+        }
     }
-    
-    // Vérifier chaque skill et son score
-    for ($i = 0; $i < 5; $i++) {
-        $skill = "skill$i";
-        $note = "note$i";
-        if (isset($formulaire[$skill])) {
-            if ($candidat[$skill] == $formulaire[$skill]) {
-                $score += $candidat[$note];
+
+        // Vérifier chaque compétence et ajouter le score
+        for ($i = 0; $i < 5; $i++) {
+            $skill = "skill$i";
+            $note = "note$i";
+            if (isset($formulaire[$skill])) {
+                if ($candidat['nomcompetence'] == $formulaire[$skill]) {
+                    $score += $candidat[$note.'_comp'];
+                }
+            }
+        }
+
+        // Vérifier chaque langue et ajouter le score
+        if (isset($formulaire['LANGUE'])) {
+        $langues = explode(", ", $formulaire['LANGUE']);
+        foreach ($langues as $langue) {
+            $note_langue = "note_" . $langue;
+            if ($candidat['nomlangue'] == $langue) {
+                $score += $candidat[$note_langue];
             }
         }
     }
+        if (isset($candidat['nomFormation']) && isset($formulaire['formation'])) {
+            
+        // Vérifier la formation et ajouter le score
+        if ($candidat['nomFormation'] == $formulaire['formation']) {
+            $score += $candidat['note11'];
+        }}
 
-    // Vérifier les langues et leurs scores
-    $langues = explode(", ", $formulaire['LANGUE']);
-    foreach ($langues as $langue) {
-        $note = "note" . array_search($langue, $langues);
-        if (isset($candidat[$langue])) {
-            $score += $candidat[$note];
-        }
+        // Ajouter le score calculé pour ce candidat
+        $scores[$candidat['idcandidat']] = $score;
     }
 
-    // Vérifier la formation et son score
-    if ($candidat['formation'] == $formulaire['formation']) {
-        $score += $candidat['note11'];
-    }
-
-    // Vérifier l'expérience et son score
-    if ($candidat['experience'] == $formulaire['experience']) {
-        $score += $candidat['note12'];
-    }
-
-   /*$sql = "SELECT * FROM candidats";
-    $stmt = $pdo->prepare($sql);
-    
-    $stmt->execute();
-    
-    
-    // Fetch all rows as an associative array
-    $nomrecruteur = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    $resultat = $connexion->query($sql);
-    
-    // Vérifier s'il y a des résultats
-    if ($resultat->num_rows > 0) {
-        // Parcourir tous les candidats
-        while ($candidat = $resultat->fetch_assoc()) {
-            // Appliquer la fonction calculerPoints() pour chaque candidat
-            $points = calculerPoints($candidat, $_POST);}  
-    
-}}
-
-$points = calculerPoints($candidat, $_POST);*/
-
+    return $scores;
 }
+$points = calculerScore($_POST, $pdo);
+
+
+
+
+
+
 
 
 function fetchcandidatcard($pdo)
@@ -289,15 +303,12 @@ $cards =fetchcandidatcard($pdo);
     <div class="card-list container">
 
         <aside class="sidebar-filter container ">
-            <form action="rectruteurtHome.php" method="post" >
+            <form action="" method="post" >
                 <p>
                 <h5 class="text-center">Filter</h5>
                 </p>
 
-                <div class="reset-submit container btn-group">
-                    <input type="reset" value="Reset" class="btn btn-outline-primary reset">
-                    <input type="submit" value="Submit" class="btn btn-outline-primary submit">
-                </div>
+                
                 <hr>
                 <label for="spécialité"><b>Speciality:</b></label>
                 <select id="spécialité" class="form-select" name="specialite">
@@ -414,7 +425,7 @@ $cards =fetchcandidatcard($pdo);
                <input type="number" min="1" max="5" value="1" name="note11" id="note11"><br>
                 <hr>
                 <label for="experience"><b>Experience:</b></label>
-                <select id="experience" class="form-select">
+                <select id="experience" class="form-select" name="experience">
                     <option selected>Choose ..</option>
                     <option value="1year">1year</option>
                     <option value="2years">2years</option>
@@ -429,6 +440,11 @@ $cards =fetchcandidatcard($pdo);
                 </select>
                 <label for="note12"><b>Mark:</b></label>
                <input type="number" min="1" max="5" value="1" name="note12" id="note12"><br>
+               <div class="reset-submit container btn-group">
+                    <button type="reset"  class="btn btn-outline-primary reset">Reset</button>
+                    <button  type="submit"class="btn btn-outline-primary submit">Submit</button>
+                      
+                </div>
                 
             </form>
 
@@ -586,10 +602,21 @@ $cards =fetchcandidatcard($pdo);
 
 <div id="alignement-card">
 <?php
+    // Vérifier si $candidats est un tableau ou un objet
+    if (is_array($candidats) || is_object($candidats)) {
         // Boucle pour chaque candidat
-        if (is_array($candidats) || is_object($candidats)) {
         foreach ($candidats as $resultat) {
+            // Assurez-vous que $points contient les scores calculés pour chaque candidat
+            
+                // Vérifier si le score pour ce candidat existe dans $points
+                if (isset($resultat['idcandidat']) && isset($points[$resultat['idcandidat']])) {
+                    $score = $points[$resultat['idcandidat']];
+                } else {
+                    $score = 0; // Si le score n'est pas défini, définissez-le à zéro
+                }
+            
             ?>
+            
         <div class="card">
             <div class="card-body">
                 <div>
@@ -597,7 +624,7 @@ $cards =fetchcandidatcard($pdo);
                 </div>
                 <div class="titre_offre">
                     <h5 id="nom-candidat"> <b><?php echo $resultat['nom']; ?>&nbsp;<?php echo $resultat['prenom']; ?></b></h5></b></h5>
-                    <span class="badge rounded-pill text-bg-success">Score:100/100</span>
+                    <span class="badge rounded-pill text-bg-success">Score:<?php echo $score; ?>/100</span>
                 </div>
                 
                 <p>
