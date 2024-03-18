@@ -1,34 +1,23 @@
-CREATE TABLE user (
+CREATE TABLE user(
     iduser INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     prenom VARCHAR(100) NOT NULL,
     email VARCHAR(250) NOT NULL,
     motdepasse VARCHAR(100) NOT NULL,
+    phone VARCHAR(20),
     datesignup TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     role VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE candidat (
-<<<<<<< HEAD
-
     idcandidat INT AUTO_INCREMENT PRIMARY KEY,
-
-    idcandidat INT AUTO_INCREMENT PRIMARY KEY, 
-
-=======
-
-
-    idcandidat INT AUTO_INCREMENT PRIMARY KEY,
-
->>>>>>> fbf4099315682049f6829a9e42444ad2ea8df355
     adresse VARCHAR(255),
-    phone VARCHAR(20),
     nomcv VARCHAR(512),
     img_filename  VARCHAR(255),
     specialite VARCHAR(100),
     datenaissance DATE,
     insta VARCHAR(512),
-    descandidat TEXT;
+    descandidat TEXT,
     linkedin VARCHAR(512),
     github VARCHAR(512),
     discord VARCHAR(512),
@@ -40,7 +29,6 @@ CREATE TABLE candidat (
 CREATE TABLE recruteur (
     idrecruteur INT AUTO_INCREMENT PRIMARY KEY,
     adresse VARCHAR(255),
-    phone VARCHAR(20),
     entreprise VARCHAR(100),
     about TEXT,
     insta VARCHAR(512),
@@ -50,6 +38,36 @@ CREATE TABLE recruteur (
     iduser INT,
     FOREIGN KEY (iduser) REFERENCES user(iduser)
 );
+
+DELIMITER //
+
+CREATE TRIGGER after_user_insert_candidat
+AFTER INSERT ON user
+FOR EACH ROW
+BEGIN
+    IF NEW.role = 'candidat' THEN
+        INSERT INTO candidat (iduser, datesignup)
+        VALUES (NEW.iduser, NEW.datesignup);
+    END IF;
+END;
+//
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER after_user_insert_recruteur
+AFTER INSERT ON user
+FOR EACH ROW
+BEGIN
+    IF NEW.role = 'recruteur' THEN
+        INSERT INTO recruteur (iduser, datesignup)
+        VALUES (NEW.iduser, NEW.datesignup);
+    END IF;
+END//
+
+DELIMITER ;
+
 
 CREATE TABLE offre (
     idoffre INT AUTO_INCREMENT PRIMARY KEY,
@@ -61,7 +79,7 @@ CREATE TABLE offre (
     slairemax INT,
     ville VARCHAR(100),
     descriptionoffre TEXT,
-    nomentreprise VARCHAR(100),
+    specialite VARCHAR(100),
     idrecruteur INT,
     FOREIGN KEY (idrecruteur) REFERENCES recruteur(idrecruteur)
 );

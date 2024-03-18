@@ -1,6 +1,6 @@
 <?php
 
-include 'connect.php';
+    include('../../Hassan/includes/connect.model.php');
 
 session_start();
 
@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
       }elseif($row['role'] == 'candidat'){
 
          $_SESSION['candidat_id'] = $row['iduser'];
-         header('location:candidat_home.php');
+         header('location:../../Hassan/indexprofil.html');
 
       }else{
          $message[] = 'no user found!';
