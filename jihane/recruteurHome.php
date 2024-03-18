@@ -1,6 +1,10 @@
 <?php
+<<<<<<< HEAD
+session_start(); // démarrer la session 
+=======
 session_start(); 
 // démarrer la session 
+>>>>>>> fbf4099315682049f6829a9e42444ad2ea8df355
 
 
 $servername = "localhost"; // Change this if your database is hosted on a different server
@@ -24,39 +28,169 @@ try {
 }
 
 
-
+function fetchCandidatData($pdo) {
     // Prepare the SQL query
-    $sql = "SELECT nom,avatar, prenom,adresse,description,phone,specialite,email, FROM candidat,user, experience,formation WHERE candidat.idcandidat = user.iduser
-    and candidat.idcandidat = experience.idcandidat
-    and candidat.idcandidat = formation.idcandidat
-    and user.iduser=photo.id";
-    // Prepare the statement
-    $stmt = $pdo->prepare($sql);
-    // Execute the statement
-    $stmt->execute();
-    // Fetch the data
-    $candidatData = $stmt->fetch(PDO::FETCH_ASSOC);
+    $sql = "SELECT user.nom, prenom, adresse, description, phone, specialite, email
+    FROM candidat ,user
+    where candidat.idcandidat = user.iduser";
     
+    $stmt = $pdo->prepare($sql);
+    
+    $stmt->execute();
+    
+    
+    // Fetch all rows as an associative array
+    $candidatData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $candidatData;
+}
+
+$candidats = fetchCandidatData($pdo);
+
+function fetchrecruteur($pdo) {
+    // Prepare the SQL query
+    $sql = "SELECT user.nom, prenom
+    FROM recruteur ,user
+    where recruteur.idrecruteur = user.iduser
+    and recruteur.idrecruteur=:id_recruteur";
+    
+    $stmt = $pdo->prepare($sql);
+    
+    $stmt->execute();
+    
+    
+    // Fetch all rows as an associative array
+    $nomrecruteur = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $nomrecruteur;
+}
+
+$nomrecruteur = fetchCandidatData($pdo);
 
 
 
 
 
+
+
+
+
+
+
+
+
+if(isset($_POST['submit']))
+
+{
+
+$specialite = $_POST['specialite'];
+$note0 = $_POST['note0'];
+$skill = $_POST['skill'];
+$note1 = $_POST['note1'];
+$skill1 = $_POST['skill1'];
+$note2 = $_POST['note2'];
+$skill2 = $_POST['skill2'];
+$note3 = $_POST['note3'];
+$skill3 = $_POST['skill3'];
+$note4 = $_POST['note4'];
+$note6 = $_POST['note6'];
+$note7 = $_POST['note7'];
+$note8 = $_POST['note8'];
+$skill4 = $_POST['skill4'];
+$note9 = $_POST['note9'];
+$note10 = $_POST['note10'];
+$skill4 = $_POST['skill4'];
+$LANGUE = '';
+if (isset($_POST['langue']) && is_array($_POST['langue'])) {
+$LANGUE = implode(", ", $_POST['langue']);
+}
+$formation= $_POST['formation'];
+$note11 = $_POST['note11'];
+
+$experience= $_POST['experience'];
+$note12 = $_POST['note12'];
+
+}
+
+function calculerScore($candidat, $formulaire) {
+    $score = 0;
+    
+    // Vérifier si les champs sont égaux et ajouter les points en conséquence
+    if ($candidat['specialite'] == $formulaire['specialite']) {
+        $score += $candidat['note0'];
+    }
+    
+    // Vérifier chaque skill et son score
+    for ($i = 0; $i < 5; $i++) {
+        $skill = "skill$i";
+        $note = "note$i";
+        if (isset($formulaire[$skill])) {
+            if ($candidat[$skill] == $formulaire[$skill]) {
+                $score += $candidat[$note];
+            }
+        }
+    }
+
+    // Vérifier les langues et leurs scores
+    $langues = explode(", ", $formulaire['LANGUE']);
+    foreach ($langues as $langue) {
+        $note = "note" . array_search($langue, $langues);
+        if (isset($candidat[$langue])) {
+            $score += $candidat[$note];
+        }
+    }
+
+    // Vérifier la formation et son score
+    if ($candidat['formation'] == $formulaire['formation']) {
+        $score += $candidat['note11'];
+    }
+
+    // Vérifier l'expérience et son score
+    if ($candidat['experience'] == $formulaire['experience']) {
+        $score += $candidat['note12'];
+    }
+
+   /*$sql = "SELECT * FROM candidats";
+    $stmt = $pdo->prepare($sql);
+    
+    $stmt->execute();
+    
+    
+    // Fetch all rows as an associative array
+    $nomrecruteur = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    $resultat = $connexion->query($sql);
+    
+    // Vérifier s'il y a des résultats
+    if ($resultat->num_rows > 0) {
+        // Parcourir tous les candidats
+        while ($candidat = $resultat->fetch_assoc()) {
+            // Appliquer la fonction calculerPoints() pour chaque candidat
+            $points = calculerPoints($candidat, $_POST);}  
+    
+}}
+
+$points = calculerPoints($candidat, $_POST);*/
+
+}
 
 
 function fetchcandidatcard($pdo)
 {
     // Prepare the SQL query with LIMIT clause to fetch only the first 6 rows
-    $cardQuery = "SELECT idcandidat, nom, prenom, avatar , about
-                  FROM candidat, photo 
-                  WHERE candidat.iduser = photo.iduser
+    $cardQuery = "SELECT idcandidat, user.nom, prenom, avatar
+                  FROM candidat, photo ,user,postulation
+        
+                  WHERE candidat.idcandidat = photo.iduser
+                  and user.iduser = candidat.idcandidat
+                  and candidat.idcandidat = postulation.idcandidat
                   LIMIT 6";
 
     // Prepare the statement
     $stmt = $pdo->prepare($cardQuery);
 
     // Execute the query
-    $stmt->execute();
+    //$stmt->execute();
 
     // Fetch all rows
     $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -140,7 +274,7 @@ $cards =fetchcandidatcard($pdo);
             <span
                 class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border  rounded-pill">
                 <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg"
-                    alt="profile"> <a class="nav-link" href="../jihane/profilCandidat.html">Username</a>
+                    alt="profile"> <a class="nav-link" href="">Mike Baydon</a>
             </span>
         </div>
     </nav>
@@ -155,7 +289,7 @@ $cards =fetchcandidatcard($pdo);
     <div class="card-list container">
 
         <aside class="sidebar-filter container ">
-            <form action="" method="post" >
+            <form action="rectruteurtHome.php" method="post" >
                 <p>
                 <h5 class="text-center">Filter</h5>
                 </p>
@@ -166,7 +300,7 @@ $cards =fetchcandidatcard($pdo);
                 </div>
                 <hr>
                 <label for="spécialité"><b>Speciality:</b></label>
-                <select id="spécialité" class="form-select">
+                <select id="spécialité" class="form-select" name="specialite">
                     <option selected>Choose ..</option>
                     <option value="developpement_web">Développement Web</option>
                     <option value="developpement_logiciel">Développement Logiciel</option>
@@ -233,9 +367,9 @@ $cards =fetchcandidatcard($pdo);
 
 
                 <hr>
-                <label for="language"><b>Language:</b></label><br>
+                <label for="langue"><b>Language:</b></label><br>
                 
-               <input type="checkbox" name="language" id="language">
+               <input type="checkbox" name="langue" id="langue">
                <label for="language">Arabic</label>
                <br>
                <label for="note6"><b>Mark:</b></label>
@@ -327,7 +461,7 @@ $cards =fetchcandidatcard($pdo);
                     <div class="card rounded">
                       <div class="card-body">
                        <!--<h6 class="card-title">suggestions for you</h6>-->
-                        <div
+                        <!--<div
                           class="d-flex justify-content-between mb-2 pb-2 border-bottom"
                         >
                           <div class="d-flex align-items-center hover-pointer">
@@ -432,26 +566,16 @@ $cards =fetchcandidatcard($pdo);
                           <button class="btn btn-icon">
                              <img src="../media/enveloppe.png" with="20px" height="20px">
                           </button>
-                        </div>
+                        </div>-->
+
+                        <?php foreach ($cards as $card) {
+                            
+                            echo $cards;
+                          }?>
                       </div>
                     </div>
-                  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              </div>
+                  </div>  
+                </div>
             </div>
 
 
@@ -463,15 +587,16 @@ $cards =fetchcandidatcard($pdo);
 <div id="alignement-card">
 <?php
         // Boucle pour chaque candidat
-        foreach ($resultats as $resultat) {
+        if (is_array($candidats) || is_object($candidats)) {
+        foreach ($candidats as $resultat) {
             ?>
         <div class="card">
             <div class="card-body">
                 <div>
-                    <img class="img_recruteur" src="<?php echo $resultat['avatar']; ?>" alt="">
+                    <img class="img_recruteur" src="../media/homme1.webp" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b><?php echo $resultat['nom']; ?></b></h5></b></h5>
+                    <h5 id="nom-candidat"> <b><?php echo $resultat['nom']; ?>&nbsp;<?php echo $resultat['prenom']; ?></b></h5></b></h5>
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
                 
@@ -498,9 +623,9 @@ $cards =fetchcandidatcard($pdo);
             </div>
         </div>
 
-        <?php } ?>
+        <?php } }?>
         
-       <<!--<div class="card">
+       <!--<div class="card">
             <div class="card-body">
                 <div>
                     <img class="img_recruteur" src="../media/pic.png" alt="">
