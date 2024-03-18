@@ -1,5 +1,10 @@
 <?php
+<<<<<<< HEAD
 session_start(); // démarrer la session 
+=======
+session_start(); 
+// démarrer la session 
+>>>>>>> fbf4099315682049f6829a9e42444ad2ea8df355
 
 
 $servername = "localhost"; // Change this if your database is hosted on a different server

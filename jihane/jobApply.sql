@@ -9,11 +9,18 @@ CREATE TABLE user (
 );
 
 CREATE TABLE candidat (
+<<<<<<< HEAD
 
     idcandidat INT AUTO_INCREMENT PRIMARY KEY,
 
     idcandidat INT AUTO_INCREMENT PRIMARY KEY, 
 
+=======
+
+
+    idcandidat INT AUTO_INCREMENT PRIMARY KEY,
+
+>>>>>>> fbf4099315682049f6829a9e42444ad2ea8df355
     adresse VARCHAR(255),
     phone VARCHAR(20),
     nomcv VARCHAR(512),
