@@ -1,3 +1,4 @@
+<?php include 'jihane/recruteurHome.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -47,7 +48,7 @@
             <span
                 class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border  rounded-pill">
                 <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg"
-                    alt="profile"> <a class="nav-link" href="../jihane/profilCandidat.html">Username</a>
+                    alt="profile"> <a class="nav-link" href="">Mike Baydon</a>
             </span>
         </div>
     </nav>
@@ -62,18 +63,15 @@
     <div class="card-list container">
 
         <aside class="sidebar-filter container ">
-            <form action="" method="post" >
+            <form action="recruteurHome.php" method="post" >
                 <p>
                 <h5 class="text-center">Filter</h5>
                 </p>
 
-                <div class="reset-submit container btn-group">
-                    <input type="reset" value="Reset" class="btn btn-outline-primary reset">
-                    <input type="submit" value="Submit" class="btn btn-outline-primary submit">
-                </div>
+                
                 <hr>
                 <label for="spécialité"><b>Speciality:</b></label>
-                <select id="spécialité" class="form-select">
+                <select id="spécialité" class="form-select" name="specialite">
                     <option selected>Choose ..</option>
                     <option value="developpement_web">Développement Web</option>
                     <option value="developpement_logiciel">Développement Logiciel</option>
@@ -140,9 +138,9 @@
 
 
                 <hr>
-                <label for="language"><b>Language:</b></label><br>
+                <label for="langue"><b>Language:</b></label><br>
                 
-               <input type="checkbox" name="language" id="language">
+               <input type="checkbox" name="langue" id="langue">
                <label for="language">Arabic</label>
                <br>
                <label for="note6"><b>Mark:</b></label>
@@ -202,6 +200,11 @@
                 </select>
                 <label for="note12"><b>Mark:</b></label>
                <input type="number" min="1" max="5" value="1" name="note12" id="note12"><br>
+               <div class="reset-submit container btn-group">
+                    <button type="reset"  class="btn btn-outline-primary reset">Reset</button>
+                    <button  type="submit"class="btn btn-outline-primary submit">Submit</button>
+                      
+                </div>
                 
             </form>
 
@@ -234,7 +237,7 @@
                     <div class="card rounded">
                       <div class="card-body">
                        <!--<h6 class="card-title">suggestions for you</h6>-->
-                        <div
+                        <!--<div
                           class="d-flex justify-content-between mb-2 pb-2 border-bottom"
                         >
                           <div class="d-flex align-items-center hover-pointer">
@@ -339,26 +342,16 @@
                           <button class="btn btn-icon">
                              <img src="../media/enveloppe.png" with="20px" height="20px">
                           </button>
-                        </div>
+                        </div>-->
+
+                        <?php foreach ($cards as $card) {
+                            
+                            echo $cards;
+                          }?>
                       </div>
                     </div>
-                  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              </div>
+                  </div>  
+                </div>
             </div>
 
 
@@ -368,31 +361,48 @@
         </div>
 
 <div id="alignement-card">
+<?php
+    // Vérifier si $candidats est un tableau ou un objet
+    if (is_array($candidats) || is_object($candidats)) {
+        // Boucle pour chaque candidat
+        foreach ($candidats as $resultat) {
+            // Assurez-vous que $points contient les scores calculés pour chaque candidat
+            if (is_array($points) && !empty($points)) {
+                // Vérifier si le score pour ce candidat existe dans $points
+                if (isset($resultat['idcandidat']) && isset($points[$resultat['idcandidat']])) {
+                    $score = $points[$resultat['idcandidat']];
+                } else {
+                    $score = 0; // Si le score n'est pas défini, définissez-le à zéro
+                }
+            } else {
+                $score = 0; // Si $points est vide, définissez le score à zéro
+            }
+            ?>
         <div class="card">
             <div class="card-body">
                 <div>
-                    <img class="img_recruteur" src="../media/pic.png" alt="">
+                    <img class="img_recruteur" src="../media/homme1.webp" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>tayef </b></h5></b></h5>
-                    <span class="badge rounded-pill text-bg-success">Score:100/100</span>
+                    <h5 id="nom-candidat"> <b><?php echo $resultat['nom']; ?>&nbsp;<?php echo $resultat['prenom']; ?></b></h5></b></h5>
+                    <span class="badge rounded-pill text-bg-success">Score:<?php echo $score; ?>/100</span>
                 </div>
                 
                 <p>
-                <span class="badge rounded-pill text-bg-danger specialiste_offre">Developpement Web</span>
+                <span class="badge rounded-pill text-bg-danger specialiste_offre"><?php echo $resultat['specialite']; ?></span>
                 
                 </p>
                 <p><span class="badge text-bg-info">Description
-                </span> &nbsp; Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et quasi cupiditate voluptas. Omnis, temporibus. Eligendi ipsum, voluptas non numquam laborum sequi quae minima nostrum praesentium voluptatibus doloribus recusandae nihil debitis. ipsum dolor sit amet consectetur adipisicing elit. Saepe mollitia ipsam quam totam soluta vitae hic, dolorem reiciendis perspiciatis tempora laudantium, odit fuga nulla atque at, aliquam laboriosam magni id.</p>
+                </span> &nbsp;  <?php echo $resultat['description']; ?></p>
                 
                 <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
-                    <b>Casablanca</b>
+                    <b><?php echo $resultat['adresse']; ?></b>
                 </p>
                 <p class="email"> <img src="../media/@.png" width="20px" alt="">
-                    <b>xxx@email.com</b>
+                    <b><?php echo $resultat['email']; ?></b>
                 </p>
                 <p class="phone"> <img src="../media/phone.png" width="20px" alt="">
-                    <b>0611111111</b>
+                    <b><?php echo $resultat['phone']; ?></b>
                 </p>
 
                 
@@ -400,14 +410,16 @@
                 <a href="#" class="btn-msg">Send Message</a></div>
             </div>
         </div>
+
+        <?php } }?>
         
-        <div class="card">
+       <!--<div class="card">
             <div class="card-body">
                 <div>
                     <img class="img_recruteur" src="../media/pic.png" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>Tayef jihane</b></h5>
+                    <h5 id="nom-candidat"> <b>hhh</b></h5>
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
                
@@ -441,7 +453,7 @@
                     <img class="img_recruteur" src="../media/pic.png" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>Tayef jihane</b></h5>
+                    <h5 id="nom-candidat"> <b>;;</b></h5>
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
                 
@@ -475,7 +487,7 @@
                     <img class="img_recruteur" src="../media/pic.png" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>Tayef jihane</b></h5>
+                    <h5 id="nom-candidat"> <b>,,</b></h5>
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
                 
@@ -508,7 +520,7 @@
                     <img class="img_recruteur" src="../media/pic.png" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>Tayef jihane</b></h5>
+                    <h5 id="nom-candidat"> <b>..</b></h5>
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
                 
@@ -541,7 +553,7 @@
                     <img class="img_recruteur" src="../media/pic.png" alt="">
                 </div>
                 <div class="titre_offre">
-                    <h5 id="nom-candidat"> <b>Tayef jihane</b></h5>
+                    <h5 id="nom-candidat"> <b>,,</b></h5>
                     
                     <span class="badge rounded-pill text-bg-success">Score:100/100</span>
                 </div>
@@ -570,6 +582,7 @@
                 <a href="#" class="btn-msg">Send Message</a></div>
             </div>
         </div>
+        -->
 
 </div>
 
