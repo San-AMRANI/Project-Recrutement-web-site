@@ -1,11 +1,12 @@
 <?php
 $host = 'localhost';
-$dbName = 'jobpply';
+$dbName = 'jobapply';
 $user = 'root';
 $pwd = '';
 $dsn = 'mysql:host=' . $host . ';dbname=' . $dbName;
 // $dsn = "mysql:host=${host};dbname=${dbName}";
 $pdo = new PDO($dsn, $user, $pwd);
+$conn = $pdo;
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::ERRMODE_EXCEPTION);
 
 function executeQuery($sql)
@@ -25,4 +26,3 @@ function executeQuery($sql)
         return false;
     }
 }
-?>
