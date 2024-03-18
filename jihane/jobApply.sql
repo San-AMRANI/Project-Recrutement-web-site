@@ -16,10 +16,11 @@ CREATE TABLE candidat (
     adresse VARCHAR(255),
     phone VARCHAR(20),
     nomcv VARCHAR(512),
+    img_filename  VARCHAR(255),
     specialite VARCHAR(100),
     datenaissance DATE,
     insta VARCHAR(512),
-    description varchar(512),
+    descandidat TEXT;
     linkedin VARCHAR(512),
     github VARCHAR(512),
     discord VARCHAR(512),
@@ -45,10 +46,6 @@ CREATE TABLE recruteur (
 CREATE TABLE offre (
     idoffre INT AUTO_INCREMENT PRIMARY KEY,
     titre VARCHAR(500) NOT NULL ,
-<<<<<<< HEAD
-
-=======
->>>>>>> 8ad0c2617c557e9c71594e3e09a33b1cae66efe5
     datepub TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     delai DATE,
     typecontrat VARCHAR(100),
