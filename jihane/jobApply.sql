@@ -24,10 +24,11 @@ CREATE TABLE candidat (
     adresse VARCHAR(255),
     phone VARCHAR(20),
     nomcv VARCHAR(512),
+    img_filename  VARCHAR(255),
     specialite VARCHAR(100),
     datenaissance DATE,
     insta VARCHAR(512),
-    description varchar(512),
+    descandidat TEXT;
     linkedin VARCHAR(512),
     github VARCHAR(512),
     discord VARCHAR(512),

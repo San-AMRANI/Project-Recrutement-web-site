@@ -1,16 +1,6 @@
 <?php
 
-$host = 'localhost';
-$dbName = 'jobpply';
-$user = 'root';
-$pwd = '';
-$dsn = 'mysql:host=' . $host . ';dbname=' . $dbName;
-// $dsn = "mysql:host=${host};dbname=${dbName}";
-$pdo = new PDO($dsn, $user, $pwd);
-$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::ERRMODE_EXCEPTION);
-
-global $baseURL;
-
+include('connect.model.php');
 function insertOffre()
 {
 
@@ -19,7 +9,7 @@ function insertOffre()
 
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["titre-offre00"])) {
 
-            var_dump($_POST);
+            // var_dump($_POST);
             // Retrieve form data
             $titre = htmlspecialchars($_POST['titre-offre00']);
             $typeContrat = htmlspecialchars($_POST['type-de-contrat']);
@@ -65,24 +55,6 @@ function insertOffre()
 }
 
 insertOffre();
-function executeQuery($sql)
-{
-    //database connection
-
-    try {
-
-        global $pdo;
-        $stmt = $pdo->query($sql);
-
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-        return $result;
-    } catch (PDOException $e) {
-        echo "<h2> Somthing went wrong, ERROR: {$e->getMessage()} </h2>";
-        return false;
-    }
-}
 
 function getOffresData()
 {
@@ -237,3 +209,4 @@ function getOffres()
 ";
     }
 }
+?>

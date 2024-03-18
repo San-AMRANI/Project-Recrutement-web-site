@@ -110,38 +110,38 @@ removeLangue.addEventListener("click", function () {
 });
 /////imageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 
-
 $(document).ready(function () {
+    var defaultImage = '../media/utilisateur.png';
 
-  var defaultImage = '../media/utilisateur.png';
+    var readURL = function (input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-  var readURL = function (input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+                $('#fileData').val(e.target.result); // Set file data to hidden input
+            }
 
-      reader.onload = function (e) {
-        $('.profile-pic').attr('src', e.target.result);
-      }
-
-      reader.readAsDataURL(input.files[0]);
-    } else {
-      // Set default image
-      $('.profile-pic').attr('src', defaultImage);
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            // Set default image
+            $('.profile-pic').attr('src', defaultImage);
+        }
     }
-  }
 
-  $(".file-upload").on('change', function () {
-    readURL(this);
-  });
+    $(".file-upload").on('change', function () {
+        readURL(this);
+    });
 
-  $(".upload-button").on('click', function () {
-    $(".file-upload").click();
-  });
+    $(".upload-button").on('click', function () {
+        $(".file-upload").click();
+    });
 
-  // Initialize with default image
-  $('.profile-pic').attr('src', defaultImage);
-
+    // Initialize with default image
+    $('.profile-pic').attr('src', defaultImage);
 });
+
+
 /////imageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 
 
@@ -180,6 +180,43 @@ removeCompetence.addEventListener("click", function () {
     }
   }
 });
+document.addEventListener("DOMContentLoaded", function () {
+  // Prevent default form submission and handle it using JavaScript
+  document.querySelectorAll(".formation-form").forEach(function (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Get the form index
+      var formIndex = parseInt(form.getAttribute("data-index"));
+
+      // Submit the form
+      var formData = new FormData(form);
+      fetch(form.getAttribute("action"), {
+        method: "POST",
+        body: formData
+      })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error("Failed to submit form " + formIndex);
+          }
+          console.log("Form " + formIndex + " submitted successfully.");
+          // Clear the form fields
+          // form.reset();
+          // Focus on the first input field of the next form (if exists)
+          var nextForm = document.getElementById("formfor" + (formIndex + 1));
+          if (nextForm) {
+            var firstInput = nextForm.querySelector("input");
+            if (firstInput) {
+              firstInput.focus();
+            }
+          }
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    });
+  });
+});
 
 for (let i = 0; i < 5; i++) {
   document
@@ -191,7 +228,6 @@ for (let i = 0; i < 5; i++) {
       document.getElementById(`descriptionfor-input${i}`).value = editorContent;
       // Submit the form
       // (optional) You can prevent the default form submission behavior if needed
-      // event.preventDefault();
     });
 }
 for (let i = 0; i < 5; i++) {
@@ -208,4 +244,5 @@ for (let i = 0; i < 5; i++) {
     });
 }
 // lis
+
 

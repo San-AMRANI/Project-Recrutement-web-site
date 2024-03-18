@@ -106,3 +106,7 @@ document.getElementById('formlinks').addEventListener('submit', function () {
     }
 })
 
+let disccandidat = new Quill('#desccandidat', {
+    theme: 'snow'
+});
+

@@ -1,64 +1,6 @@
 <?php
 
-/*
-function executeQuery($sql){
-    //database connection
-    $host = 'locathost';
-    $dbName = 'jobpply';
-    $user = 'root';
-    $pwd = '';
-    $dsn = 'mysql:host=' . $host .';dbname=' . $dbName;
-    // $dsn = "mysql:host=${host};dbname=${dbName}";
-    
-    try{
 
-        $pdo = new PDO($dsn, $user, $pwd);
-        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::ERRMODE_EXCEPTION);
-
-        $stmt = $pdo->query($sql);
-
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
-
-    }catch(PDOException $e){
-        echo "<h2> Somthing went wrong, ERROR: {$e->getMessage()} </h2>";
-        return false;
-    }
-}
-function insererOffre($pdo, $titre, $typeContrat, $salaireMin, $salaireMax, $deadline, $ville, $description, $IDrecruteur) {
-    try {
-        // Préparer la requête SQL d'insertion
-        $sql = "INSERT INTO offre (titre, typecontrat, slairemin, slairemax, delai, ville, descriptionoffre, idrecruteur ) 
-                VALUES (:titre, :typeContrat, :salaireMin, :salaireMax, :deadline, :ville, :description , :idrecruteur)";
-        
-        // Préparer la déclaration
-        $stmt = $pdo->prepare($sql);
-
-        // Définir les paramètres
-        $params = array(
-            ':titre' => $titre,
-            ':typeContrat' => $typeContrat,
-            ':salaireMin' => $salaireMin,
-            ':salaireMax' => $salaireMax,
-            ':deadline' => $deadline,
-            ':ville' => $ville,
-            ':description' => $description,
-            ':idrecruteur' => $IDrecruteur
-        );
-
-        // Exécuter la déclaration avec les paramètres
-        $stmt->execute($params);
-
-        // Renvoyer true si l'insertion réussit
-        return true;
-    } catch (PDOException $e) {
-        // Gérer les exceptions
-        echo "Erreur d'insertion : " . $e->getMessage();
-        return false;
-    }
-}
-*/
 
 include('../Hassan/includes/offrepage.inc.php');
 
