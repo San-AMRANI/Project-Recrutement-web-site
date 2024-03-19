@@ -70,8 +70,8 @@ include('../Hassan/includes/candidatinfo.ctrl.php');
                                 <img class="profile-pic" ty src="..img/picture1.png">
                             </div>
                             <div class="p-image">
-                                <figure type="button" value="profile" class="btn upload-button">Upload</figure>
-                                <input type="file" accept="/Hassan/includes/uploads/*" class="file-upload" name="file-upload">
+                                <button type="button" value="login" class="btn upload-button">Upload</button>
+                                <input type="file" accept="/Hassan/includes/uploads/*" class="file-upload" name=" file-upload">
                                 <input type="hidden" name="fileData" id="fileData">
                             </div>
                         </div>
