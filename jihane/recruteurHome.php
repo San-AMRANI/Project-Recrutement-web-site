@@ -5,7 +5,7 @@ session_start(); // démarrer la session
 $userId = $_SESSION['user_id'];
 
 // Vérifier le rôle de l'utilisateur à partir de la session
-$userRole = $_SESSION['user_role'];
+
 
 
 
@@ -43,7 +43,7 @@ function fetchCandidatData($pdo)
 
     // Fetch all rows as an associative array
     $candidatData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    print_r($candidatData);
+    
     $id_candi=$candidatData[0]['idcandidat'];
     echo $id_candi;
     return $candidatData;
