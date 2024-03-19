@@ -11,11 +11,73 @@ include('../Hassan/includes/candidat_home.ctrl.php');
     <title>Document</title>
     <link rel="stylesheet" href="../btsp/css/bootstrap.css">
     <link rel="stylesheet" href="styleprofil.css">
+    <link rel="stylesheet" href="../Wassim/style.css">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
 </head>
 
 <body>
+<div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="container-fluid">
+              <!-- Logo -->
+              <a class="navbar-brand" href="acceuil.php" style="color: black; font-size: larger; font-weight:900;">Jobpply</a>
+
+          
+              <!-- Toggler button for mobile view -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <!-- Navbar links and buttons -->
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 listt">
+                  <!-- Navigation Links -->
+                  <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="acceuil.php" style="color: #6c63ff;">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="homelink" href="#">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../Hassan/index.php">Offers</a>
+                  </li>
+                  <!-- la page des candidats reste confidentiel seul les recruteurs peuvent la voir-->
+                  <?php if($userRole == "recruteur") {?>
+                  <li class="nav-item">
+                  <a class="nav-link" href="../jihane/recruteurHome.php">Candidate</a>
+                  </li> 
+                  <?php }?>
+                  <li class="nav-item">
+                    <a class="nav-link" id="contactlink" href="../Wassim/contact.php" style="margin-right: 10px;">Contact us</a>
+                  </li>
+                </ul>
+                <!-- Login and Sign Up buttons for mobile view -->
+                <?php if(isset($_SESSION["userId"])){ ?>
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a href="../../cp/ayaa/test/login.php" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../cp/ayaa/test/register.php" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
+                  </li>
+                  <?php }else { ?> 
+                  <li style="list-style: none;">
+                  <span
+                class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border rounded-pill">
+                <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logoo.jpeg"
+                    alt="profile" />
+                <a class="nav-link" href="../ayaa/test/logout.php">logout</a>
+            </span>
+                  </li>
+                  <?php }?>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          
+    </div>
+
     <div class="container">
         <div class="main-body">
             <div class="row">
