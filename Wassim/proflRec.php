@@ -225,7 +225,7 @@ function uploadImageAndInsertIntoDatabase($pdo, $indx)
 }
 
 // Utilisation de la fonction avec l'indice approprié
-$indice = 1; // Par exemple, vous pouvez passer l'indice souhaité ici !!!!!!!!!!!
+$index = isset($_POST['index']) ? $_POST['index'] :3; 
 uploadImageAndInsertIntoDatabase($pdo , $indice);
 
 
@@ -350,10 +350,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 <?php if(! isset($_SESSION["userId"])){ ?>
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a href="/login" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
+                    <a href="../ayaa/aya.html" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/signup" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
+                    <a href="../ayaa/aya.html" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
                   </li>
                   <?php }else { ?> 
                   <li>
@@ -439,12 +439,42 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="profile-header">
             <div class="cover">
               <div class="gray-shade"></div>
-              <figure>
-                <img src="/media/audicompany.jpg" class="img-fluid" alt="profile cover" style="height: 30vw" />
+              <figure>  
+                
+              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" id="uploadForm">
+                <input type="hidden" name="index" value="2"> <!-- Hidden input for index value -->
+                <div class="col-md-4" id="coladd">
+                  <figure id="addImageFigure" class="mb-0">
+                    <img src="/photos/audicompany.jpg" id="addImage2" class="img-fluid" alt="profile cover" style="height: 30vw" />
+                  </figure>
+                  <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" onchange="submitForm()">
+                </div>
+              </form>
+              <script>
+                function submitForm() {
+                  document.getElementById("uploadForm").submit();
+                }
+              </script>
+
               </figure>
               <div class="cover-body d-flex justify-content-between align-items-center">
                 <div>
-                  <img class="profile-pic" src="/media/volkswagen.png" alt="profile" />
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" id="uploadForm">
+                  <input type="hidden" name="index" value="1"> <!-- Hidden input for index value -->
+                  <div class="col-md-4" id="coladd">
+                    <figure id="addImageFigure" class="mb-0">
+                      <img src="/photos/volkswagen.png" id="addImage1" class="img-fluid" alt="profile cover" style="height: 30vw" />
+                    </figure>
+                    <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" onchange="submitForm()">
+                  </div>
+                </form>
+                <script>
+                  function submitForm() {
+                    document.getElementById("uploadForm").submit();
+                  }
+                </script>
+  
+                
                   <span class="profile-name">Amiah Burton</span>
                 </div>
                 <div class="d-none d-md-block">
@@ -817,6 +847,7 @@ document.addEventListener("DOMContentLoaded", function() {
                       </div>
 
                       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" id="uploadForm">
+                      <input type="hidden" name="index" value="3">
                       <div class="col-md-4" id="coladd">
                         <figure id="addImageFigure" class="mb-0">
                           <img class="img-fluid" src="/media/add-image.png" alt="Add Image" id="addImage" />
@@ -830,6 +861,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
 
                       </script>
+
+
 
 
 
@@ -889,7 +922,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 <script src="recru.js"></script>
 <script src="/btsp/js/printThis.js"></script>
-<script src="mainindex.js"></script>
+<script src="main.js"></script>
 <script src="../btsp/js/popper.min.js"></script>
 <script src="../btsp/js/jquery-3.7.1.min.js"></script>
 <script src="../btsp/js/bootstrap.js"></script>

@@ -6,20 +6,6 @@ $userId = $_SESSION['user_id'];
 // Vérifier le rôle de l'utilisateur à partir de la session
 $userRole = $_SESSION['user_role']; // Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
 
 
@@ -41,7 +27,7 @@ $userRole = $_SESSION['user_role']; // Assurez-vous que vous stockez le rôle de
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container-fluid">
               <!-- Logo -->
-              <a class="navbar-brand" href="acceuil.php" style="color: black; font-size: larger; font-weight:900;">Jobpply</a>
+              <a class="navbar-brand" href="acceuil.php" style="color: black; font-size: larger; font-weight:900;">JobApply</a>
 
           
               <!-- Toggler button for mobile view -->

@@ -2,7 +2,10 @@
 
 session_start(); // démarrer la session 
 
- 
+$userId = $_SESSION['user_id'];
+
+// Vérifier le rôle de l'utilisateur à partir de la session
+$userRole = $_SESSION['user_role'];
 
 
 
@@ -268,20 +271,15 @@ $cards =fetchcandidatcard($pdo);
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="../Wassim/index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="../Wassim/acceuil.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="index.html">Offres</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="contact.php">Contact</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-
                 </ul>
 
             </div>
