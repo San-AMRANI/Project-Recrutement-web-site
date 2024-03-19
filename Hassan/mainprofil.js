@@ -39,7 +39,7 @@ document.getElementById('remove-pdf').addEventListener('click', function () {
     pdfViewer.src = ''; // Reset iframe source
     document.getElementById('pdf-upload').value = '';
 });
-document.getElementById('pdf-upload').addEventListener('change', function (event) {
+document.getElementById('pdf-upload').addEventListener('input', function (event) {
     var file = event.target.files[0];
     var reader = new FileReader();
 
@@ -105,4 +105,8 @@ document.getElementById('formlinks').addEventListener('submit', function () {
         return;
     }
 })
+
+let disccandidat = new Quill('#desccandidat', {
+    theme: 'snow'
+});
 

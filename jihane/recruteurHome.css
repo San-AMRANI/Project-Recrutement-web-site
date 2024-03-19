@@ -121,7 +121,7 @@ div.card-body img.img_recruteur {
 
  aside{display:flex;}
 
-    #alignement-card{display:grid;
+ #alignement-card{display:grid;
     grid-template-columns: repeat(2,1fr);
     grid-gap:10px;
 }

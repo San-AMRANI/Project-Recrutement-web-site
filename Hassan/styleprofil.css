@@ -223,8 +223,11 @@ input:disabled {
   margin: 0;
   position: absolute;
 }
-.cardnewlinks:hover {
+.cardnewlinks{
   transform: scale(1.9);
+}
+.cardnewlinks:hover {
+  /* transform: scale(1.9); */
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
 }
@@ -232,7 +235,7 @@ input:disabled {
 .cardnewlinks {
   scale: 0.5;
   position: absolute;
-  width: 30% !important;
+  width: 40vw !important;
   padding: 10px;
   position: absolute;
   top: 25%;
