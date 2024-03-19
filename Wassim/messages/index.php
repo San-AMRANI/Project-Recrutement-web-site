@@ -157,7 +157,8 @@ $conversations = $user_role === "recruiter" ? fetchConversationsRecruiter($conn,
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chat System</title>
+  <title>chatroom</title>
+  <link rel="stylesheet" href="../btsp/css/bootstrap.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet" />
@@ -168,7 +169,127 @@ $conversations = $user_role === "recruiter" ? fetchConversationsRecruiter($conn,
 </head>
 
 <body>
-  <nav>This is navbar</nav>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light" style="display: flex">
+      <div class="container-fluid" style="justify-content: center; margin: 0">
+        <!-- Logo -->
+        <a class="navbar-brand" href="index.html" style="color: black; font-size: larger; font-weight: 900">Jobpply</a>
+
+        <!-- Toggler button for mobile view -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links and buttons -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 listt">
+            <!-- Navigation Links -->
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../Wassim/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="homelink" href="../Wassim/index.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html" style="color: #6c63ff">Offers</a>
+            </li>
+            <!-- la page des candidats reste confidentiel seul les recruteurs peuvent la voir-->
+            <?php if($userRole == "recruteur") {?>
+                  <li class="nav-item">
+                  <a class="nav-link" href="../jihane/recruteurHome.html">Candidate</a>
+                  </li> 
+                  <?php }?>
+                  <li class="nav-item">
+                    <a class="nav-link" id="contactlink" href="contact.php" style="margin-right: 10px;">Contact us</a>
+                  </li>
+                </ul>
+                <!-- Login and Sign Up buttons for mobile view -->
+                <?php if(! isset($_SESSION["userId"])){ ?>
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a href="../ayaa/aya.html" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../ayaa/aya.html" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
+                  </li>
+                  <?php }else { ?> 
+                  <li>
+                  <span
+                class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border rounded-pill">
+                <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg"
+                    alt="profile" />
+                <a class="nav-link" href="../jihane/profilCandidat.html">Username</a>
+            </span>
+                  </li>
+                  <?php }?>
+                </ul>
+              </div>
+            </div>
+          </nav>
+  </div>
+  <style>
+    .fas.fa-bars {
+      color: white;
+      padding: 2px;
+      border-radius: 2px;
+      margin-top: 3px;
+    }
+
+    .listt .nav-link {
+      color: black;
+      /* This will change the color of the links */
+    }
+
+    /* Ensure that the navbar-brand (logo) has adequate spacing */
+    .navbar-brand {
+      margin-right: 1rem;
+      /* Adjust the space as needed */
+    }
+
+    /* Style for the navbar links to space them out */
+    .navbar-nav .nav-link {
+      margin-left: 1rem;
+      /* Adjust the space as needed */
+    }
+
+    /* Adjust the margin for the buttons on large screens */
+    @media (min-width: 992px) {
+      .navbar .d-flex {
+        margin-left: auto;
+        /* This will push the button links to the right */
+      }
+    }
+
+    .navbar-nav .listt .nav-link {
+      color: black !important;
+      /* Force override */
+    }
+
+    /* Specific overrides for the buttons */
+    .navbar-nav .listt .btn-outline-primary {
+      background-color: #6c63ff !important;
+      /* Login button background */
+      color: white !important;
+      /* Text color */
+    }
+
+    .navbar-nav .listt .btn-outline-primary:hover {
+      opacity: 0.8 !important;
+      /* Hover effect */
+    }
+
+    .navbar-nav .listt .btn-primary {
+      background-color: #ff6347 !important;
+      /* Sign Up button background */
+    }
+
+    .navbar {
+      background-color: transparent;
+      z-index: 1000;
+      /* Any value higher than what .one-8pn might have */
+    }
+  </style>
 
   <!-- Start Chat System -->
   <div class="chat-system">
