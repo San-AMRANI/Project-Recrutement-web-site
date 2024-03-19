@@ -205,15 +205,17 @@ $points = calculerScore($_POST, $pdo);
 
 
 
-function fetchcandidatcard($pdo)
+function fetchcandidatcard($pdo,$userId)
 {
     // Prepare the SQL query with LIMIT clause to fetch only the first 6 rows
     $cardQuery = "SELECT candidat.idcandidat, user.nom, user.prenom,titre
-    FROM candidat,postulation
-    INNER JOIN user ON candidat.idcandidat = user.iduser
-    
-    INNER JOIN postulation ON candidat.idcandidat = postulation.idcandidat
-    LIMIT 6;";
+    FROM candidat,postulation,recruteur,offre,user
+    where candidat.iduser=user.iduser
+    and candidat.idcandidat=postulation.idcandidat
+    and offre.idoffre=postulation.idoffre
+    and offre.idrecruteur=recruteur.idrecruteur
+    ";
+
 
     // Prepare the statement
     $stmt = $pdo->prepare($cardQuery);
@@ -250,7 +252,8 @@ function fetchcandidatcard($pdo)
 
     return $cardHTML;
 }
-$cards = fetchcandidatcard($pdo);
+$cards = fetchcandidatcard($pdo,$userId);
+
 
 ?>
 
@@ -484,7 +487,7 @@ $cards = fetchcandidatcard($pdo);
                         <div class="card rounded">
                             <div class="card-body">
                                 <!--<h6 class="card-title">suggestions for you</h6>-->
-                                <!--<div
+                                <div
                           class="d-flex justify-content-between mb-2 pb-2 border-bottom"
                         >
                           <div class="d-flex align-items-center hover-pointer">
@@ -502,7 +505,7 @@ $cards = fetchcandidatcard($pdo);
                              <img src="../media/enveloppe.png" with="20px" height="20px">
                           </button>
                         </div>
-                        <div
+                        <!--<div
                           class="d-flex justify-content-between mb-2 pb-2 border-bottom"
                         >
                           <div class="d-flex align-items-center hover-pointer">
@@ -650,7 +653,7 @@ $cards = fetchcandidatcard($pdo);
                             <div class="msg-post">
                                 <form method="post" action="../Hassan/includes/candidat_home.ctrl.php">
                                     <input type="text" hidden value="<?php  echo $id_candi?>">
-                                    <input type="submit" value="View Profil" class="btn btn-postuler">
+                                    <input type="submit" value="View Profil" class="btn btn-postuler" name="getprofil">
                             </form>
                                 <a href="#" class="btn-msg">Send Message</a>
                             </div>
