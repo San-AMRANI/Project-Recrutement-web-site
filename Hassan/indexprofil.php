@@ -28,7 +28,7 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                         <img class="profile-pic" src="../uploads/<?php echo $img_filename ?>">
                                     </div>
                                     <div class="p-image">
-                                        <button type="button" value="login" href="indexCV.html" class="btn upload-button">✎ Profile/CV</button>
+                                        <button type="button" value="login" href="indexCV.php" class="btn upload-button">✎ Profile/CV</button>
                                         <input class="file-upload" type="file" accept="image/*">
                                     </div>
                                 </div>
@@ -202,9 +202,7 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                 </div>
                                 <?php echo $nomcv; ?>
                                 <button id="remove-pdf">Remove PDF</button>
-                                <form action="includes/candidat_home.ctrl.php" method="post" id="pdftodb">
-                                    <input class="form-control" type="file" id="pdf-upload" name="pdfdb" accept=".pdf">
-                                </form>
+                                    <input class=" form-control" type="file" id="pdf-upload" name="pdfdb" accept=".pdf">
                                 <div class="card-body">
                                     <iframe id="pdf-viewer" src="../uploads/<?php
                                                                             if ($nomcv) {

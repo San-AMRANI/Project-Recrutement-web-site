@@ -53,10 +53,8 @@ document.getElementById('pdf-upload').addEventListener('change', function (event
     reader.onload = function (e) {
         var pdfViewer = document.getElementById('pdf-viewer');
         pdfViewer.src = e.target.result;
+        
 
-        // Perform form submission after loading the file
-        var form = document.getElementById('pdftodb');
-        form.submit();
     };
 
     reader.readAsDataURL(file);
