@@ -1,11 +1,15 @@
 <?php
 session_start(); // démarrer la session 
 // Récupérer l'ID de l'utilisateur à partir de la session
-$userId = $_SESSION['user_id'];
-$recruteurId = $_SESSION['company_id'];
+//$userId = $_SESSION['user_id'];
+//$recruteurId = $_SESSION['company_id'];
+$userId =1;
+$recruteurId = 1;
+$userRole ='recruteur';
 
 // Vérifier le rôle de l'utilisateur à partir de la session
-$userRole = $_SESSION['user_role']; // Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
+//$userRole = $_SESSION['user_role'];
+ // Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
 
 
 $servername = "localhost"; // Change this if your database is hosted on a different server
@@ -29,7 +33,7 @@ try {
 
 function getRecruterData ($pdo , $recruteurId) {
 // Prepare the SQL query
-$sql = "SELECT * FROM recruteur WHERE idrecruteur = :idrecruteur";
+$sql = "SELECT recruteur.* ,user.* FROM recruteur ,user WHERE idrecruteur = :idrecruteur AND recruteur.iduser = user.iduser";
 // Prepare the statement
 $stmt = $pdo->prepare($sql);
 // Bind the parameter
@@ -42,12 +46,11 @@ return $recruteurData;
 }
 
 $recruteurData =getRecruterData ($pdo , $recruteurId);
-$IDrecruteur = $recruteurData['idrecruteur'];
 
 // a function that extract all the 
 function getImagedata($pdo ,$IDrecruteur){
 // Prepare the SQL query
-$sql = "SELECT photo.avatar
+$sql = "SELECT photo.avatar,indx
         FROM recruteur
         JOIN user ON recruteur.iduser = user.iduser
         JOIN photo ON user.iduser = photo.iduser
@@ -65,7 +68,7 @@ $Photos = $stmt->fetchALL(PDO::FETCH_ASSOC);
 return $Photos;
 }
 
-$images = getImagedata($pdo, $IDrecruteur);
+$images = getImagedata($pdo, $recruteurId);
 // Initialiser les variables pour stocker les images avec indx égal à 1 et 2
 $imageWithIndx1 = null;
 $imageWithIndx2 = null;
@@ -77,27 +80,32 @@ $imageWithIndx3 = array();
 foreach ($images as $image) {
     if ($image['indx'] == 1) {
         // Stocker l'image avec indx égal à 1
-        $imageWithIndx1 = $image;
+        $imageWithIndx1 = $image['avatar'];
     } elseif ($image['indx'] == 2) {
         // Stocker l'image avec indx égal à 2
-        $imageWithIndx2 = $image;
+        $imageWithIndx2 = $image['avatar'];
     } elseif ($image['indx'] == 3) {
         // Stocker l'image avec indx égal à 3
-            $imageWithIndx3[] = $image;
+            $imageWithIndx3[] = $image['avatar'];
         
     }
 }
+print_r($imageWithIndx1) ;
+print_r($imageWithIndx2) ;
+print_r($imageWithIndx3);
 
 
 
 
-function fetchrecruteurcard($pdo)
+
+function fetchrecruteurcard($pdo )
 {
     // Prepare the SQL query with LIMIT clause to fetch only the first 6 rows
-    $cardQuery = "SELECT idrecruteur, nom, prenom, avatar , about
-                  FROM recruteur, photo 
-                  WHERE recruteur.iduser = photo.iduser
-                  LIMIT 6";
+    $cardQuery = "SELECT recruteur.idrecruteur, user.nom, user.prenom, photo.avatar, recruteur.about
+                FROM recruteur
+                INNER JOIN photo ON recruteur.iduser = photo.iduser
+                INNER JOIN user ON recruteur.iduser = user.iduser"
+    ;
 
     // Prepare the statement
     $stmt = $pdo->prepare($cardQuery);
@@ -120,10 +128,11 @@ function fetchrecruteurcard($pdo)
         $cardId = $card["idrecruteur"];
         $truncatedabout = strlen($cardabout) > 50 ? substr($cardabout, 0, 50) . '...' : $cardabout;
         // Generate HTML structure for each card
+        
         $cardHTML[] = "
         <div class='d-flex justify-content-between mb-2 pb-2 border-bottom'>
             <div class='d-flex align-items-center hover-pointer'>
-                <img class='img-xs rounded-circle' src='photo/$cardAvatar' alt='' />
+                <img class='img-xs rounded-circle' src='../photos/$cardAvatar' alt='' />
                 <div class='ml-2'>
                     <p> $cardnom $cardprenom</p>
                     <p class='tx-11 text-muted'>$truncatedabout</p>
@@ -137,61 +146,6 @@ function fetchrecruteurcard($pdo)
 $cards =fetchrecruteurcard($pdo);
 
 
-
-
-
-function insererOffre($pdo, $titre, $typeContrat, $salaireMin, $salaireMax, $deadline, $ville, $description,$IDrecruteur ) {
-    try {
-        // Préparer la requête SQL d'insertion
-        $sql = "INSERT INTO offre (titre, typecontrat, slairemin, slairemax, delai, ville, descriptionoffre, idrecruteur ) 
-                VALUES (:titre, :typeContrat, :salaireMin, :salaireMax, :deadline, :ville, :description , :idrecruteur)";
-        
-        // Préparer la déclaration
-        $stmt = $pdo->prepare($sql);
-
-        // Lier les paramètres
-        $stmt->bindParam(':titre', $titre);
-        $stmt->bindParam(':typeContrat', $typeContrat);
-        $stmt->bindParam(':salaireMin', $salaireMin);
-        $stmt->bindParam(':salaireMax', $salaireMax);
-        $stmt->bindParam(':deadline', $deadline);
-        $stmt->bindParam(':ville', $ville);
-        $stmt->bindParam(':description', $description);
-        $stmt->bindParam(':idrecruteur', $IDrecruteur);
-
-        // Exécuter la déclaration
-        $stmt->execute();
-
-        // Renvoyer true si l'insertion réussit
-        return true;
-    } catch (PDOException $e) {
-        // Gérer les exceptions
-        echo "Erreur d'insertion : " . $e->getMessage();
-        return false;
-    }
-}
-
-// Exemple d'utilisation :
-// Assurez-vous d'avoir une connexion PDO valide ($pdo) à votre base de données
-
-// Vérifier si le formulaire est soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
-    $titre = $_POST['titre-offre00'];
-    $typeContrat = $_POST['type-de-contrat'];
-    $salaireMin = $_POST['salaire-min00'];
-    $salaireMax = $_POST['salaire-max00'];
-    $deadline = $_POST['dateDebut'];
-    $ville = $_POST['ville'];
-    $description = $_POST['descriptionoffre00'];
-
-    // Appeler la fonction pour insérer l'offre dans la base de données
-    if (insererOffre($pdo, $titre, $typeContrat, $salaireMin, $salaireMax, $deadline, $ville, $description ,$IDrecruteur)) {
-        echo "L'offre a été ajoutée avec succès.";
-    } else {
-        echo "Erreur lors de l'ajout de l'offre.";
-    }
-}
 
 
 function uploadImageAndInsertIntoDatabase($pdo, $indx)
@@ -226,43 +180,42 @@ function uploadImageAndInsertIntoDatabase($pdo, $indx)
 
 // Utilisation de la fonction avec l'indice approprié
 $index = isset($_POST['index']) ? $_POST['index'] :3; 
-uploadImageAndInsertIntoDatabase($pdo , $indice);
+uploadImageAndInsertIntoDatabase($pdo , $index);
 
 
 
 // Initialise le texte par défaut du bouton
 $buttonText = "Edit profile";
-
+/*
 // Vérifie si le bouton a été soumis avec la valeur "Modify"
 if (isset($_POST['editButton']) && $_POST['editButton'] == "Modify") {
     // Change le texte du bouton en "Edit profile"
     $buttonText = "Edit profile";
-}
+}*/
 
 
 
 // Génère du code JavaScript pour activer ou désactiver les champs de saisie en fonction du texte du bouton
-$jsCode = `
+/*$jsCode = `
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  var editButton = document.getElementById("EditButton");
+document.getElementById("EditButton").addEventListener("click", function() {
   var inputs = document.querySelectorAll("input");
   
-  editButton.addEventListener("click", function() {
-    if (editButton.textContent == "Edit profile") {
-      editButton.textContent = "Modify";
+  this.addEventListener("click", function() {
+    if (this.textContent == "Edit profile") {
+      this.textContent = "Modify";
       inputs.forEach(function(input) {
         input.disabled = false;
       });
-    } else if (editButton.textContent == "Modify") {
-      editButton.textContent = "Edit profile";
+    } else if (this.textContent == "Modify") {
+      this.textContent = "Edit profile";
       inputs.forEach(function(input) {
         input.disabled = true;
       });
     }
   });
 });
-</script>`;
+</script>`;*/
 
 
 
@@ -438,47 +391,25 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="col-12 grid-margin">
           <div class="profile-header">
             <div class="cover">
-              <div class="gray-shade"></div>
-              <figure>  
-                
-              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" id="uploadForm">
-                <input type="hidden" name="index" value="2"> <!-- Hidden input for index value -->
-                <div class="col-md-4" id="coladd">
-                  <figure id="addImageFigure" class="mb-0">
-                    <img src="/photos/audicompany.jpg" id="addImage2" class="img-fluid" alt="profile cover" style="height: 30vw" />
+              <div class="gray-shade"></div>  
+              <!--<form action="proflRec.php" method="post" name="recruteurdata">-->
+                <input type="hidden" name="index2" value="2"> <!-- Hidden input for index value -->
+                <div >
+                  <figure type="button" id="addImageFigure1" class="mb-0 upload-button "> test
+                    <img src="../photos/<?php print_r($imageWithIndx1) ; ?>" id="addImage2"  alt="profile cover" style="height: 30vw" />
                   </figure>
-                  <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" onchange="submitForm()">
+                  <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" >
+                  
                 </div>
-              </form>
-              <script>
-                function submitForm() {
-                  document.getElementById("uploadForm").submit();
-                }
-              </script>
-
-              </figure>
               <div class="cover-body d-flex justify-content-between align-items-center">
-                <div>
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" id="uploadForm">
-                  <input type="hidden" name="index" value="1"> <!-- Hidden input for index value -->
-                  <div class="col-md-4" id="coladd">
-                    <figure id="addImageFigure" class="mb-0">
-                      <img src="/photos/volkswagen.png" id="addImage1" class="img-fluid" alt="profile cover" style="height: 30vw" />
-                    </figure>
-                    <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" onchange="submitForm()">
-                  </div>
-                </form>
-                <script>
-                  function submitForm() {
-                    document.getElementById("uploadForm").submit();
-                  }
-                </script>
-  
-                
-                  <span class="profile-name">Amiah Burton</span>
+                <div style="display: flex;">
+                  <input type="hidden" name="index1" value="1"> <!-- Hidden input for index value --> 
+                    <img src="../photos/<?php print_r($imageWithIndx2); ?>" id="addImage1" style="height: 9vw" />
+                    <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" >
+                  <span class="profile-name" style="display: flex;align-self: center; "><?php print_r($recruteurData['nom']);echo" ";print_r($recruteurData['prenom']) ?></span>
                 </div>
                 <div class="d-none d-md-block">
-                  <button class="btn btn-primary btn-icon-text btn-edit-profile" id="EditButton">
+                  <button type="button" class="btn btn-primary btn-icon-text btn-edit-profile" id="EditButton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                       class="feather feather-edit btn-icon-prepend">
@@ -488,134 +419,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     <?php echo $buttonText; ?>
                   </button>
                 </div>
+                
               </div>
             </div>
-            <div class="header-links">
-              <!-- <ul class="links d-flex align-items-center mt-3 mt-md-0">
-                  <li class="header-link-item d-flex align-items-center active">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-columns mr-1 icon-md"
-                    >
-                      <path
-                        d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"
-                      ></path>
-                    </svg>
-                    <a class="pt-1px d-none d-md-block" href="#">Timeline</a>
-                  </li>
-                  <li
-                    class="header-link-item ml-3 pl-3 border-left d-flex align-items-center"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-user mr-1 icon-md"
-                    >
-                      <path
-                        d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
-                      ></path>
-                      <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    <a class="pt-1px d-none d-md-block" href="#">About</a>
-                  </li>
-                  <li
-                    class="header-link-item ml-3 pl-3 border-left d-flex align-items-center"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-users mr-1 icon-md"
-                    >
-                      <path
-                        d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-                      ></path>
-                      <circle cx="9" cy="7" r="4"></circle>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                    <a class="pt-1px d-none d-md-block" href="#"
-                      >Friends <span class="text-muted tx-12">3,765</span></a
-                    >
-                  </li>
-                  <li
-                    class="header-link-item ml-3 pl-3 border-left d-flex align-items-center"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-image mr-1 icon-md"
-                    >
-                      <rect
-                        x="3"
-                        y="3"
-                        width="18"
-                        height="18"
-                        rx="2"
-                        ry="2"
-                      ></rect>
-                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                      <polyline points="21 15 16 10 5 21"></polyline>
-                    </svg>
-                    <a class="pt-1px d-none d-md-block" href="#">Photos</a>
-                  </li>
-                  <li
-                    class="header-link-item ml-3 pl-3 border-left d-flex align-items-center"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-video mr-1 icon-md"
-                    >
-                      <polygon points="23 7 16 12 23 17 23 7"></polygon>
-                      <rect
-                        x="1"
-                        y="5"
-                        width="15"
-                        height="14"
-                        rx="2"
-                        ry="2"
-                      ></rect>
-                    </svg>
-                    <a class="pt-1px d-none d-md-block" href="#">Videos</a>
-                  </li>
-                </ul>-->
-            </div>
+            
           </div>
         </div>
       </div>
@@ -666,19 +473,19 @@ document.addEventListener("DOMContentLoaded", function() {
                   </div>
                 </div>
               </div>
-              <form name="CompanyData" action="" method="get">
+              
                 <p class="text-muted">
                   <textarea name="About" id="About" cols="35" rows="6" disabled style="
                         border: none;
                         background-color: white;
                         resize: none;
                       ">
- Hi! I'm Amiah the Senior UI Designer at Vibrant. We hope you enjoy the design and quality of Social.
+                      <?php print_r($recruteurData['about']) ;?>
                     </textarea>
                 </p>
                 <div class="mt-3">
                   <label class="tx-11 font-weight-bold mb-0 text-uppercase">Joined:</label>
-                  <p class="text-muted">November 15, 2015</p>
+                  <p class="text-muted"><?php print_r($recruteurData['datesignup']) ;?></p>
                 </div>
                 <div class="mt-3">
                   <label class="tx-11 font-weight-bold mb-0 text-uppercase">Lives:</label>
@@ -690,14 +497,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="mt-3">
                   <label class="tx-11 font-weight-bold mb-0 text-uppercase">Email:</label>
                   <p class="text-muted">
-                    <input type="text" name="Email" id="Email" value="me@nobleui.com" disabled
+                    <input type="text" name="Email" id="email" value ="<?php print_r($recruteurData['email']) ;?>" disabled
                       style="border: none; background-color: white" />
                   </p>
                 </div>
                 <div class="mt-3">
                   <label class="tx-11 font-weight-bold mb-0 text-uppercase">Website:</label>
                   <p class="text-muted">
-                    <input type="text" name="Email" id="Email" value="www.nobleui.comH" disabled
+                    <input type="text" name="Email" id="Email" value="<?php print_r($recruteurData['email']) ;?>" disabled
                       style="border: none; background-color: white" />
                   </p>
                 </div>
@@ -705,21 +512,21 @@ document.addEventListener("DOMContentLoaded", function() {
                   <a href="https://web.facebook.com/"
                     class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon github"
                     style="border: none !important">
-                    <img src="/media/facebook.png" style="width: 25px" alt="" />
+                    <img src="../media/facebook.png" style="width: 25px" alt="" />
                   </a>
 
                   <a href="https://www.instagram.com/"
                     class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon twitter"
                     style="border: none !important">
-                    <img src="/media/instagramblack.png" style="width: 25px" alt="" />
+                    <img src="../media/instagramblack.png" style="width: 25px" alt="" />
                   </a>
                   <a href="https://twitter.com/"
                     class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon instagram"
                     style="border: none !important">
-                    <img src="/media/twitterblack.png" style="width: 25px" alt="" />
+                    <img src="../media/twitterblack.png" style="width: 25px" alt="" />
                   </a>
                 </div>
-              </form>
+              
             </div>
           </div>
         </div>
@@ -729,60 +536,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <div class="row offresframe">
             <iframe src="cards.html" id="offresframe" frameborder="0"></iframe>
           </div>
-          <div class="row">
-            <div class="card cardnewoffre hidden">
-              <div class="card-body">
-                <form id="formoffre" action="proflRec.php" method="post">
-                  <div class="form-floating mrg">
-                    <input type="text" id="titre-offre" name="titre-offre00" class="form-control"
-                      placeholder="titre-offre" required />
-                    <label for="titre-offre" class="form-label">Titre de votre offre:</label>
-                  </div>
-
-                  <div class="form-floating mrg">
-                    <input type="text" id="type-de-contrat00" name="type-de-contrat" class="form-control x1"
-                      placeholder="type-de-contrat" required />
-                    <label for="type-de-contrat00" class="form-label">Type de Contrat:</label>
-                  </div>
-
-
-                  <div class="input-group ">
-                    <div class="form-floating mrg">
-                      <input type="number" id="salaire-min00" name="salaire00" class="form-control x1"
-                        placeholder="salaire" required />
-                      <label for="salaire-min00" class="form-label">Salaire(min):</label>
-                    </div>
-                    <div class="form-floating mrg">
-                      <input type="number" id="salaire-max00" name="salaire00" class="form-control x1"
-                        placeholder="salaire" required />
-                      <label for="salaire-max00" class="form-label">Salaire(max):</label>
-                    </div>
-                  </div>
-                  <div class="input-group ">
-                    <div class="form-floating mrg">
-                      <input type="date" id="dateDebutexp2" name="dateDebut" class="form-control x1"
-                        placeholder="date début" />
-                      <label for="dateDebutexp2" class="form-label">Deadline:</label>
-                    </div>
-                    <div class="form-floating mrg">
-                      <input type="text" id="villeoff00" name="ville" class="form-control x1" placeholder="ville"
-                        required />
-                      <label for="villeoff00" class="form-label">Ville:</label>
-                    </div>
-                  </div>
-                  <div class="form-group mrg">
-                    <div id="descriptionoffre00" class="quill-editor">
-                      <p>Description..</p>
-                    </div>
-                    <!-- <label for="description" class="form-label">Description:</label> -->
-                  </div>
-                  <button type="submit" class="btn btn-primary">
-                    Ajouter
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <!-- middle wrapper end -->
         <!-- right wrapper start -->
@@ -846,24 +600,15 @@ document.addEventListener("DOMContentLoaded", function() {
                         </figure>
                       </div>
 
-                      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" id="uploadForm">
+                      
                       <input type="hidden" name="index" value="3">
                       <div class="col-md-4" id="coladd">
                         <figure id="addImageFigure" class="mb-0">
-                          <img class="img-fluid" src="/media/add-image.png" alt="Add Image" id="addImage" />
+                          <img class="img-fluid" src="../media/add-image.png" alt="Add Image" id="addImage" />
                         </figure>
-                      <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" onchange="submitForm()">
+                      <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" >
                       </div>
-                      </form>
-                      <script>
-                        function submitForm() {
-                          document.getElementById("uploadForm").submit();
-                        }
-
-                      </script>
-
-
-
+                      <!--</form>-->
 
 
                       <!-- hna katsaali parti lifiha tsawer-->
@@ -877,36 +622,16 @@ document.addEventListener("DOMContentLoaded", function() {
                               margin-bottom: 0.5vw;
                             }
                           </style>
-                          <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                            <div class="d-flex align-items-center hover-pointer">
-                              <img class="img-xs rounded-circle"
-                                src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" />
-                              <div class="ml-2">
-                                <p>Mike Popescu</p>
-                                <p class="tx-11 text-muted">12 Mutual Friends</p>
-                              </div>
-                            </div>
-
-                          </div>
+                          
                           
 
                           <?php foreach ($cards as $card) {
                             
-                            echo $cards;
+                            echo $card;
                           }?>
                           
                           
-                          <div class="d-flex justify-content-between">
-                            <div class="d-flex align-items-center hover-pointer">
-                              <img class="img-xs rounded-circle"
-                                src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                              <div class="ml-2">
-                                <p>Mike Popescu</p>
-                                <p class="tx-11 text-muted">12 Mutual Friends</p>
-                              </div>
-                            </div>
-
-                          </div>
+                          
                         </div>
                       </div>
                     </div>
@@ -918,7 +643,7 @@ document.addEventListener("DOMContentLoaded", function() {
           </div>
           <?php
            // Affiche le code JavaScript généré
-          echo $jsCode; ?>
+          //echo $jsCode; ?>
 </body>
 <script src="recru.js"></script>
 <script src="/btsp/js/printThis.js"></script>
