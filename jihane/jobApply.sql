@@ -124,7 +124,7 @@ CREATE TABLE message (
 CREATE TABLE photo(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     iduser INT NOT NULL,
-    avatar TEXT , 
+    avatar TEXT ,
     indx INT , 
     FOREIGN KEY (iduser) REFERENCES user(iduser)
 );
