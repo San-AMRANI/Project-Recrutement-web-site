@@ -1,46 +1,41 @@
 <?php
 
-    include('../../Hassan/includes/connect.model.php');
+include('../../Hassan/includes/connect.model.php');
 
 session_start();
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-   $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-   $motdepasse = md5($_POST['motdepasse']);
-   echo $motdepasse;
-   $motdepasse = filter_var($motdepasse, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $email = $_POST['email'];
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $motdepasse = md5($_POST['motdepasse']);
+    echo $motdepasse;
+    $motdepasse = filter_var($motdepasse, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-   $select = $conn->prepare("SELECT * FROM `user` WHERE email = ? AND motdepasse = ?");
-   $select->execute([$email, $motdepasse]);
-   $row = $select->fetch(PDO::FETCH_ASSOC);
+    $select = $conn->prepare("SELECT * FROM `user` WHERE email = ? AND motdepasse = ?");
+    $select->execute([$email, $motdepasse]);
+    $row = $select->fetch(PDO::FETCH_ASSOC);
 
-   if($select->rowCount() > 0){
+    if ($select->rowCount() > 0) {
+        if ($row['role'] == 'recruteur') {
+            $_SESSION['recruteur_id'] = $row['iduser'];
+            header('location:recruteur_home.php');
+        } elseif ($row['role'] == 'candidat') {
 
-      if($row['role'] == 'recruteur'){
-
-         $_SESSION['recruteur_id'] = $row['iduser'];
-         header('location:recruteur_home.php');
-
-      }elseif($row['role'] == 'candidat'){
-
-         $_SESSION['candidat_id'] = $row['iduser'];
-         header('location:../../Hassan/indexprofil.html');
-
-      }else{
-         $message[] = 'no user found!';
-      }
-      
-   }else{
-      $message[] = 'incorrect email or password!';
-   }
-
+            $_SESSION['candidat_id'] = $row['iduser'];
+            header('location:../../Hassan/indexprofil.php');
+        } else {
+            $message[] = 'no user found!';
+        }
+    } else {
+        $message[] = 'incorrect email or password!';
+    }
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,11 +49,12 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="css/style.css">
     <style>
         .input-fields-container {
-  display: flex;
-  justify-content: space-between;
-}
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
+
 <body>
 
 
@@ -74,20 +70,20 @@ if(isset($_POST['submit'])){
 
                         <h2>SIGN IN</h2>
                         <?php
-   if(isset($message)){
-      foreach($message as $message){
-         echo '
+                        if (isset($message)) {
+                            foreach ($message as $message) {
+                                echo '
          <div class="message">
-            <span>'.$message.'</span>
+            <span>' . $message . '</span>
             <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
          </div>
          ';
-      }
-   }
-?>
+                            }
+                        }
+                        ?>
                         <div class="form-group form-input">
-                            <input type="email" name="email" id="email" value="" required/>
-                            <label  class="form-label">EMAIL</label>
+                            <input type="email" name="email" id="email" value="" required />
+                            <label class="form-label">EMAIL</label>
                         </div>
 
                         <div class="form-group form-input">
@@ -123,4 +119,5 @@ if(isset($_POST['submit'])){
         });
     </script> -->
 </body>
+
 </html>

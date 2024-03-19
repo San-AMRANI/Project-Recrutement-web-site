@@ -90,7 +90,7 @@ function getOffresData()
 }
 function getOffres()
 {
-    
+
     // $result = executeQuery($sql);
     $result = getOffresData();
     if ($result != false) {
@@ -124,37 +124,37 @@ function getOffres()
             $descriptionoffre = htmlspecialchars_decode($row["descriptionoffre"]);
 
             echo '
-                <div class="card" id="cardWithCollapse' . $i . '">
-                    <div class="card-body" onclick="toggleCollapse' . $i . '(' . $i . ')">
-                        <div>
-                            <img class="img_recruteur" src="../media/logo.jpeg" alt="">
-                        </div>
-                        <div class="titre_offre">
-                            <h5 class="card-title"> <b>' . $titre . '</b></h5>
-                        </div>
-                        <p class="duree_offre"> <img src="../media/horloge.png" width="20px" alt=""> <b>' . $delai . '</b> </p>
-                        <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
-                            <b>' . $ville . '</b>
-                        </p>
-                        <span class="badge rounded-pill text-bg-danger specialiste_offre">' . $specialite .'</span>
-                        <a href="#" class="btn btn-primary postuler">Postuler</a>
-                    </div>
-                    <div class="collapse info" id="info' . $i . '">
-                        <div id="discriptionplace">
-                            <p> <i>Publier le: ' . $datepub . '</i></p>
-                            <p> <b>Type Contrat: ' . $typecontrat . '</b> </p>
-                            <p> <b>Salaire: ' . $slairemin . ' - ' . $slairemax . '</b> </p>
-                            ' . $descriptionoffre . ' 
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    function toggleCollapse' . $i . '(parm) {
-                        var info = document.getElementById("info' . $i++ . '");
-                        info.classList.toggle("show");
-                    }
-                </script>
-            ';
+    <div class="card" id="cardWithCollapse' . $i . '" onmouseleave="toggleCollapse' . $i . '(' . $i . ')">
+        <div class="card-body" onmouseover="toggleCollapse' . $i . '(' . $i . ')">
+            <div>
+                <img class="img_recruteur" src="../media/logo.jpeg" alt="">
+            </div>
+            <div class="titre_offre">
+                <h5 class="card-title"> <b>' . $titre . '</b></h5>
+            </div>
+            <p class="duree_offre"> <img src="../media/horloge.png" width="20px" alt=""> <b>' . $delai . '</b> </p>
+            <p class="location_offre"> <img src="../media/maps-and-location.png" width="20px" alt="">
+                <b>' . $ville . '</b>
+            </p>
+            <span class="badge rounded-pill text-bg-danger specialiste_offre">' . $specialite . '</span>
+            <a href="#" class="btn btn-primary postuler">Postuler</a>
+        </div>
+        <div class="collapse info" id="info' . $i . '">
+            <div id="discriptionplace">
+                <p> <i>Publier le: ' . $datepub . '</i></p>
+                <p> <b>Type Contrat: ' . $typecontrat . '</b> </p>
+                <p> <b>Salaire: ' . $slairemin . ' - ' . $slairemax . '</b> </p>
+                ' . $descriptionoffre . ' 
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleCollapse' . $i . '(parm) {
+            var info = document.getElementById("info' . $i . '");
+            info.classList.toggle("show");
+        }
+    </script>
+';
         }
 
 
@@ -209,4 +209,3 @@ function getOffres()
 ";
     }
 }
-?>
