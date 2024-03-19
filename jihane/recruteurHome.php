@@ -265,44 +265,72 @@ $cards = fetchcandidatcard($pdo,$userId);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Offres de Candidat</title>
     <link rel="stylesheet" href="../btsp/css/bootstrap.css">
-
+    <link rel="stylesheet" href="../Wassim/style.css">
     <link rel="stylesheet" href="recruteurHome.css">
 
 </head>
 
 <body class="bg-body-tertiary">
-    <nav class="navbar navbar-expand-lg container nav-underline">
+<div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="container-fluid">
+              <!-- Logo -->
+              <a class="navbar-brand" href="acceuil.php" style="color: black; font-size: larger; font-weight:900;">Jobpply</a>
 
-        <div>
-            <img src="../media/logo.jpeg" alt="logo" class="logo">
-            <a class="navbar-brand" href="index.html">JobApply</a>
-        </div>
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          
+              <!-- Toggler button for mobile view -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="../Wassim/acceuil.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Offres</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Contact</a>
-                    </li>
+              </button>
+          
+              <!-- Navbar links and buttons -->
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 listt">
+                  <!-- Navigation Links -->
+                  <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="acceuil.php" style="color: #6c63ff;">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="homelink" href="#">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../Hassan/index.php">Offers</a>
+                  </li>
+                  <!-- la page des candidats reste confidentiel seul les recruteurs peuvent la voir-->
+                  <?php if($userRole == "recruteur") {?>
+                  <li class="nav-item">
+                  <a class="nav-link" href="../jihane/recruteurHome.php">Candidate</a>
+                  </li> 
+                  <?php }?>
+                  <li class="nav-item">
+                    <a class="nav-link" id="contactlink" href="../Wassim/contact.php" style="margin-right: 10px;">Contact us</a>
+                  </li>
                 </ul>
-
+                <!-- Login and Sign Up buttons for mobile view -->
+                <?php if(isset($_SESSION["userId"])){ ?>
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a href="../../cp/ayaa/test/login.php" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../cp/ayaa/test/register.php" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
+                  </li>
+                  <?php }else { ?> 
+                  <li style="list-style: none;">
+                  <span
+                class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border rounded-pill">
+                <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logoo.jpeg"
+                    alt="profile" />
+                <a class="nav-link" href="../ayaa/test/logout.php">logout</a>
+            </span>
+                  </li>
+                  <?php }?>
+                </ul>
+              </div>
             </div>
-            <!-- <span
-                class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border  rounded-pill">
-                <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg"
-                    alt="profile"> <a class="nav-link" href="">Mike Baydon</a>
-            </span> -->
-        </div>
-    </nav>
+          </nav>
+          
+    </div>
 
 
     <h1 class="text-center">Professional Profile: Discover the Candidates' CVs</h1>
@@ -615,7 +643,7 @@ $cards = fetchcandidatcard($pdo,$userId);
 
                     // Vérifier si le score pour ce candidat existe dans $points
                     if (isset($points)) {
-                        $score = $points[$resultat['idcandidat']];
+                        // $score = $points[$resultat['idcandidat']];
                     } else {
                         $score = 0; // Si le score n'est pas défini, définissez-le à zéro
                     }

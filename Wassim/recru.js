@@ -35,7 +35,34 @@
   });
 });
 */
+$(document).ready(function () {
+  var defaultImage = '../media/utilisateur.png';
 
+  var readURL = function (input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('.profile-pic').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      // Set default image
+      $('.profile-pic').attr('src', defaultImage);
+    }
+  }
+
+  $("#file-upload").on('change', function () {
+    readURL(this);
+  });
+
+  // Initialize with default image
+  $('.profile-pic').attr('src', defaultImage);
+});
+document.getElementById("addImage").addEventListener("click", function () {
+  document.getElementById("imageInput").click();
+});
 /*
 document.getElementById("imageInput").addEventListener("change", function () {
   var file = this.files[0];
@@ -77,10 +104,6 @@ document.getElementById("imageInput").addEventListener("change", function () {
   }
 }*/
 
-document.getElementById("addImage").addEventListener("click", function () {
-  document.getElementById("imageInput").click();
-});
-
 document.getElementById("imageInput").addEventListener("change", function () {
   var file = this.files[0];
   var reader = new FileReader();
@@ -92,19 +115,6 @@ document.getElementById("imageInput").addEventListener("change", function () {
     if (emptyFigures.length > 0) {
       emptyFigures[0].src = e.target.result;
       emptyFigures[0].parentElement.parentElement.style.display = "block";
-
-      // Send the uploaded image to the server using AJAX
-      var formData = new FormData();
-      formData.append("image", file);
-
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", "uploadedimg.php", true);
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          console.log("Image uploaded successfully");
-        }
-      };
-      xhr.send(formData);
     }
   };
 
@@ -115,41 +125,10 @@ discriptionOffre = new Quill("#descriptionoffre00", {
   theme: "snow",
 });
 
-/*document.getElementById("EditButton").addEventListener("click", function () {
-  if (this.textContent == "Edit profile") {
-    this.textContent = "Modify";
-  } else if (this.textContent == "Modify") {
-    this.textContent = "Edit profile"; // Utilisation de l'opérateur d'attribution "=" pour modifier le texte
+document.getElementById("EditButton").addEventListener("click", function (e) {
+  if (e.textContent == "Edit profile") {
+    e.textContent = "Modify";
+  } else if (e.textContent == "Modify") {
+    e.textContent = "Edit profile"; // Utilisation de l'opérateur d'attribution "=" pour modifier le texte
   }
-});
-*/
-$(document).ready(function () {
-  var defaultImage = "../media/utilisateur.png";
-
-  var readURL = function (input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        $("#addImage2").attr("src", e.target.result);
-        $("#fileData").val(e.target.result); // Set file data to hidden input
-      };
-
-      reader.readAsDataURL(input.files[0]);
-    } else {
-      // Set default image
-      $("#addImage2").attr("src", defaultImage);
-    }
-  };
-
-  $(".file-upload").on("change", function () {
-    readURL(this);
-  });
-
-  $("#imageInput").on("click", function () {
-    $(".file-upload").click();
-  });
-
-  // Initialize with default image
-  $(".#addImage2").attr("src", defaultImage);
 });
