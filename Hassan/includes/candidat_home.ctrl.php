@@ -6,6 +6,7 @@ session_start();
 $candida_id = $_SESSION['candidat_id'];
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['getprofile'])) {
    $candida_id = $_POST['getprofile'];
+   header("Location: ../indexprofil.php");
 }
 $sql = "SELECT nom, prenom, email, phone, adresse, phone, descandidat, datenaissance, nomcv, linkedin, insta, github, discord FROM candidat, user WHERE candidat.iduser = user.iduser";
 $resault = executeQuery($sql);
