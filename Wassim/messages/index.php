@@ -1,8 +1,14 @@
 <?php
-$conn = mysqli_connect('localhost', 'root', '', 'chatroom');
+$host = 'localhost';
+$dbname = 'chatroom';
+$username = 'root';
+$password = '';
 
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }
 
 // from Auth
@@ -13,77 +19,60 @@ $conversationId = isset($_GET['chat']) ? $_GET['chat'] : 0;
 
 function fetchConversationById($conn, $conversationId)
 {
-  $conversation = array();
-
-  $query = "SELECT c.id, c.recruiter, c.candidate, c.createdAt, 
+    $query = "SELECT c.id, c.recruiter, c.candidate, c.createdAt, 
                      r.name AS recruiter_name, r.avatar AS recruiter_avatar, 
                      d.name AS candidate_name, d.avatar AS candidate_avatar
               FROM conversations c
               INNER JOIN users r ON c.recruiter = r.id
               INNER JOIN users d ON c.candidate = d.id
-              WHERE c.id =$conversationId";
+              WHERE c.id = :conversationId";
 
-  $result = mysqli_query($conn, $query);
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':conversationId', $conversationId);
+    $stmt->execute();
 
-  if ($result) {
-    $conversation = mysqli_fetch_assoc($result);
-  }
-
-  return $conversation;
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-$conversationInfo =  fetchConversationById($conn, $conversationId);
+$conversationInfo = fetchConversationById($conn, $conversationId);
 
 if ($conversationId != 0) {
-  if ($userId != $conversationInfo['recruiter'] && $userId != $conversationInfo['candidate']) {
-    die("Unauthorized Access! ");
-  }
+    if ($userId != $conversationInfo['recruiter'] && $userId != $conversationInfo['candidate']) {
+        die("Unauthorized Access! ");
+    }
 }
-
-
-
-$user = fetchUserById($conn, $userId);
 
 function fetchUserById($conn, $userId)
 {
-  $user = array();
+    $query = "SELECT id, name, role, avatar FROM users WHERE id = :userId";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':userId', $userId);
+    $stmt->execute();
 
-  $query = "SELECT id, name, role, avatar FROM users WHERE id = $userId";
-  $result = mysqli_query($conn, $query);
-
-  if ($result) {
-    $user = mysqli_fetch_assoc($result);
-  }
-
-  return $user;
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+$user = fetchUserById($conn, $userId);
 
 function fetchConversationsRecruiter($conn, $userId, $user_role)
 {
-
-  // Fetch conversations related to the user
-  $conversationsQuery = "SELECT conversations.id, users.id as participant_id, users.name, users.avatar
+    $conversationsQuery = "SELECT conversations.id, users.id as participant_id, users.name, users.avatar
                            FROM conversations
                            INNER JOIN users ON conversations.candidate = users.id
-                           WHERE conversations.recruiter = $userId 
-                           ";
+                           WHERE conversations.recruiter = :userId";
 
+    $stmt = $conn->prepare($conversationsQuery);
+    $stmt->bindParam(':userId', $userId);
+    $stmt->execute();
 
-  $conversationsResult = mysqli_query($conn, $conversationsQuery);
-
-
-  if ($conversationsResult) {
     $conversations = array();
 
-    while ($conversation = mysqli_fetch_assoc($conversationsResult)) {
+    while ($conversation = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $participantName = $conversation['name'];
+        $participantAvatar = $conversation['avatar'];
+        $conversationId = $conversation["id"];
 
-      // Determine the other participant in the conversation
-      $participantName = $conversation['name'];
-      $participantAvatar = $conversation['avatar'];
-      $conversationId = $conversation["id"];
-
-      // Generate HTML structure for each conversation
-      $conversations[] = "
+        $conversations[] = "
                 <li>
                     <a href='?chat=$conversationId'>
                     <div class='infos'>
@@ -95,36 +84,29 @@ function fetchConversationsRecruiter($conn, $userId, $user_role)
                 </li>
             ";
     }
-  }
 
-  return $conversations;
+    return $conversations;
 }
+
 function fetchConversationsCandidate($conn, $userId, $user_role)
 {
-
-  // Fetch conversations related to the user
-  $conversationsQuery = "SELECT conversations.id, users.id as participant_id, users.name, users.avatar
+    $conversationsQuery = "SELECT conversations.id, users.id as participant_id, users.name, users.avatar
                            FROM conversations
                            INNER JOIN users ON conversations.recruiter = users.id
-                           WHERE conversations.candidate = $userId
-                           ";
+                           WHERE conversations.candidate = :userId";
 
+    $stmt = $conn->prepare($conversationsQuery);
+    $stmt->bindParam(':userId', $userId);
+    $stmt->execute();
 
-  $conversationsResult = mysqli_query($conn, $conversationsQuery);
-
-
-  if ($conversationsResult) {
     $conversations = array();
 
-    while ($conversation = mysqli_fetch_assoc($conversationsResult)) {
+    while ($conversation = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $participantName = $conversation['name'];
+        $participantAvatar = $conversation['avatar'];
+        $conversationId = $conversation["id"];
 
-      // Determine the other participant in the conversation
-      $participantName = $conversation['name'];
-      $participantAvatar = $conversation['avatar'];
-      $conversationId = $conversation["id"];
-
-      // Generate HTML structure for each conversation
-      $conversations[] = "
+        $conversations[] = "
                 <li>
                     <a href='?chat=$conversationId'>
                     <div class='infos'>
@@ -136,17 +118,12 @@ function fetchConversationsCandidate($conn, $userId, $user_role)
                 </li>
             ";
     }
-  }
 
-  return $conversations;
+    return $conversations;
 }
 
 // Fetch conversations related to the user
 $conversations = $user_role === "recruiter" ? fetchConversationsRecruiter($conn, $userId, $user_role) : fetchConversationsCandidate($conn, $userId, $user_role);
-
-
-
-
 ?>
 
 

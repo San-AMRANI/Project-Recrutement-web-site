@@ -1,8 +1,17 @@
 <?php
-$conn = mysqli_connect('localhost', 'root', '', 'chatroom');
+// Connexion à la base de données avec PDO
+$dsn = 'mysql:host=localhost;dbname=chatroom';
+$username = 'root';
+$password = '';
+$options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Générer des exceptions en cas d'erreurs
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Récupérer les résultats sous forme de tableau associatif
+];
 
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+try {
+    $conn = new PDO($dsn, $username, $password, $options);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -10,15 +19,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $conversationId = $_POST["conversationId"];
     $content = $_POST["content"];
 
-    // Validate and sanitize input as needed
+    // Valider et nettoyer les entrées si nécessaire
 
-    // Insert the new message into the Messages table
-    $insertQuery = "INSERT INTO Messages (sender, conversation, content) VALUES ($senderId, $conversationId, '$content')";
-    $insertResult = mysqli_query($conn, $insertQuery);
+    // Insérer le nouveau message dans la table Messages
+    $insertQuery = "INSERT INTO Messages (sender, conversation, content) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($insertQuery);
+    $success = $stmt->execute([$senderId, $conversationId, $content]);
 
-    if ($insertResult) {
+    if ($success) {
         echo "success";
     } else {
         echo "error";
     }
 }
+
+// Fermer la connexion
+$conn = null;
+?>
