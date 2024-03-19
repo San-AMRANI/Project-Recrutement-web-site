@@ -11,10 +11,7 @@ $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::ERRMODE_EXCEPTION);
 
 function executeQuery($sql)
 {
-    //database connection
-
     try {
-
         global $pdo;
         $stmt = $pdo->query($sql);
 

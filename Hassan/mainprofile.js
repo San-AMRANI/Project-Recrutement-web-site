@@ -27,6 +27,11 @@
 //     $('.profile-pic').attr('src', defaultImage);
 
 // });
+
+function redirectToLinkedIn(url) {
+    window.open(url, '_blank');
+}
+
 $(document).ready(function () {
 
     $(".upload-button").on('click', function () {
@@ -72,18 +77,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// var newUrl = "https://www.instagram.com/jobapply.ma?igsh=cTlseWRneHVoeXdz";
-// document.getElementById("linkedinBtn").addEventListener("click", function () {
-//     window.location.href = newUrl; // Replace with your LinkedIn URL
-// });
 
+// document.getElementById("linkedinBtn").addEventListener("click", redirectToLinkedIn);
+// document.getElementById("linkedinBtn").addEventListener("click", redirectToLinkedIn);
 
 
 let cardnewlinks = document.getElementsByClassName("cardnewlinks")[0];
 document.getElementById('linkedinEditBtn').addEventListener('click', function () {
 
     let cardnewlinksStyle = window.getComputedStyle(cardnewlinks);
-
     if (cardnewlinksStyle.display === 'none') {
         cardnewlinks.style.display = 'block';
         return;
@@ -106,7 +108,42 @@ document.getElementById('formlinks').addEventListener('submit', function () {
     }
 })
 
-let disccandidat = new Quill('#desccandidat', {
+let desccandidat = new Quill('#desccandidat', {
     theme: 'snow'
 });
 
+desccandidat.on('text-change', function () {
+    var discCandidatContent = desccandidat.root.innerHTML;
+    var descriptionElements = document.getElementsByName('discriptioncandidat');
+    for (var i = 0; i < descriptionElements.length; i++) { descriptionElements[i].value = discCandidatContent; }
+});
+
+$(document).ready(function () {
+    var defaultImage = '../media/utilisateur.png';
+
+    var readURL = function (input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            // Set default image
+            $('.profile-pic').attr('src', defaultImage);
+        }
+    }
+
+    $("#file-upload").on('change', function () {
+        readURL(this);
+    });
+
+    // Initialize with default image
+    $('.profile-pic').attr('src', defaultImage);
+});
+
+
+
+// var newUrl = document.getElementsById('#lkdp').value;
