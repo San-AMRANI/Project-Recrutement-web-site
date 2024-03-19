@@ -3,133 +3,135 @@ session_start(); // démarrer la session
 // Récupérer l'ID de l'utilisateur à partir de la session
 //$userId = $_SESSION['user_id'];
 //$recruteurId = $_SESSION['company_id'];
-$userId =1;
+$userId = 1;
 $recruteurId = 1;
-$userRole ='recruteur';
+$userRole = 'recruteur';
 
 // Vérifier le rôle de l'utilisateur à partir de la session
-//$userRole = $_SESSION['user_role'];
- // Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
+// $userRole = $_SESSION['user_role'];
+//  Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
 
 
 $servername = "localhost"; // Change this if your database is hosted on a different server
 $username = "root"; // Replace with your database username
 $password = ""; // Replace with your database password
-$dbname = "jobpply"; // Replace with your database name
+$dbname = "jobapply"; // Replace with your database name
 
 try {
-    // Create a PDO connection
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    
-    // Set the PDO error mode to exception
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // Display a success message if connected successfully
-    echo "Connected to the $dbname database successfully.";
-} catch(PDOException $e) {
-    // Display an error message if unable to connect
-    echo "Connection failed: " . $e->getMessage();
+  // Create a PDO connection
+  $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+
+  // Set the PDO error mode to exception
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  // Display a success message if connected successfully
+  echo "Connected to the $dbname database successfully.";
+} catch (PDOException $e) {
+  // Display an error message if unable to connect
+  echo "Connection failed: " . $e->getMessage();
 }
 
-function getRecruterData ($pdo , $recruteurId) {
-// Prepare the SQL query
-$sql = "SELECT recruteur.* ,user.* FROM recruteur ,user WHERE idrecruteur = :idrecruteur AND recruteur.iduser = user.iduser";
-// Prepare the statement
-$stmt = $pdo->prepare($sql);
-// Bind the parameter
-$stmt->bindParam(':idrecruteur', $recruteurId, PDO::PARAM_INT);
-// Execute the statement
-$stmt->execute();
-// Fetch the data
-$recruteurData = $stmt->fetch(PDO::FETCH_ASSOC);
-return $recruteurData;
+function getRecruterData($pdo, $recruteurId)
+{
+  // Prepare the SQL query
+  $sql = "SELECT recruteur.* ,user.* FROM recruteur ,user WHERE idrecruteur = :idrecruteur AND recruteur.iduser = user.iduser";
+  // Prepare the statement
+  $stmt = $pdo->prepare($sql);
+  // Bind the parameter
+  $stmt->bindParam(':idrecruteur', $recruteurId, PDO::PARAM_INT);
+  // Execute the statement
+  $stmt->execute();
+  // Fetch the data
+  $recruteurData = $stmt->fetch(PDO::FETCH_ASSOC);
+  return $recruteurData;
 }
 
-$recruteurData =getRecruterData ($pdo , $recruteurId);
-
+$recruteurData = getRecruterData($pdo, $recruteurId);
+echo $recruteurId;
 // a function that extract all the 
-function getImagedata($pdo ,$IDrecruteur){
-// Prepare the SQL query
-$sql = "SELECT photo.avatar,indx
+function getImagedata($pdo, $IDrecruteur)
+{
+  // Prepare the SQL query
+  $sql = "SELECT photo.avatar,indx
         FROM recruteur
         JOIN user ON recruteur.iduser = user.iduser
         JOIN photo ON user.iduser = photo.iduser
         WHERE recruteur.idrecruteur = :IDrecruteur
         ORDER BY indx ;
       ";
-// Prepare the statement
-$stmt = $pdo->prepare($sql);
-// Bind the parameter
-$stmt->bindParam(':IDrecruteur', $IDrecruteur, PDO::PARAM_INT);
-// Execute the statement
-$stmt->execute();
-// Fetch the data
-$Photos = $stmt->fetchALL(PDO::FETCH_ASSOC);
-return $Photos;
+  // Prepare the statement
+  $stmt = $pdo->prepare($sql);
+  // Bind the parameter
+  $stmt->bindParam(':IDrecruteur', $IDrecruteur, PDO::PARAM_INT);
+  // Execute the statement
+  $stmt->execute();
+  // Fetch the data
+
+  $Photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $Photos;
 }
 
 $images = getImagedata($pdo, $recruteurId);
+
 // Initialiser les variables pour stocker les images avec indx égal à 1 et 2
 $imageWithIndx1 = null;
 $imageWithIndx2 = null;
 
-// Initialiser la variable pour stocker les images avec indx égal à 3
+// // Initialiser la variable pour stocker les images avec indx égal à 3
 $imageWithIndx3 = array();
 
 // Parcourir les résultats pour trouver les images avec indx égal à 1, 2 ou 3
 foreach ($images as $image) {
-    if ($image['indx'] == 1) {
-        // Stocker l'image avec indx égal à 1
-        $imageWithIndx1 = $image['avatar'];
-    } elseif ($image['indx'] == 2) {
-        // Stocker l'image avec indx égal à 2
-        $imageWithIndx2 = $image['avatar'];
-    } elseif ($image['indx'] == 3) {
-        // Stocker l'image avec indx égal à 3
-            $imageWithIndx3[] = $image['avatar'];
-        
-    }
+  if ($image['indx'] == 1) {
+    // Stocker l'image avec indx égal à 1
+    $imageWithIndx1 = $image['avatar'];
+  } elseif ($image['indx'] == 2) {
+    // Stocker l'image avec indx égal à 2
+    $imageWithIndx2 = $image['avatar'];
+  } elseif ($image['indx'] == 3) {
+    // Stocker l'image avec indx égal à 3
+    $imageWithIndx3[] = $image['avatar'];
+  }
 }
-print_r($imageWithIndx1) ;
-print_r($imageWithIndx2) ;
-print_r($imageWithIndx3);
+// echo $imageWithIndx1;
+// echo $imageWithIndx2;
+// print_r($imageWithIndx3);
 
 
 
 
 
-function fetchrecruteurcard($pdo )
+function fetchrecruteurcard($pdo)
 {
-    // Prepare the SQL query with LIMIT clause to fetch only the first 6 rows
-    $cardQuery = "SELECT recruteur.idrecruteur, user.nom, user.prenom, photo.avatar, recruteur.about
+  // Prepare the SQL query with LIMIT clause to fetch only the first 6 rows
+  $cardQuery = "SELECT recruteur.idrecruteur, user.nom, user.prenom, photo.avatar, recruteur.about
                 FROM recruteur
                 INNER JOIN photo ON recruteur.iduser = photo.iduser
-                INNER JOIN user ON recruteur.iduser = user.iduser"
-    ;
+                INNER JOIN user ON recruteur.iduser = user.iduser";
 
-    // Prepare the statement
-    $stmt = $pdo->prepare($cardQuery);
+  // Prepare the statement
+  $stmt = $pdo->prepare($cardQuery);
 
-    // Execute the query
-    $stmt->execute();
+  // Execute the query
+  $stmt->execute();
 
-    // Fetch all rows
-    $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  // Fetch all rows
+  $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Initialize array to store card HTML
-    $cardHTML = array();
+  // Initialize array to store card HTML
+  $cardHTML = array();
 
-    // Loop through rows to generate HTML structure
-    foreach ($cards as $card) {
-        $cardnom = $card['nom'];
-        $cardprenom = $card['prenom'];
-        $cardAvatar = $card['avatar'];
-        $cardabout = $card['about'];
-        $cardId = $card["idrecruteur"];
-        $truncatedabout = strlen($cardabout) > 50 ? substr($cardabout, 0, 50) . '...' : $cardabout;
-        // Generate HTML structure for each card
-        
-        $cardHTML[] = "
+  // Loop through rows to generate HTML structure
+  foreach ($cards as $card) {
+    $cardnom = $card['nom'];
+    $cardprenom = $card['prenom'];
+    $cardAvatar = $card['avatar'];
+    $cardabout = $card['about'];
+    $cardId = $card["idrecruteur"];
+    $truncatedabout = strlen($cardabout) > 50 ? substr($cardabout, 0, 50) . '...' : $cardabout;
+    // Generate HTML structure for each card
+
+    $cardHTML[] = "
         <div class='d-flex justify-content-between mb-2 pb-2 border-bottom'>
             <div class='d-flex align-items-center hover-pointer'>
                 <img class='img-xs rounded-circle' src='../photos/$cardAvatar' alt='' />
@@ -139,48 +141,48 @@ function fetchrecruteurcard($pdo )
                 </div>
             </div>
         </div>";
-    }
+  }
 
-    return $cardHTML;
+  return $cardHTML;
 }
-$cards =fetchrecruteurcard($pdo);
+$cards = fetchrecruteurcard($pdo);
 
 
 
 
 function uploadImageAndInsertIntoDatabase($pdo, $indx)
 {
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["imageFile"])) {
-        // Récupérez les informations sur l'image téléchargée
-        $fileName = $_FILES["imageFile"]["name"];
-        $fileTmpName = $_FILES["imageFile"]["tmp_name"];
-        $fileError = $_FILES["imageFile"]["error"];
+  if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["imageFile"])) {
+    // Récupérez les informations sur l'image téléchargée
+    $fileName = $_FILES["imageFile"]["name"];
+    $fileTmpName = $_FILES["imageFile"]["tmp_name"];
+    $fileError = $_FILES["imageFile"]["error"];
 
-        // Vérifiez s'il n'y a pas d'erreur lors du téléchargement
-        if ($fileError === UPLOAD_ERR_OK) {
-            // Déplacez le fichier téléchargé vers le dossier "photos" sur le serveur
-            $destination = "../photos/" . $fileName;
-            move_uploaded_file($fileTmpName, $destination);
+    // Vérifiez s'il n'y a pas d'erreur lors du téléchargement
+    if ($fileError === UPLOAD_ERR_OK) {
+      // Déplacez le fichier téléchargé vers le dossier "photos" sur le serveur
+      $destination = "../photos/" . $fileName;
+      move_uploaded_file($fileTmpName, $destination);
 
-            // Maintenant, vous pouvez insérer le nom de l'image dans la base de données
-            $iduser = $_SESSION["iduser"]; // Supposons que vous avez déjà démarré une session
+      // Maintenant, vous pouvez insérer le nom de l'image dans la base de données
+      $iduser = $_SESSION["iduser"]; // Supposons que vous avez déjà démarré une session
 
-            // Préparez la requête SQL pour insérer l'image dans la base de données
-            $sql = "INSERT INTO photo (iduser, avatar, indx) VALUES (?, ?, ?)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([$iduser, $fileName, $indx]);
+      // Préparez la requête SQL pour insérer l'image dans la base de données
+      $sql = "INSERT INTO photo (iduser, avatar, indx) VALUES (?, ?, ?)";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([$iduser, $fileName, $indx]);
 
-            // Affichez un message de succès ou effectuez d'autres actions nécessaires
-            echo "L'image a été téléchargée avec succès et enregistrée dans la base de données.";
-        } else {
-            echo "Une erreur s'est produite lors du téléchargement de l'image.";
-        }
+      // Affichez un message de succès ou effectuez d'autres actions nécessaires
+      echo "L'image a été téléchargée avec succès et enregistrée dans la base de données.";
+    } else {
+      echo "Une erreur s'est produite lors du téléchargement de l'image.";
     }
+  }
 }
 
 // Utilisation de la fonction avec l'indice approprié
-$index = isset($_POST['index']) ? $_POST['index'] :3; 
-uploadImageAndInsertIntoDatabase($pdo , $index);
+$index = isset($_POST['index']) ? $_POST['index'] : 3;
+uploadImageAndInsertIntoDatabase($pdo, $index);
 
 
 
@@ -271,8 +273,7 @@ document.getElementById("EditButton").addEventListener("click", function() {
         <a class="navbar-brand" href="index.html" style="color: black; font-size: larger; font-weight: 900">Jobpply</a>
 
         <!-- Toggler button for mobile view -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -290,38 +291,36 @@ document.getElementById("EditButton").addEventListener("click", function() {
               <a class="nav-link" href="index.html" style="color: #6c63ff">Offers</a>
             </li>
             <!-- la page des candidats reste confidentiel seul les recruteurs peuvent la voir-->
-            <?php if($userRole == "recruteur") {?>
-                  <li class="nav-item">
-                  <a class="nav-link" href="../jihane/recruteurHome.html">Candidate</a>
-                  </li> 
-                  <?php }?>
-                  <li class="nav-item">
-                    <a class="nav-link" id="contactlink" href="contact.php" style="margin-right: 10px;">Contact us</a>
-                  </li>
-                </ul>
-                <!-- Login and Sign Up buttons for mobile view -->
-                <?php if(! isset($_SESSION["userId"])){ ?>
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a href="../ayaa/aya.html" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="../ayaa/aya.html" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
-                  </li>
-                  <?php }else { ?> 
-                  <li>
-                  <span
-                class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border rounded-pill">
-                <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg"
-                    alt="profile" />
-                <a class="nav-link" href="../jihane/profilCandidat.html">Username</a>
-            </span>
-                  </li>
-                  <?php }?>
-                </ul>
-              </div>
-            </div>
-          </nav>
+            <?php if ($userRole == "recruteur") { ?>
+              <li class="nav-item">
+                <a class="nav-link" href="../jihane/recruteurHome.html">Candidate</a>
+              </li>
+            <?php } ?>
+            <li class="nav-item">
+              <a class="nav-link" id="contactlink" href="contact.php" style="margin-right: 10px;">Contact us</a>
+            </li>
+          </ul>
+          <!-- Login and Sign Up buttons for mobile view -->
+          <?php if (!isset($_SESSION["userId"])) { ?>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="../ayaa/aya.html" class="btn btn-outline-primary me-2" type="button" style="padding: 8px 20px; background-color: #6c63ff;border: none; color: white;">Login</a>
+              </li>
+              <li class="nav-item">
+                <a href="../ayaa/aya.html" class="btn btn-primary" type="button" style="padding: 8px 20px;background-color: #ff6347;border: none;">Sign Up</a>
+              </li>
+            <?php } else { ?>
+              <li>
+                <span class="nav-link badge d-flex align-items-center p-1 pe-2 text-secondary-emphasis bg-badge border rounded-pill">
+                  <img class="nav-link profile rounded-circle me-1" width="24" height="24" src="../media/logo.jpeg" alt="profile" />
+                  <a class="nav-link" href="../jihane/profilCandidat.html">Username</a>
+                </span>
+              </li>
+            <?php } ?>
+            </ul>
+        </div>
+      </div>
+    </nav>
   </div>
   <style>
     .fas.fa-bars {
@@ -391,38 +390,44 @@ document.getElementById("EditButton").addEventListener("click", function() {
         <div class="col-12 grid-margin">
           <div class="profile-header">
             <div class="cover">
-              <div class="gray-shade"></div>  
+              <div class="gray-shade"></div>
               <!--<form action="proflRec.php" method="post" name="recruteurdata">-->
-                <input type="hidden" name="index2" value="2"> <!-- Hidden input for index value -->
-                <div >
-                  <figure type="button" id="addImageFigure1" class="mb-0 upload-button "> test
-                    <img src="../photos/<?php print_r($imageWithIndx1) ; ?>" id="addImage2"  alt="profile cover" style="height: 30vw" />
-                  </figure>
-                  <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" >
-                  
-                </div>
+              <input type="hidden" name="index2" value="2"> <!-- Hidden input for index value -->
+              <div>
+                
+                <figure type="button" id="addImageFigure1" class="mb-0 upload-button ">
+                  <img src="../photos/<?php print_r($imageWithIndx1); ?>" id="addImage2" alt="profile cover" style="height: 30vw" />
+                </figure>
+                <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile">
+
+              </div>
               <div class="cover-body d-flex justify-content-between align-items-center">
                 <div style="display: flex;">
-                  <input type="hidden" name="index1" value="1"> <!-- Hidden input for index value --> 
-                    <img src="../photos/<?php print_r($imageWithIndx2); ?>" id="addImage1" style="height: 9vw" />
-                    <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" >
-                  <span class="profile-name" style="display: flex;align-self: center; "><?php print_r($recruteurData['nom']);echo" ";print_r($recruteurData['prenom']) ?></span>
+                <!-- click to upload sghira -->
+                  <input type="hidden" name="index1" value="1"> <!-- Hidden input for index value -->
+                  <input type="file" id="file-upload" class="file-upload" style="display: none;">
+                  <label for="file-upload" class="profile-pic-label">
+                    <img class="profile-pic" src="../photos/<?php print_r($imageWithIndx2); ?>" >
+                  </label>
+
+                  
+                  <span class="profile-name" style="display: flex;align-self: center; "><?php print_r($recruteurData['nom']);
+                                                                                        echo " ";
+                                                                                        print_r($recruteurData['prenom']) ?></span>
                 </div>
                 <div class="d-none d-md-block">
                   <button type="button" class="btn btn-primary btn-icon-text btn-edit-profile" id="EditButton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      class="feather feather-edit btn-icon-prepend">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit btn-icon-prepend">
                       <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                       <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                     </svg>
                     <?php echo $buttonText; ?>
                   </button>
                 </div>
-                
+
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -434,11 +439,8 @@ document.getElementById("EditButton").addEventListener("click", function() {
               <div class="d-flex align-items-center justify-content-between mb-2">
                 <h6 class="card-title mb-0">About</h6>
                 <div class="dropdown">
-                  <button class="btn p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      class="feather feather-more-horizontal icon-lg text-muted pb-3px">
+                  <button class="btn p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal icon-lg text-muted pb-3px">
                       <circle cx="12" cy="12" r="1"></circle>
                       <circle cx="19" cy="12" r="1"></circle>
                       <circle cx="5" cy="12" r="1"></circle>
@@ -446,16 +448,12 @@ document.getElementById("EditButton").addEventListener("click", function() {
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item d-flex align-items-center" href="#">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-edit-2 icon-sm mr-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 icon-sm mr-2">
                         <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                       </svg>
                       <span class="">Edit</span></a>
                     <a class="dropdown-item d-flex align-items-center" href="#">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-git-branch icon-sm mr-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-branch icon-sm mr-2">
                         <line x1="6" y1="3" x2="6" y2="15"></line>
                         <circle cx="18" cy="6" r="3"></circle>
                         <circle cx="6" cy="18" r="3"></circle>
@@ -463,9 +461,7 @@ document.getElementById("EditButton").addEventListener("click", function() {
                       </svg>
                       <span class="">Update</span></a>
                     <a class="dropdown-item d-flex align-items-center" href="#">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-eye icon-sm mr-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye icon-sm mr-2">
                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                         <circle cx="12" cy="12" r="3"></circle>
                       </svg>
@@ -473,60 +469,51 @@ document.getElementById("EditButton").addEventListener("click", function() {
                   </div>
                 </div>
               </div>
-              
-                <p class="text-muted">
-                  <textarea name="About" id="About" cols="35" rows="6" disabled style="
+
+              <p class="text-muted">
+                <textarea name="About" id="About" cols="35" rows="6" disabled style="
                         border: none;
                         background-color: white;
                         resize: none;
                       ">
-                      <?php print_r($recruteurData['about']) ;?>
+                      <?php print_r($recruteurData['about']); ?>
                     </textarea>
+              </p>
+              <div class="mt-3">
+                <label class="tx-11 font-weight-bold mb-0 text-uppercase">Joined:</label>
+                <p class="text-muted"><?php print_r($recruteurData['datesignup']); ?></p>
+              </div>
+              <div class="mt-3">
+                <label class="tx-11 font-weight-bold mb-0 text-uppercase">Lives:</label>
+                <p class="text-muted">
+                  <input type="text" name="Lives" id="Lives" value="New York, USA" disabled style="border: none; background-color: white" />
                 </p>
-                <div class="mt-3">
-                  <label class="tx-11 font-weight-bold mb-0 text-uppercase">Joined:</label>
-                  <p class="text-muted"><?php print_r($recruteurData['datesignup']) ;?></p>
-                </div>
-                <div class="mt-3">
-                  <label class="tx-11 font-weight-bold mb-0 text-uppercase">Lives:</label>
-                  <p class="text-muted">
-                    <input type="text" name="Lives" id="Lives" value="New York, USA" disabled
-                      style="border: none; background-color: white" />
-                  </p>
-                </div>
-                <div class="mt-3">
-                  <label class="tx-11 font-weight-bold mb-0 text-uppercase">Email:</label>
-                  <p class="text-muted">
-                    <input type="text" name="Email" id="email" value ="<?php print_r($recruteurData['email']) ;?>" disabled
-                      style="border: none; background-color: white" />
-                  </p>
-                </div>
-                <div class="mt-3">
-                  <label class="tx-11 font-weight-bold mb-0 text-uppercase">Website:</label>
-                  <p class="text-muted">
-                    <input type="text" name="Email" id="Email" value="<?php print_r($recruteurData['email']) ;?>" disabled
-                      style="border: none; background-color: white" />
-                  </p>
-                </div>
-                <div class="mt-3 d-flex social-links" style="justify-content: space-around">
-                  <a href="https://web.facebook.com/"
-                    class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon github"
-                    style="border: none !important">
-                    <img src="../media/facebook.png" style="width: 25px" alt="" />
-                  </a>
+              </div>
+              <div class="mt-3">
+                <label class="tx-11 font-weight-bold mb-0 text-uppercase">Email:</label>
+                <p class="text-muted">
+                  <input type="text" name="Email" id="email" value="<?php print_r($recruteurData['email']); ?>" disabled style="border: none; background-color: white" />
+                </p>
+              </div>
+              <div class="mt-3">
+                <label class="tx-11 font-weight-bold mb-0 text-uppercase">Website:</label>
+                <p class="text-muted">
+                  <input type="text" name="Email" id="Email" value="<?php print_r($recruteurData['email']); ?>" disabled style="border: none; background-color: white" />
+                </p>
+              </div>
+              <div class="mt-3 d-flex social-links" style="justify-content: space-around">
+                <a href="https://web.facebook.com/" class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon github" style="border: none !important">
+                  <img src="../media/facebook.png" style="width: 25px" alt="" />
+                </a>
 
-                  <a href="https://www.instagram.com/"
-                    class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon twitter"
-                    style="border: none !important">
-                    <img src="../media/instagramblack.png" style="width: 25px" alt="" />
-                  </a>
-                  <a href="https://twitter.com/"
-                    class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon instagram"
-                    style="border: none !important">
-                    <img src="../media/twitterblack.png" style="width: 25px" alt="" />
-                  </a>
-                </div>
-              
+                <a href="https://www.instagram.com/" class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon twitter" style="border: none !important">
+                  <img src="../media/instagramblack.png" style="width: 25px" alt="" />
+                </a>
+                <a href="https://twitter.com/" class="btn d-flex align-items-center justify-content-center border mr-2 btn-icon instagram" style="border: none !important">
+                  <img src="../media/twitterblack.png" style="width: 25px" alt="" />
+                </a>
+              </div>
+
             </div>
           </div>
         </div>
@@ -536,7 +523,7 @@ document.getElementById("EditButton").addEventListener("click", function() {
           <div class="row offresframe">
             <iframe src="cards.html" id="offresframe" frameborder="0"></iframe>
           </div>
-          
+
         </div>
         <!-- middle wrapper end -->
         <!-- right wrapper start -->
@@ -600,13 +587,13 @@ document.getElementById("EditButton").addEventListener("click", function() {
                         </figure>
                       </div>
 
-                      
+
                       <input type="hidden" name="index" value="3">
                       <div class="col-md-4" id="coladd">
                         <figure id="addImageFigure" class="mb-0">
                           <img class="img-fluid" src="../media/add-image.png" alt="Add Image" id="addImage" />
                         </figure>
-                      <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile" >
+                        <input type="file" id="imageInput" style="display: none;" accept="photos/*" name="imageFile">
                       </div>
                       <!--</form>-->
 
@@ -622,16 +609,16 @@ document.getElementById("EditButton").addEventListener("click", function() {
                               margin-bottom: 0.5vw;
                             }
                           </style>
-                          
-                          
+
+
 
                           <?php foreach ($cards as $card) {
-                            
+
                             echo $card;
-                          }?>
-                          
-                          
-                          
+                          } ?>
+
+
+
                         </div>
                       </div>
                     </div>
@@ -642,8 +629,9 @@ document.getElementById("EditButton").addEventListener("click", function() {
             </div>
           </div>
           <?php
-           // Affiche le code JavaScript généré
-          //echo $jsCode; ?>
+          // Affiche le code JavaScript généré
+          //echo $jsCode; 
+          ?>
 </body>
 <script src="recru.js"></script>
 <script src="/btsp/js/printThis.js"></script>

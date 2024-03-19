@@ -2,6 +2,8 @@
 // Start the session
 session_start();
 
+$idcandidat = $_SESSION['candidat_id'];
+
 include('connect.model.php');
 
 function insertcandida()

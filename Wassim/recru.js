@@ -35,7 +35,31 @@
   });
 });
 */
+$(document).ready(function () {
+  var defaultImage = '../media/utilisateur.png';
 
+  var readURL = function (input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('.profile-pic').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      // Set default image
+      $('.profile-pic').attr('src', defaultImage);
+    }
+  }
+
+  $("#file-upload").on('change', function () {
+    readURL(this);
+  });
+
+  // Initialize with default image
+  $('.profile-pic').attr('src', defaultImage);
+});
 document.getElementById("addImage").addEventListener("click", function () {
   document.getElementById("imageInput").click();
 });

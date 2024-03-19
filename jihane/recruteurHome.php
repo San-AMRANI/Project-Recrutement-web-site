@@ -615,7 +615,7 @@ $cards = fetchcandidatcard($pdo,$userId);
 
                     // Vérifier si le score pour ce candidat existe dans $points
                     if (isset($points)) {
-                        $score = $points[$resultat['idcandidat']];
+                        // $score = $points[$resultat['idcandidat']];
                     } else {
                         $score = 0; // Si le score n'est pas défini, définissez-le à zéro
                     }
