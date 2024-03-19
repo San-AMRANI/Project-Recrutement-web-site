@@ -24,13 +24,9 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
                                 <div class="thumb-up">
-                                    <div class="profile-box">
-                                        <input type="file" id="file-upload" class="file-upload" style="display: none;">
-                                        <label for="file-upload" class="profile-pic-label">
-                                            <img class="profile-pic" src="../media/utilisateur.png">
-                                        </label>
+                                    <div class="profile-box ">
+                                        <img class="profile-pic" src="../uploads/<?php echo $img_filename ?>">
                                     </div>
-
                                     <div class="p-image">
                                         <button type="button" value="login" href="indexCV.html" class="btn upload-button">✎ Profile/CV</button>
                                         <input class="file-upload" type="file" accept="image/*">
@@ -206,7 +202,9 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                 </div>
                                 <?php echo $nomcv; ?>
                                 <button id="remove-pdf">Remove PDF</button>
-                                <input class="form-control" type="file" id="pdf-upload" accept=".pdf">
+                                <form action="includes/candidat_home.ctrl.php" method="post" id="pdftodb">
+                                    <input class="form-control" type="file" id="pdf-upload" accept=".pdf">
+                                </form>
                                 <div class="card-body">
                                     <iframe id="pdf-viewer" src="../uploads/<?php
                                                                             if ($nomcv) {

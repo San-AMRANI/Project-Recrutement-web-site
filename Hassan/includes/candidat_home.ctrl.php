@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['getprofile'])) {
    $candida_id = $_POST['getprofile'];
    header("Location: ../indexprofil.php");
 }
-$sql = "SELECT nom, prenom, email, phone, adresse, phone,specialite, descandidat, datenaissance, nomcv, linkedin, insta, github, discord, candidat.iduser FROM candidat, user WHERE candidat.iduser = user.iduser";
+$sql = "SELECT nom, prenom, email, phone, adresse, phone,specialite, descandidat, datenaissance, img_filename, nomcv, linkedin, insta, github, discord, candidat.iduser FROM candidat, user WHERE candidat.iduser = user.iduser";
 $resault = executeQuery($sql);
 print_r($resault);
 echo $candida_id;
@@ -26,6 +26,7 @@ $phone = $resault[0]['phone'];
 $descandidat = $resault[0]['descandidat'];
 $datenaissance = $resault[0]['datenaissance'];
 $specialite = $resault[0]['specialite'];
+$img_filename = $resault[0]['img_filename'];
 $nomcv= $resault[0]['nomcv'];
 //links
 $linkedin = $resault[0]['linkedin'];

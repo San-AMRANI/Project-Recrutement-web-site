@@ -1,92 +1,92 @@
 <?php
-session_start(); // démarrer la session 
-// Récupérer l'ID de l'utilisateur à partir de la session
-$userId = $_SESSION['user_id'];
-$recruteurId = $_SESSION['company_id'];
+// session_start(); // démarrer la session 
+// // Récupérer l'ID de l'utilisateur à partir de la session
+// $userId = $_SESSION['user_id'];
+// $recruteurId = $_SESSION['company_id'];
 
-// Vérifier le rôle de l'utilisateur à partir de la session
-$userRole = $_SESSION['user_role']; // Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
+// // Vérifier le rôle de l'utilisateur à partir de la session
+// $userRole = $_SESSION['user_role']; // Assurez-vous que vous stockez le rôle de l'utilisateur dans la session lors de la connexion
 
 
-$servername = "localhost"; // Change this if your database is hosted on a different server
-$username = "root"; // Replace with your database username
-$password = ""; // Replace with your database password
-$dbname = "jobpply"; // Replace with your database name
+// $servername = "localhost"; // Change this if your database is hosted on a different server
+// $username = "root"; // Replace with your database username
+// $password = ""; // Replace with your database password
+// $dbname = "jobpply"; // Replace with your database name
 
-try {
-    // Create a PDO connection
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+// try {
+//     // Create a PDO connection
+//     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     
-    // Set the PDO error mode to exception
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     // Set the PDO error mode to exception
+//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    // Display a success message if connected successfully
-    echo "Connected to the $dbname database successfully.";
-} catch(PDOException $e) {
-    // Display an error message if unable to connect
-    echo "Connection failed: " . $e->getMessage();
-}
+//     // Display a success message if connected successfully
+//     echo "Connected to the $dbname database successfully.";
+// } catch(PDOException $e) {
+//     // Display an error message if unable to connect
+//     echo "Connection failed: " . $e->getMessage();
+// }
 
-function getRecruterData ($pdo , $recruteurId) {
-// Prepare the SQL query
-$sql = "SELECT * FROM recruteur WHERE idrecruteur = :idrecruteur";
-// Prepare the statement
-$stmt = $pdo->prepare($sql);
-// Bind the parameter
-$stmt->bindParam(':idrecruteur', $recruteurId, PDO::PARAM_INT);
-// Execute the statement
-$stmt->execute();
-// Fetch the data
-$recruteurData = $stmt->fetch(PDO::FETCH_ASSOC);
-return $recruteurData;
-}
+// function getRecruterData ($pdo , $recruteurId) {
+// // Prepare the SQL query
+// $sql = "SELECT * FROM recruteur WHERE idrecruteur = :idrecruteur";
+// // Prepare the statement
+// $stmt = $pdo->prepare($sql);
+// // Bind the parameter
+// $stmt->bindParam(':idrecruteur', $recruteurId, PDO::PARAM_INT);
+// // Execute the statement
+// $stmt->execute();
+// // Fetch the data
+// $recruteurData = $stmt->fetch(PDO::FETCH_ASSOC);
+// return $recruteurData;
+// }
 
-$recruteurData =getRecruterData ($pdo , $recruteurId);
-$IDrecruteur = $recruteurData['idrecruteur'];
+// $recruteurData =getRecruterData ($pdo , $recruteurId);
+// $IDrecruteur = $recruteurData['idrecruteur'];
 
-// a function that extract all the 
-function getImagedata($pdo ,$IDrecruteur){
-// Prepare the SQL query
-$sql = "SELECT photo.avatar
-        FROM recruteur
-        JOIN user ON recruteur.iduser = user.iduser
-        JOIN photo ON user.iduser = photo.iduser
-        WHERE recruteur.idrecruteur = :IDrecruteur
-        ORDER BY indx ;
-      ";
-// Prepare the statement
-$stmt = $pdo->prepare($sql);
-// Bind the parameter
-$stmt->bindParam(':IDrecruteur', $IDrecruteur, PDO::PARAM_INT);
-// Execute the statement
-$stmt->execute();
-// Fetch the data
-$Photos = $stmt->fetchALL(PDO::FETCH_ASSOC);
-return $Photos;
-}
+// // a function that extract all the 
+// function getImagedata($pdo ,$IDrecruteur){
+// // Prepare the SQL query
+// $sql = "SELECT photo.avatar
+//         FROM recruteur
+//         JOIN user ON recruteur.iduser = user.iduser
+//         JOIN photo ON user.iduser = photo.iduser
+//         WHERE recruteur.idrecruteur = :IDrecruteur
+//         ORDER BY indx ;
+//       ";
+// // Prepare the statement
+// $stmt = $pdo->prepare($sql);
+// // Bind the parameter
+// $stmt->bindParam(':IDrecruteur', $IDrecruteur, PDO::PARAM_INT);
+// // Execute the statement
+// $stmt->execute();
+// // Fetch the data
+// $Photos = $stmt->fetchALL(PDO::FETCH_ASSOC);
+// return $Photos;
+// }
 
-$images = getImagedata($pdo, $IDrecruteur);
-// Initialiser les variables pour stocker les images avec indx égal à 1 et 2
-$imageWithIndx1 = null;
-$imageWithIndx2 = null;
+// $images = getImagedata($pdo, $IDrecruteur);
+// // Initialiser les variables pour stocker les images avec indx égal à 1 et 2
+// $imageWithIndx1 = null;
+// $imageWithIndx2 = null;
 
-// Initialiser la variable pour stocker les images avec indx égal à 3
-$imageWithIndx3 = array();
+// // Initialiser la variable pour stocker les images avec indx égal à 3
+// $imageWithIndx3 = array();
 
-// Parcourir les résultats pour trouver les images avec indx égal à 1, 2 ou 3
-foreach ($images as $image) {
-    if ($image['indx'] == 1) {
-        // Stocker l'image avec indx égal à 1
-        $imageWithIndx1 = $image;
-    } elseif ($image['indx'] == 2) {
-        // Stocker l'image avec indx égal à 2
-        $imageWithIndx2 = $image;
-    } elseif ($image['indx'] == 3) {
-        // Stocker l'image avec indx égal à 3
-            $imageWithIndx3[] = $image;
+// // Parcourir les résultats pour trouver les images avec indx égal à 1, 2 ou 3
+// foreach ($images as $image) {
+//     if ($image['indx'] == 1) {
+//         // Stocker l'image avec indx égal à 1
+//         $imageWithIndx1 = $image;
+//     } elseif ($image['indx'] == 2) {
+//         // Stocker l'image avec indx égal à 2
+//         $imageWithIndx2 = $image;
+//     } elseif ($image['indx'] == 3) {
+//         // Stocker l'image avec indx égal à 3
+//             $imageWithIndx3[] = $image;
         
-    }
-}
+//     }
+// }
 
 
 
@@ -134,7 +134,7 @@ function fetchrecruteurcard($pdo)
 
     return $cardHTML;
 }
-$cards =fetchrecruteurcard($pdo);
+// $cards =fetchrecruteurcard($pdo);
 
 
 

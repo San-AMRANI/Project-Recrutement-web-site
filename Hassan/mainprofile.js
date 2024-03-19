@@ -47,6 +47,9 @@ document.getElementById('remove-pdf').addEventListener('click', function () {
 document.getElementById('pdf-upload').addEventListener('input', function (event) {
     var file = event.target.files[0];
     var reader = new FileReader();
+    var form = document.getElementById('pdftodb');
+    form.preventDefault();
+    form.submit();
 
     reader.onload = function (e) {
         var pdfViewer = document.getElementById('pdf-viewer');
@@ -116,32 +119,6 @@ desccandidat.on('text-change', function () {
     var discCandidatContent = desccandidat.root.innerHTML;
     var descriptionElements = document.getElementsByName('discriptioncandidat');
     for (var i = 0; i < descriptionElements.length; i++) { descriptionElements[i].value = discCandidatContent; }
-});
-
-$(document).ready(function () {
-    var defaultImage = '../media/utilisateur.png';
-
-    var readURL = function (input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('.profile-pic').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            // Set default image
-            $('.profile-pic').attr('src', defaultImage);
-        }
-    }
-
-    $("#file-upload").on('change', function () {
-        readURL(this);
-    });
-
-    // Initialize with default image
-    $('.profile-pic').attr('src', defaultImage);
 });
 
 
