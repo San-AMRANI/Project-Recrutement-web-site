@@ -203,7 +203,7 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                 <?php echo $nomcv; ?>
                                 <button id="remove-pdf">Remove PDF</button>
                                 <form action="includes/candidat_home.ctrl.php" method="post" id="pdftodb">
-                                    <input class="form-control" type="file" id="pdf-upload" accept=".pdf">
+                                    <input class="form-control" type="file" id="pdf-upload" name="pdfdb" accept=".pdf">
                                 </form>
                                 <div class="card-body">
                                     <iframe id="pdf-viewer" src="../uploads/<?php

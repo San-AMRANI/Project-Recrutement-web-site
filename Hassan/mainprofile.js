@@ -42,18 +42,21 @@ $(document).ready(function () {
 document.getElementById('remove-pdf').addEventListener('click', function () {
     var pdfViewer = document.getElementById('pdf-viewer');
     pdfViewer.src = ''; // Reset iframe source
-    document.getElementById('pdf-upload').value = '';
+    document.getElementById('pdf-upload').value = 'r';
+    var form = document.getElementById('pdftodb');
+    form.submit();
 });
-document.getElementById('pdf-upload').addEventListener('input', function (event) {
+document.getElementById('pdf-upload').addEventListener('change', function (event) {
     var file = event.target.files[0];
     var reader = new FileReader();
-    var form = document.getElementById('pdftodb');
-    form.preventDefault();
-    form.submit();
 
     reader.onload = function (e) {
         var pdfViewer = document.getElementById('pdf-viewer');
         pdfViewer.src = e.target.result;
+
+        // Perform form submission after loading the file
+        var form = document.getElementById('pdftodb');
+        form.submit();
     };
 
     reader.readAsDataURL(file);

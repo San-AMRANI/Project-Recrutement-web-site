@@ -69,4 +69,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['instagraminputp'])) {
    header("Location: ../indexprofil.php");
 }
 
+// Assuming this code block is inside a file processing form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pdfdb'])) {
+    // Decode the base64-encoded file data
+    $fileData = $_POST['pdfdb'];
+    $decodedFileData = base64_decode($fileData);
+
+    // Define the directory where you want to store the uploaded files
+    $uploadDirectory = '../../uploads/';
+
+    // Get the original file name from the request (assuming it's sent along with the base64-encoded data)
+    $originalFileName = $_POST['originalFileName']; // Adjust this according to your form input name
+
+    // Specify the file path
+    $filePath = $uploadDirectory . $originalFileName;
+
+    // Save the file to the specified directory
+    if (file_put_contents($filePath, $decodedFileData) !== false) {
+        try {
+            // Prepare SQL statement
+            $stmt = $pdo->prepare("UPDATE candidat SET nomcv = :nomcv WHERE idcandidat = :idcandidat");
+
+            // Bind parameters
+            $stmt->bindParam(':nomcv', $originalFileName);
+
+            // Assuming you have the idcandidat stored in a session variable named $_SESSION['idcandidat']
+            // $idcandidat = $_SESSION['idcandidat'];
+            $stmt->bindParam(':idcandidat', $candida_id);
+
+            // Execute the statement
+            $stmt->execute();
+
+            // Redirect to the desired page after successful upload and database update
+            header("Location: ../indexprofil.php");
+            exit();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    } else {
+        echo "Failed to save the uploaded file.";
+    }
+}
+
 ?>
