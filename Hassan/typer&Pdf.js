@@ -111,34 +111,34 @@ removeLangue.addEventListener("click", function () {
 /////imageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 
 $(document).ready(function () {
-    var defaultImage = '../media/utilisateur.png';
+  var defaultImage = '../media/utilisateur.png';
 
-    var readURL = function (input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+  var readURL = function (input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $('.profile-pic').attr('src', e.target.result);
-                $('#fileData').val(e.target.result); // Set file data to hidden input
-            }
+      reader.onload = function (e) {
+        $('.profile-pic').attr('src', e.target.result);
+        $('#fileData').val(e.target.result); // Set file data to hidden input
+      }
 
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            // Set default image
-            $('.profile-pic').attr('src', defaultImage);
-        }
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      // Set default image
+      $('.profile-pic').attr('src', defaultImage);
     }
+  }
 
-    $(".file-upload").on('change', function () {
-        readURL(this);
-    });
+  $(".file-upload").on('change', function () {
+    readURL(this);
+  });
 
-    $(".upload-button").on('click', function () {
-        $(".file-upload").click();
-    });
+  $(".profile-pic").on('click', function () {
+    $(".file-upload").click();
+  });
 
-    // Initialize with default image
-    $('.profile-pic').attr('src', defaultImage);
+  // Initialize with default image
+  $('.profile-pic').attr('src', defaultImage);
 });
 
 

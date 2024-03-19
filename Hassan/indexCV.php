@@ -67,7 +67,7 @@ include('../Hassan/includes/candidatinfo.ctrl.php');
                     <div class="x">
                         <div class="thumb-up">
                             <div class="profile-box ">
-                                <img class="profile-pic" src="..img/picture1.png">
+                                <img class="profile-pic" ty src="..img/picture1.png">
                             </div>
                             <div class="p-image">
                                 <button type="button" value="login" class="btn upload-button">Upload</button>

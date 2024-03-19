@@ -72,10 +72,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-var newUrl = "#";
-document.getElementById("linkedinBtn").addEventListener("click", function () {
-    window.location.href = newUrl; // Replace with your LinkedIn URL
-});
+// var newUrl = "https://www.instagram.com/jobapply.ma?igsh=cTlseWRneHVoeXdz";
+// document.getElementById("linkedinBtn").addEventListener("click", function () {
+//     window.location.href = newUrl; // Replace with your LinkedIn URL
+// });
 
 
 
