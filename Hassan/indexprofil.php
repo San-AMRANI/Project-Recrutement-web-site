@@ -54,6 +54,14 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                             </g>
                                         </svg>
                                     </button>
+                                    <?php
+                                    echo " <script>
+                                    var newUrl = '$insta';
+                                        document.getElementById('linkedinBtn').addEventListener('click', function () {
+                                        window.location.href = newUrl; // Replace with your LinkedIn URL
+                                        });</script>
+                                    ";
+                                    ?>
                                     <button class="card2 " id="linkedinBtn">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="linkedin" height="1.6em" viewBox="0 0 448 512">
                                             <path d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z">
@@ -82,7 +90,7 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                 </div>
                 <div class="card cardnewlinks hidden">
                     <div class="card-body">
-                        <form id="formlinks" action="#" method="post">
+                        <form id="formlinks" action="includes/candidat_home.ctrl.php" method="post">
                             <div class="" id="desccandidat" style="margin-bottom: 20px;">
                                 <p>Describe your self..</p>
                             </div>
@@ -96,7 +104,7 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                                 </g>
                                             </g>
                                         </svg></span>
-                                    <input type="text" class="form-control" id="instagraminput" placeholder="Instagrame" aria-label="Instagrame" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" id="instagraminput" name="instagraminputp" placeholder="Instagrame" aria-label="Instagrame" aria-describedby="basic-addon1">
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -104,7 +112,7 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                             <path d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z">
                                             </path>
                                         </svg></span>
-                                    <input type="text" class="form-control" id="linkedininput" placeholder="Linkedin" aria-label="Linkedin" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" id="linkedininput" name="linkedininputp" placeholder="Linkedin" aria-label="Linkedin" aria-describedby="basic-addon1">
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -112,7 +120,7 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                             <path d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051 c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526 c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769 c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098 c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9 c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594 c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734 c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z">
                                             </path>
                                         </svg></span>
-                                    <input type="text" class="form-control" id="githubinput" placeholder="github" aria-label="github" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" id="githubinput" name="githubinputp" placeholder="github" aria-label="github" aria-describedby="basic-addon1">
                                 </div>
 
                                 <div class="input-group mb-3">
@@ -120,13 +128,11 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                             <path d="M40,12c0,0-4.585-3.588-10-4l-0.488,0.976C34.408,10.174,36.654,11.891,39,14c-4.045-2.065-8.039-4-15-4s-10.955,1.935-15,4c2.346-2.109,5.018-4.015,9.488-5.024L18,8c-5.681,0.537-10,4-10,4s-5.121,7.425-6,22c5.162,5.953,13,6,13,6l1.639-2.185C13.857,36.848,10.715,35.121,8,32c3.238,2.45,8.125,5,16,5s12.762-2.55,16-5c-2.715,3.121-5.857,4.848-8.639,5.815L33,40c0,0,7.838-0.047,13-6C45.121,19.425,40,12,40,12z M17.5,30c-1.933,0-3.5-1.791-3.5-4c0-2.209,1.567-4,3.5-4s3.5,1.791,3.5,4C21,28.209,19.433,30,17.5,30z M30.5,30c-1.933,0-3.5-1.791-3.5-4c0-2.209,1.567-4,3.5-4s3.5,1.791,3.5,4C34,28.209,32.433,30,30.5,30z">
                                             </path>
                                         </svg></span>
-                                    <input type="text" class="form-control" placeholder="Discord" id="discorinput" aria-label="Discord" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" placeholder="Discord" id="discorinput" name="discorinputp" aria-label="Discord" aria-describedby="basic-addon1">
                                 </div>
 
                             </div>
-                            <button type="submit" class="btn btn-primary">
-                                Terminé
-                            </button>
+                            <input type="submit" class="btn btn-primary" value="Terminé">
                             <button type="reset" class="btn btn-primary" id="cancellinks">
                                 Annuler
                             </button>
@@ -165,7 +171,10 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                     <h6 class="mb-0">Birthday</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input disabled type="text" class="form-control" value="<?php echo $birthday ?>">
+                                    <input disabled type="text" class="form-control" value="<?php
+                                                                                            if ($birthday) {
+                                                                                                echo $birthday;
+                                                                                            } else echo 'vouillez completer information (✎ Profile/CV)!!';  ?>">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -173,7 +182,10 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                     <h6 class="mb-0">Address</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input disabled type="text" class="form-control" value="<?php echo $adresse ?>">
+                                    <input disabled type="text" class="form-control" value="<?php
+                                                                                            if ($adresse) {
+                                                                                                echo $adresse;
+                                                                                            } else echo 'vouillez completer information (✎ Profile/CV)!!';  ?>">
                                 </div>
                             </div>
                             <div class="row">
@@ -189,10 +201,14 @@ include('../Hassan/includes/candidat_home.ctrl.php');
                                 <div class="mb-3" id="label-pdf-upload">
                                     <label for="pdf-upload" class="form-label">Importer votre CV</label>
                                 </div>
+                                <?php echo $nomcv; ?>
                                 <button id="remove-pdf">Remove PDF</button>
-                                <input class="form-control" type="file" id="pdf-upload" value="uploads/<?php echo $nom ?>" accept=".pdf">
+                                <input class="form-control" type="file" id="pdf-upload" accept=".pdf">
                                 <div class="card-body">
-                                    <iframe id="pdf-viewer" frameborder="0"></iframe>
+                                    <iframe id="pdf-viewer" src="../uploads/<?php
+                                                                            if ($nomcv) {
+                                                                                echo $nomcv;
+                                                                            } else echo 'emptyviewer.html';  ?>" frameborder="0"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -206,7 +222,7 @@ include('../Hassan/includes/candidat_home.ctrl.php');
 
 
     <script src="../btsp/js/jquery-3.7.1.min.js"></script>
-    <script src="../Hassan/mainprofil.js"></script>
+    <script src="mainprofile.js"></script>
     <script src="testt.js"></script>
     <script src="../btsp/js/popper.min.js"></script>
     <script src="../btsp/js/bootstrap.js"></script>
